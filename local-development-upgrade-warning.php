@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Local Development Upgrade Warning
- * Plugin URI:        https://github.com/afragen/local-development-upgrade-warning
+ * Plugin URI:        https://wordpress.org/plugins/local-development-upgrade-warning
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       A plugin to place warning notices for plugins or themes that are in active development.
