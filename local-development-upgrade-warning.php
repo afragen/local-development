@@ -31,6 +31,10 @@ class Local_Development_Upgrade_Warning {
 	 */
 	protected static $themes;
 
+	/**
+	 * Static to hold message.
+	 * @var
+	 */
 	protected static $message;
 
 	/**
