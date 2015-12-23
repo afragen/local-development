@@ -6,13 +6,16 @@
  * Author URI:        http://thefragens.com/
  * Description:       A plugin to place warning notices for plugins or themes that are in active development.
  * Version:           0.1
- * Text Domain:       local-development-update-warning
+ * Text Domain:       local-development-upgrade-warning
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/local-development-upgrade-warning
  * Requires PHP:      5.3
  */
+
+// Load textdomain
+load_plugin_textdomain( 'local-development-upgrade-warning', false, dirname( __FILE__ ) . '/languages' );
 
 /**
  * Class Local_Development_Upgrade_Warning
@@ -45,7 +48,7 @@ class Local_Development_Upgrade_Warning {
 	public function __construct( $config ) {
 		self::$plugins = $config['plugins'];
 		self::$themes  = $config['themes'];
-		self::$message = esc_html__( 'This is a local development directory.', 'local-development-update-warning' );
+		self::$message = esc_html__( 'This is a local development directory.', 'local-development-upgrade-warning' );
 
 		add_filter( 'pre_set_site_transient_update_plugins', array( &$this, 'transient_update' ), 15, 1 );
 		add_filter( 'plugin_row_meta', array( &$this, 'row_meta' ), 15, 2 );
