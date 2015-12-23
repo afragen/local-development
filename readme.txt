@@ -7,9 +7,11 @@ Stable tag: trunk
 License: GPLv2
 Network: true
 
-A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
+<strong>Developers Only</strong> A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
 
 == Description ==
+This is a developer only plugin.
+
 A plugin to place warning notices for plugins or themes that are in active development. Warning notices are placed on the plugins page, the themes page and the core update page.
 
 Provides a warning notice so plugins or themes that are under local development and are updatable from the WordPress repo or other location show a warning message. Updating a plugin or theme under local development may cause data loss.
