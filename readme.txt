@@ -41,7 +41,7 @@ add_action( 'plugins_loaded', function() {
 	}
 
 } );
-</pre></code>
+</code></pre>
 
 == Changelog ==
 = 0.1 =
