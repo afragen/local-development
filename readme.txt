@@ -7,7 +7,7 @@ Stable tag: trunk
 License: GPLv2
 Network: true
 
-<strong>Developers Only</strong> A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
+<strong>Developers Only</strong><br/>A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
 
 == Description ==
 This is a developer only plugin.

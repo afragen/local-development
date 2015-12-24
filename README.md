@@ -7,7 +7,8 @@
 * License: GPLv2
 * Network: true
 
-**Developers Only** A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
+**Developers Only**  
+A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
 
 ## Description
 This is a developer only plugin.
