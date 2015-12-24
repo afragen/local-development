@@ -40,8 +40,8 @@ class Base {
 	 * @param $config
 	 */
 	public function __construct( $config ) {
-		self::$plugins = $config['plugins'];
-		self::$themes  = $config['themes'];
+		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
+		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
 		self::$message = esc_html__( 'This is a local development directory.', 'local-development-upgrade-warning' );
 
 		add_filter( 'pre_set_site_transient_update_plugins', array( &$this, 'transient_update' ), 15, 1 );
@@ -71,15 +71,15 @@ class Base {
 		}
 
 		foreach ( $transient->response as $update ) {
-			if ( is_object( $update ) && isset( $update->slug ) &&
-			     ( in_array( $update->slug, self::$plugins ) )
+			if ( is_object( $update ) && isset( $update->plugin ) &&
+			     ( array_key_exists( $update->plugin, self::$plugins ) )
 			) {
 				$plugin = $update->plugin;
 				$transient->response[ $plugin ]->upgrade_notice = self::$message;
 			}
 
 			if ( is_array( $update ) && isset( $update['theme'] ) &&
-			     in_array( $update['theme'], self::$themes )
+			     array_key_exists( $update['theme'], self::$themes )
 			) {
 				$theme = $update['theme'];
 				$transient->response[ $theme ]['upgrade_notice'] = self::$message;
@@ -98,8 +98,8 @@ class Base {
 	 * @return array
 	 */
 	public function row_meta( $links, $file ) {
-		if ( in_array( dirname( $file ), self::$plugins ) ||
-		     in_array( $file, self::$themes )
+		if ( array_key_exists( $file, self::$plugins ) ||
+		     array_key_exists( $file, self::$themes )
 		) {
 			$links[] = '<strong>' . self::$message . '</strong>';
 		}
