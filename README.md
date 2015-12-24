@@ -3,7 +3,7 @@
 * Tags: upgrade plugin theme
 * Requires at least: 4.0
 * Tested up to: 4.4
-* Stable tag: trunk
+* Stable tag: master
 * License: GPLv2
 * Network: true
 
