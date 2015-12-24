@@ -19,7 +19,10 @@ Provides a warning notice so plugins or themes that are under local development 
 Hopefully this warning prevents that occurrence.
 
 == Installation ==
-In the usual fashion.
+If you use this plugin you really shouldn't need these.
+
+1. Upload the entire `/local-development-upgrade-warning` folder to the `/wp-content/plugins/` directory.
+1. Activate the plugin.
 
 == Frequently Asked Questions ==
 = Developers Only =
