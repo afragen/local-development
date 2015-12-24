@@ -2,3 +2,7 @@
 
 .gitattributes export-ignore
 .gitignore export-ignore
+
+/vendor/wp-update-php/spec export-ignore
+/vendor/wp-update-php/composer.json export-ignore
+/vendor/wp-update-php/.gitignore export-ignore

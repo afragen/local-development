@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Local Development Upgrade Warning\n"
-"POT-Creation-Date: 2015-12-23 12:58-0800\n"
+"POT-Creation-Date: 2015-12-23 18:08-0800\n"
 "PO-Revision-Date: 2015-12-23 12:55-0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: local-development-upgrade-warning.php:52
+#: src/Local_Development_Upgrade_Warning/Base.php:39
 msgid "This is a local development directory."
 msgstr ""
 
