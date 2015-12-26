@@ -18,6 +18,8 @@ Provides a warning notice so plugins or themes that are under local development 
 
 Hopefully this warning prevents that occurrence.
 
+Pull Requests are welcome at https://github.com/afragen/local-development-upgrade-warning
+
 == Installation ==
 If you use this plugin you really shouldn't need these.
 
