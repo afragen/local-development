@@ -116,7 +116,7 @@ class Base {
 	 */
 	public function append_theme_description( $prepared_themes ) {
 		foreach ( $prepared_themes as $theme ) {
-			if ( in_array( $theme['id'], self::$themes ) ) {
+			if ( array_key_exists( $theme['id'], self::$themes ) ) {
 				$prepared_themes[ $theme['id'] ]['description'] .= '<p><strong>' . self::$message . '</strong></p>';
 			}
 		}
