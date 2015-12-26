@@ -59,7 +59,7 @@ class Settings {
 	}
 
 	/**
-	 * Initialize plugin/theme data.
+	 * Initialize plugin/theme data. Needs to be called in the 'init' hook.
 	 */
 	public function init() {
 		$this->plugins = get_plugins();
@@ -102,7 +102,7 @@ class Settings {
 				esc_html__( 'Local Development', 'local-development-upgrade-warning' ),
 				'manage_network',
 				'local-development-upgrade-warning',
-				array( $this, 'create_admin_page' )
+				array( &$this, 'create_admin_page' )
 			);
 		} else {
 			add_options_page(
@@ -110,7 +110,7 @@ class Settings {
 				esc_html__( 'Local Development', 'local-development-upgrade-warning' ),
 				'manage_options',
 				'local-development-upgrade-warning',
-				array( $this, 'create_admin_page' )
+				array( &$this, 'create_admin_page' )
 			);
 		}
 	}
@@ -181,15 +181,15 @@ class Settings {
 		 * Plugin settings.
 		 */
 		register_setting(
-			'local_development_settings',           // Option group
-			'local_dev_plugins',           // Option name
-			array( $this, 'sanitize' )  // Sanitize
+			'local_development_settings',
+			'local_dev_plugins',
+			array( &$this, 'sanitize' )
 		);
 
 		add_settings_section(
 			'local_dev_plugins',
 			esc_html__( 'Plugins', 'local-development-upgrade-warning' ),
-			array( $this, 'print_section_plugins' ),
+			array( &$this, 'print_section_plugins' ),
 			'local_dev_plugins'
 		);
 
@@ -197,7 +197,7 @@ class Settings {
 			add_settings_field(
 				$id,
 				esc_html__( $name ),
-				array( $this, 'token_callback_checkbox' ),
+				array( &$this, 'token_callback_checkbox' ),
 				'local_dev_plugins',
 				'local_dev_plugins',
 				array( 'id' => $id, 'type' => 'plugins' )
@@ -208,15 +208,15 @@ class Settings {
 		 * Theme settings.
 		 */
 		register_setting(
-			'local_development_settings',           // Option group
-			'local_dev_themes',           // Option name
-			array( $this, 'sanitize' )  // Sanitize
+			'local_development_settings',
+			'local_dev_themes',
+			array( &$this, 'sanitize' )
 		);
 
 		add_settings_section(
 			'local_dev_themes',
 			esc_html__( 'Themes', 'local-development-upgrade-warning' ),
-			array( $this, 'print_section_themes' ),
+			array( &$this, 'print_section_themes' ),
 			'local_dev_themes'
 		);
 
@@ -224,7 +224,7 @@ class Settings {
 			add_settings_field(
 				$id,
 				esc_html__( $name ),
-				array( $this, 'token_callback_checkbox' ),
+				array( &$this, 'token_callback_checkbox' ),
 				'local_dev_themes',
 				'local_dev_themes',
 				array( 'id' => $id, 'type' => 'themes' )
