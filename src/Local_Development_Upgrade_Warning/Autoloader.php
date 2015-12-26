@@ -1,6 +1,5 @@
 <?php
 
-// namespace must be unique to each plugin
 namespace Fragen\Local_Development_Upgrade_Warning;
 
 /*
@@ -32,7 +31,7 @@ class Autoloader {
 	protected $roots = array();
 
 	/**
-	 * List of classnames and locations in filesystem, for situations
+	 * List of class names and locations in filesystem, for situations
 	 * where they deviate from convention etc.
 	 *
 	 * @var array
