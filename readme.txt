@@ -24,33 +24,11 @@ If you use this plugin you really shouldn't need these.
 1. Upload the entire `/local-development-upgrade-warning` folder to the `/wp-content/plugins/` directory.
 1. Activate the plugin.
 
-== Frequently Asked Questions ==
-= Developers Only =
-You will have to pass a configuration array to this plugin. You will need to add your plugins or themes in the following manner. Place code similar to that below in a mu-plugin or other plugin or functions.php file that is used in your local development.
-
-<pre><code>
-add_action( 'plugins_loaded', function() {
-	if ( class_exists( 'Local_Development_Upgrade_Warning' ) ) {
-		/**
-		 * Create array for plugins/themes that are being locally developed but might be forks.
-		 */
-		$config['plugins'] = array(
-			'airplane-mode',
-			'github-updater',
-			'pods',
-			'test-plugin',
-		);
-
-		$config['themes'] = array(
-			'test-theme',
-			'my-underscores',
-		);
-
-		new Local_Development_Upgrade_Warning( $config );
-	}
-
-} );
-</code></pre>
+== Screenshots ==
+1. Plugin Settings
+2. Plugins Page
+3. Themes Page
+4. Core Update Page
 
 == Changelog ==
 = 0.1 =
