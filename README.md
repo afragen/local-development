@@ -11,7 +11,7 @@
 A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
 
 ## Description
-This is a developer only plugin.
+This is a developer only plugin. Requires PHP 5.3 or greater.
 
 A plugin to place warning notices for plugins or themes that are in active development. Warning notices are placed on the plugins page, the themes page and the core update page.
 
