@@ -111,12 +111,14 @@ class Base {
 				return $value;
 		}
 
-		foreach ( array_keys( $repos ) as $repo ) {
-			if ( 'update_nag' === $repo ) {
-				continue;
-			}
-			if ( isset( $value->response[ $repo ] ) ) {
-				unset( $value->response[ $repo ] );
+		if ( ! empty( $repos ) ) {
+			foreach ( array_keys( $repos ) as $repo ) {
+				if ( 'update_nag' === $repo ) {
+					continue;
+				}
+				if ( isset( $value->response[ $repo ] ) ) {
+					unset( $value->response[ $repo ] );
+				}
 			}
 		}
 
