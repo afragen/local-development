@@ -1,6 +1,6 @@
 <?php
 
-namespace Fragen\Local_Development_Upgrade_Warning;
+namespace Fragen\Local_Development;
 
 /*
  * Exit if called directly.
@@ -12,7 +12,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Class Init
  *
- * @package Fragen\Local_Development_Upgrade_Warning
+ * @package Fragen\Local_Development
  */
 class Init {
 
@@ -21,7 +21,7 @@ class Init {
 	 */
 	public function __construct() {
 
-		$config = get_site_option( 'local_development_upgrade_warning' );
+		$config = get_site_option( 'local_development' );
 		new Settings();
 
 		/*

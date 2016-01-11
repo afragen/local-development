@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:       Local Development Upgrade Warning
- * Plugin URI:        https://wordpress.org/plugins/local-development-upgrade-warning
+ * Plugin Name:       Local Development
+ * Plugin URI:        https://wordpress.org/plugins/local-development
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
- * Description:       A plugin to place warning notices for plugins or themes that are in local development.
- * Version:           0.2
- * Text Domain:       local-development-upgrade-warning
+ * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
+ * Version:           1.0
+ * Text Domain:       local-development
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Network:           true
- * GitHub Plugin URI: https://github.com/afragen/local-development-upgrade-warning
+ * GitHub Plugin URI: https://github.com/afragen/local-development
  * Requires PHP:      5.3
  */
 
@@ -34,10 +34,10 @@ if ( ! $updatePhp->does_it_meet_required_php_version( PHP_VERSION ) ) {
 }
 
 // Load textdomain
-load_plugin_textdomain( 'local-development-upgrade-warning', false, __DIR__ . '/languages' );
+load_plugin_textdomain( 'local-development', false, __DIR__ . '/languages' );
 
 // Plugin namespace root
-$root = array( 'Fragen\\Local_Development_Upgrade_Warning' => __DIR__ . '/src/Local_Development_Upgrade_Warning' );
+$root = array( 'Fragen\\Local_Development' => __DIR__ . '/src/Local_Development' );
 
 // Add extra classes
 $extra_classes = array(
@@ -45,10 +45,10 @@ $extra_classes = array(
 );
 
 // Load Autoloader
-require_once( __DIR__ . '/src/Local_Development_Upgrade_Warning/Autoloader.php' );
-$loader = 'Fragen\\Local_Development_Upgrade_Warning\\Autoloader';
+require_once( __DIR__ . '/src/Local_Development/Autoloader.php' );
+$loader = 'Fragen\\Local_Development\\Autoloader';
 new $loader( $root, $extra_classes );
 
 // Instantiate
-$instantiate = 'Fragen\\Local_Development_Upgrade_Warning\\Init';
+$instantiate = 'Fragen\\Local_Development\\Init';
 new $instantiate;

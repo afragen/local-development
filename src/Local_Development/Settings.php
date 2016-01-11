@@ -1,6 +1,6 @@
 <?php
 
-namespace Fragen\Local_Development_Upgrade_Warning;
+namespace Fragen\Local_Development;
 
 /*
  * Exit if called directly.
@@ -12,7 +12,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Class Settings
  *
- * @package Fragen\Local_Development_Upgrade_Warning
+ * @package Fragen\Local_Development
  */
 class Settings {
 
@@ -39,7 +39,7 @@ class Settings {
 	 *
 	 * @var string
 	 */
-	private $plugin_slug = 'local-development-upgrade-warning/local-development-upgrade-warning.php';
+	private $plugin_slug = 'local-development/local-development.php';
 
 
 	/**
@@ -48,10 +48,10 @@ class Settings {
 	public function __construct() {
 		add_action( 'init', array( &$this, 'init' ) );
 
-		self::$options = get_site_option( 'local_development_upgrade_warning' );
+		self::$options = get_site_option( 'local_development' );
 
 		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', array( &$this, 'add_plugin_page' ) );
-		add_action( 'network_admin_edit_local-development-upgrade-warning', array( &$this, 'update_network_settings' ) );
+		add_action( 'network_admin_edit_local-development', array( &$this, 'update_network_settings' ) );
 		add_action( 'admin_init', array( &$this, 'page_init' ) );
 		add_action( 'admin_head', array( &$this, 'style_settings' ) );
 
@@ -62,6 +62,9 @@ class Settings {
 	 * Initialize plugin/theme data. Needs to be called in the 'init' hook.
 	 */
 	public function init() {
+		$plugins = null;
+		$themes  = null;
+
 		/*
 		 * Ensure get_plugins() function is available.
 		 */
@@ -91,8 +94,8 @@ class Settings {
 	 */
 	private function _settings_tabs() {
 		return array(
-			'local_dev_settings_plugins' => esc_html__( 'Plugins', 'local-development-upgrade-warning' ),
-			'local_dev_settings_themes'  => esc_html__( 'Themes', 'local-development-upgrade-warning' ),
+			'local_dev_settings_plugins' => esc_html__( 'Plugins', 'local-development' ),
+			'local_dev_settings_themes'  => esc_html__( 'Themes', 'local-development' ),
 		);
 	}
 
@@ -103,18 +106,18 @@ class Settings {
 		if ( is_multisite() ) {
 			add_submenu_page(
 				'settings.php',
-				esc_html__( 'Local Development Upgrade Warning Settings', 'local-development-upgrade-warning' ),
-				esc_html__( 'Local Development', 'local-development-upgrade-warning' ),
+				esc_html__( 'Local Development Settings', 'local-development' ),
+				esc_html__( 'Local Development', 'local-development' ),
 				'manage_network',
-				'local-development-upgrade-warning',
+				'local-development',
 				array( &$this, 'create_admin_page' )
 			);
 		} else {
 			add_options_page(
-				esc_html__( 'Local Development Upgrade Warning Settings', 'local-development-upgrade-warning' ),
-				esc_html__( 'Local Development', 'local-development-upgrade-warning' ),
+				esc_html__( 'Local Development Settings', 'local-development' ),
+				esc_html__( 'Local Development', 'local-development' ),
 				'manage_options',
-				'local-development-upgrade-warning',
+				'local-development',
 				array( &$this, 'create_admin_page' )
 			);
 		}
@@ -133,7 +136,7 @@ class Settings {
 		echo '<h2 class="nav-tab-wrapper">';
 		foreach ( $this->_settings_tabs() as $key => $name ) {
 			$active = ( $current_tab == $key ) ? 'nav-tab-active' : '';
-			echo '<a class="nav-tab ' . $active . '" href="?page=local-development-upgrade-warning&tab=' . $key . '">' . $name . '</a>';
+			echo '<a class="nav-tab ' . $active . '" href="?page=local-development&tab=' . $key . '">' . $name . '</a>';
 		}
 		echo '</h2>';
 	}
@@ -142,17 +145,17 @@ class Settings {
 	 * Options page callback.
 	 */
 	public function create_admin_page() {
-		$action = is_multisite() ? 'edit.php?action=local-development-upgrade-warning' : 'options.php';
+		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
 		$tab    = isset( $_GET['tab'] ) ? $_GET['tab'] : 'local_dev_settings_plugins';
 		?>
 		<div class="wrap">
 			<h2>
-				<?php esc_html_e( 'Local Development Upgrade Warning Settings', 'local-development-upgrade-warning' ); ?>
+				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
 			</h2>
 			<p>Selected repositories will not display an update notice.</p>
 			<?php $this->_options_tabs(); ?>
 			<?php if ( isset( $_GET['updated'] ) && true == $_GET['updated'] ): ?>
-				<div class="updated"><p><strong><?php esc_html_e( 'Saved.', 'local-development-upgrade-warning' ); ?></strong></p></div>
+				<div class="updated"><p><strong><?php esc_html_e( 'Saved.', 'local-development' ); ?></strong></p></div>
 			<?php endif; ?>
 			<?php if ( 'local_dev_settings_plugins' === $tab ) : ?>
 				<form method="post" action="<?php esc_attr_e( $action ); ?>">
@@ -194,7 +197,7 @@ class Settings {
 
 		add_settings_section(
 			'local_dev_plugins',
-			esc_html__( 'Plugins', 'local-development-upgrade-warning' ),
+			esc_html__( 'Plugins', 'local-development' ),
 			array( &$this, 'print_section_plugins' ),
 			'local_dev_plugins'
 		);
@@ -221,7 +224,7 @@ class Settings {
 
 		add_settings_section(
 			'local_dev_themes',
-			esc_html__( 'Themes', 'local-development-upgrade-warning' ),
+			esc_html__( 'Themes', 'local-development' ),
 			array( &$this, 'print_section_themes' ),
 			'local_dev_themes'
 		);
@@ -244,14 +247,14 @@ class Settings {
 	 * Print the plugin text.
 	 */
 	public function print_section_plugins() {
-		esc_html_e( 'Select the locally developed plugins.', 'local-development-upgrade-warning' );
+		esc_html_e( 'Select the locally developed plugins.', 'local-development' );
 	}
 
 	/**
 	 * Print the theme text.
 	 */
 	public function print_section_themes() {
-		esc_html_e( 'Select the locally developed themes.', 'local-development-upgrade-warning' );
+		esc_html_e( 'Select the locally developed themes.', 'local-development' );
 	}
 
 	/**
@@ -307,7 +310,7 @@ class Settings {
 			if ( 'local_dev_settings_themes' === $arr['tab'] ) {
 				self::$options['themes'] = self::sanitize( $_POST['local_dev'] );
 			}
-			update_site_option( 'local_development_upgrade_warning', self::$options );
+			update_site_option( 'local_development', self::$options );
 		}
 	}
 
@@ -333,12 +336,12 @@ class Settings {
 			if ( 'local_dev_settings_themes' === $arr['tab'] ) {
 				self::$options['themes'] = self::sanitize( $_POST['local_dev'] );
 			}
-			update_site_option( 'local_development_upgrade_warning', self::$options );
+			update_site_option( 'local_development', self::$options );
 		}
 
 		$location = add_query_arg(
 			array(
-				'page'    => 'local-development-upgrade-warning',
+				'page'    => 'local-development',
 				'updated' => 'true',
 				'tab'     => $arr['tab'],
 			),
@@ -360,7 +363,7 @@ class Settings {
 	 */
 	public function plugin_action_links( $links ) {
 		$settings_page = is_multisite() ? 'settings.php' : 'options-general.php';
-		$link          = array( '<a href="' . esc_url( network_admin_url( $settings_page ) ) . '?page=local-development-upgrade-warning">' . esc_html__( 'Settings', 'local-development-upgrade-warning' ) . '</a>' );
+		$link          = array( '<a href="' . esc_url( network_admin_url( $settings_page ) ) . '?page=local-development">' . esc_html__( 'Settings', 'local-development' ) . '</a>' );
 
 		return array_merge( $links, $link );
 	}

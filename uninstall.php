@@ -29,5 +29,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_site_option( 'local_development_upgrade_warning' );
-delete_option( 'local_development_upgrade_warning' );
+delete_site_option( 'local_development' );
+delete_option( 'local_development' );

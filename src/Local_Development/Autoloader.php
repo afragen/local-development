@@ -1,6 +1,6 @@
 <?php
 
-namespace Fragen\Local_Development_Upgrade_Warning;
+namespace Fragen\Local_Development;
 
 /*
  * Exit if called directly.
