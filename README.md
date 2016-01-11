@@ -1,4 +1,4 @@
-# Local Development Upgrade Warning
+# Local Development
 * Contributors: afragen
 * Tags: upgrade plugin theme
 * Requires at least: 4.0
