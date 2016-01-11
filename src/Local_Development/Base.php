@@ -64,8 +64,8 @@ class Base {
 	 * @return array
 	 */
 	public function row_meta( $links, $file ) {
-		if ( ! empty( self::$plugins) && array_key_exists( $file, self::$plugins ) ||
-		     ! empty( self::$themes ) && array_key_exists( $file, self::$themes )
+		if ( ( ! empty( self::$plugins) && array_key_exists( $file, self::$plugins ) ) ||
+		     ( ! empty( self::$themes ) && array_key_exists( $file, self::$themes ) )
 		) {
 			$links[] = '<strong>' . self::$message . '</strong>';
 		}
