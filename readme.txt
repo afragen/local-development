@@ -6,16 +6,12 @@ Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2
 
-<strong>Developers Only</strong> <br/>A plugin to place warning notices for plugins or themes that are in active development. Requires PHP 5.3 or greater.
+<strong>Developers Only</strong> <br/>A plugin to place warning notices for plugins or themes that are in local development. Requires PHP 5.3 or greater.
 
 == Description ==
 This is a developer only plugin. Requires PHP 5.3 or greater.
 
-A plugin to place warning notices for plugins or themes that are in active development. Warning notices are placed on the plugins page, the themes page and the core update page.
-
-Provides a warning notice so plugins or themes that are under local development and are updatable from the WordPress repo or other location show a warning message. Updating a plugin or theme under local development may cause data loss.
-
-Hopefully this warning prevents that occurrence.
+Places warning notices for plugins or themes that are in local development. Warning notices are placed on the plugins page and the themes page. Prevents updating of selected plugins/themes.
 
 Pull Requests are welcome at https://github.com/afragen/local-development-upgrade-warning
 
@@ -29,8 +25,10 @@ If you use this plugin you really shouldn't need these.
 1. Plugin Settings
 2. Plugins Page
 3. Themes Page
-4. Core Update Page
 
 == Changelog ==
+= 0.2 =
+* hide update nag for selected repositories to prevent updating
+
 = 0.1 =
 * initial release

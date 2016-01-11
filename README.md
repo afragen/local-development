@@ -13,11 +13,7 @@ A plugin to place warning notices for plugins or themes that are in active devel
 ## Description
 This is a developer only plugin. Requires PHP 5.3 or greater.
 
-A plugin to place warning notices for plugins or themes that are in active development. Warning notices are placed on the plugins page, the themes page and the core update page.
-
-Provides a warning notice so plugins or themes that are under local development and are updatable from the WordPress repo or other location show a warning message. Updating a plugin or theme under local development may cause data loss.
-
-Hopefully this warning prevents that occurrence.
+Places warning notices for plugins or themes that are in local development. Warning notices are placed on the plugins page and the themes page. Prevents updating of selected plugins/themes.
 
 ## Installation
 If you use this plugin you really shouldn't need these.
@@ -35,6 +31,3 @@ If you use this plugin you really shouldn't need these.
 
 ### 3. Themes Page
 ![Themes Page](./assets/screenshot-3.png)
-
-### 4. Core Update Page
-![Core Update Page](./assets/screenshot-4.png)

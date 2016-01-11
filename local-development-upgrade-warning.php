@@ -4,8 +4,8 @@
  * Plugin URI:        https://wordpress.org/plugins/local-development-upgrade-warning
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
- * Description:       A plugin to place warning notices for plugins or themes that are in active development.
- * Version:           0.1
+ * Description:       A plugin to place warning notices for plugins or themes that are in local development.
+ * Version:           0.2
  * Text Domain:       local-development-upgrade-warning
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html

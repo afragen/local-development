@@ -149,6 +149,7 @@ class Settings {
 			<h2>
 				<?php esc_html_e( 'Local Development Upgrade Warning Settings', 'local-development-upgrade-warning' ); ?>
 			</h2>
+			<p>Selected repositories will not display an update notice.</p>
 			<?php $this->_options_tabs(); ?>
 			<?php if ( isset( $_GET['updated'] ) && true == $_GET['updated'] ): ?>
 				<div class="updated"><p><strong><?php esc_html_e( 'Saved.', 'local-development-upgrade-warning' ); ?></strong></p></div>
@@ -239,7 +240,7 @@ class Settings {
 		$this->update_settings();
 	}
 
-	/**s
+	/**
 	 * Print the plugin text.
 	 */
 	public function print_section_plugins() {

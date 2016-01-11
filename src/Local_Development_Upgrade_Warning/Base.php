@@ -44,49 +44,15 @@ class Base {
 		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
 		self::$message = esc_html__( 'This is a local development directory.', 'local-development-upgrade-warning' );
 
-		add_filter( 'pre_set_site_transient_update_plugins', array( &$this, 'transient_update' ), 15, 1 );
 		add_filter( 'plugin_row_meta', array( &$this, 'row_meta' ), 15, 2 );
+		add_filter( 'site_transient_update_plugins', array( &$this, 'hide_update_nag' ), 15, 1 );
 
-		add_filter( 'pre_set_site_transient_update_themes', array( &$this, 'transient_update' ), 15, 1 );
 		add_filter( 'theme_row_meta', array( &$this, 'row_meta' ), 15, 2 );
+		add_filter( 'site_transient_update_themes', array( &$this, 'hide_update_nag' ), 15, 1 );
 
 		if ( ! is_multisite() ) {
 			add_filter( 'wp_prepare_themes_for_js', array( &$this, 'append_theme_description' ), 15, 1 );
 		}
-	}
-
-	/**
-	 * Add upgrade_notice to transient array.
-	 *
-	 * @param $transient
-	 *
-	 * @return mixed
-	 */
-	public function transient_update( $transient ) {
-		$plugin = null;
-		$theme  = null;
-
-		if ( empty( $transient->response ) ) {
-			return $transient;
-		}
-
-		foreach ( $transient->response as $update ) {
-			if ( is_object( $update ) && isset( $update->plugin ) &&
-			     ( array_key_exists( $update->plugin, self::$plugins ) )
-			) {
-				$plugin = $update->plugin;
-				$transient->response[ $plugin ]->upgrade_notice = self::$message;
-			}
-
-			if ( is_array( $update ) && isset( $update['theme'] ) &&
-			     array_key_exists( $update['theme'], self::$themes )
-			) {
-				$theme = $update['theme'];
-				$transient->response[ $theme ]['upgrade_notice'] = self::$message;
-			}
-		}
-
-		return $transient;
 	}
 
 	/**
@@ -122,6 +88,33 @@ class Base {
 		}
 
 		return $prepared_themes;
+	}
+
+	/**
+	 * Hide the update nag.
+	 *
+	 * @param $value
+	 *
+	 * @return mixed
+	 */
+	public function hide_update_nag( $value ) {
+		$repos          = null;
+		$current_filter = current_filter();
+
+		if ( 'site_transient_update_plugins' === $current_filter ) {
+			$repos = self::$plugins;
+		}
+		if ( 'site_transient_update_themes' === $current_filter ) {
+			$repos = self::$themes;
+		}
+
+		foreach ( array_keys( $repos ) as $repo ) {
+			if ( isset( $value->response[ $repo ] ) ) {
+				unset( $value->response[ $repo ] );
+			}
+		}
+
+		return $value;
 	}
 
 }
