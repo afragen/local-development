@@ -6,7 +6,7 @@ Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2
 
-Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Requires PHP 5.3 or greater.
+Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
 
 == Description ==
 

@@ -7,7 +7,7 @@
 * License: GPLv2
 * Network: true
 
-Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Requires PHP 5.3 or greater.
+Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
 
 ## Description
 Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes.
