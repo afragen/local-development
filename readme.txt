@@ -2,7 +2,7 @@
 Contributors: afragen
 Tags: localhost development upgrade plugin theme
 Requires at least: 4.0
-Tested up to: 4.4
+Tested up to: 4.5
 Stable tag: trunk
 License: GPLv2
 
@@ -29,6 +29,10 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 == Changelog ==
+
+= 1.1 =
+* specify `admin_head-settings_page_local-development` to add styles
+
 = 1.0 =
 * rebrand as **Local Development**
 

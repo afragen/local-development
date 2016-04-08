@@ -1,3 +1,6 @@
+#### 1.1
+* specify `admin_head-settings_page_local-development` to add styles
+
 #### 1.0
 * rebrand as **Local Development**
 

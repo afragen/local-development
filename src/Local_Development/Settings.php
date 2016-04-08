@@ -53,7 +53,7 @@ class Settings {
 		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', array( &$this, 'add_plugin_page' ) );
 		add_action( 'network_admin_edit_local-development', array( &$this, 'update_network_settings' ) );
 		add_action( 'admin_init', array( &$this, 'page_init' ) );
-		add_action( 'admin_head', array( &$this, 'style_settings' ) );
+		add_action( 'admin_head-settings_page_local-development', array( &$this, 'style_settings' ) );
 
 		add_filter( is_multisite() ? 'network_admin_plugin_action_links_' . $this->plugin_slug : 'plugin_action_links_' . $this->plugin_slug, array( &$this, 'plugin_action_links' ) );
 	}

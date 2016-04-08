@@ -5,7 +5,7 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
- * Version:           1.0
+ * Version:           1.1
  * Text Domain:       local-development
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
