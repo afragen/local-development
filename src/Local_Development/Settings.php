@@ -18,18 +18,21 @@ class Settings {
 
 	/**
 	 * Holds plugin data.
+	 *
 	 * @var
 	 */
 	protected $plugins;
 
 	/**
 	 * Holds theme data.
+	 *
 	 * @var
 	 */
 	protected $themes;
 
 	/**
 	 * Holds plugin settings.
+	 *
 	 * @var mixed|void
 	 */
 	protected static $options;
@@ -54,8 +57,13 @@ class Settings {
 		add_action( 'network_admin_edit_local-development', array( &$this, 'update_network_settings' ) );
 		add_action( 'admin_init', array( &$this, 'page_init' ) );
 		add_action( 'admin_head-settings_page_local-development', array( &$this, 'style_settings' ) );
+		add_action( 'admin_head-themes.php', array( &$this, 'hide_update_message' ) );
+		add_action( 'admin_head-plugins.php', array( &$this, 'hide_update_message' ) );
 
-		add_filter( is_multisite() ? 'network_admin_plugin_action_links_' . $this->plugin_slug : 'plugin_action_links_' . $this->plugin_slug, array( &$this, 'plugin_action_links' ) );
+		add_filter( is_multisite() ? 'network_admin_plugin_action_links_' . $this->plugin_slug : 'plugin_action_links_' . $this->plugin_slug, array(
+			&$this,
+			'plugin_action_links',
+		) );
 	}
 
 	/**
@@ -282,7 +290,7 @@ class Settings {
 		self::$options[ $args['type'] ][ $args['id'] ] = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : null;
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked('1', self::$options[ $args['type'] ][ $args['id'] ], true); ?> >
+			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', self::$options[ $args['type'] ][ $args['id'] ], true ); ?> >
 		</label>
 		<?php
 	}
@@ -295,7 +303,7 @@ class Settings {
 		if ( ! isset( $_POST['_wp_http_referer'] ) ) {
 			return false;
 		}
-		$query =  parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
+		$query = parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
 		parse_str( $query, $arr );
 		if ( empty( $arr['tab'] ) ) {
 			$arr['tab'] = 'local_dev_settings_plugins';
@@ -373,7 +381,40 @@ class Settings {
 	 */
 	public function style_settings() {
 		?>
-		<style>.form-table th { width: 40%; }</style>
+		<!-- Local Development -->
+		<style>
+			.form-table th { width: 40%; }
+		</style>
+		<?php
+	}
+
+	/**
+	 * Hide update messages for GitHub Updater.
+	 */
+	public function hide_update_message() {
+		if ( ! class_exists( 'Fragen\\GitHub_Updater\\Base' ) ) {
+			return;
+		}
+
+		global $pagenow;
+		if ( 'plugins.php' === $pagenow ) {
+			foreach ( array_keys( self::$options['plugins'] ) as $plugin ) {
+				$css[] = '[data-slug="' . dirname( $plugin ) . '"] div.update-message';
+			}
+		}
+		if ( 'themes.php' === $pagenow ) {
+			foreach ( array_keys( self::$options['themes'] ) as $theme ) {
+				$css[] = '[data-slug="' . $theme . '"] div.update-message';
+				$css[] = '#' . $theme . ' div.update-message';
+			}
+		}
+
+		$css = implode( ", ", $css );
+		?>
+		<!-- Local Development -->
+		<style>
+			<?php echo $css; ?> { display: none; }
+		</style>
 		<?php
 	}
 

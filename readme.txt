@@ -30,6 +30,9 @@ If you use this plugin you really shouldn't need these.
 
 == Changelog ==
 
+= 1.2 =
+* add hiding of update messages for GitHub Updater
+
 = 1.1 =
 * specify `admin_head-settings_page_local-development` to add styles
 
