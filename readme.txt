@@ -2,7 +2,7 @@
 Contributors: afragen
 Tags: localhost development upgrade plugin theme
 Requires at least: 4.0
-Tested up to: 4.5
+Tested up to: 4.6
 Stable tag: trunk
 License: GPLv2
 
@@ -29,6 +29,9 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 == Changelog ==
+
+= 1.2.1 =
+* fix PHP notice
 
 = 1.2 =
 * add hiding of update messages for GitHub Updater

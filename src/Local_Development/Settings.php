@@ -409,6 +409,10 @@ class Settings {
 			}
 		}
 
+		if ( empty( $css )  ) {
+			return;
+		}
+
 		$css = implode( ", ", $css );
 		?>
 		<!-- Local Development -->

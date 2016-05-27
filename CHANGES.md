@@ -1,3 +1,6 @@
+#### 1.2.1
+* fix PHP notice
+
 #### 1.2
 * add hiding of update messages for GitHub Updater
 
