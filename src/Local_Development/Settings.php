@@ -392,24 +392,24 @@ class Settings {
 	 * Hide update messages for GitHub Updater.
 	 */
 	public function hide_update_message() {
+		global $pagenow;
 		if ( ! class_exists( 'Fragen\\GitHub_Updater\\Base' ) ) {
 			return;
 		}
 
-		global $pagenow;
-		if ( 'plugins.php' === $pagenow ) {
+		if ( 'plugins.php' === $pagenow && ! empty( self::$options['plugins'] ) ) {
 			foreach ( array_keys( self::$options['plugins'] ) as $plugin ) {
 				$css[] = '[data-slug="' . dirname( $plugin ) . '"] div.update-message';
 			}
 		}
-		if ( 'themes.php' === $pagenow ) {
+		if ( 'themes.php' === $pagenow && ! empty( self::$options['themes'] ) ) {
 			foreach ( array_keys( self::$options['themes'] ) as $theme ) {
 				$css[] = '[data-slug="' . $theme . '"] div.update-message';
 				$css[] = '#' . $theme . ' div.update-message';
 			}
 		}
 
-		if ( empty( $css )  ) {
+		if ( empty( $css ) ) {
 			return;
 		}
 
