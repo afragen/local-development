@@ -25,7 +25,7 @@ class Init {
 		new Settings();
 
 		/*
-		 * Skip on hearbeat or if no saved settings.
+		 * Skip on heartbeat or if no saved settings.
 		 */
 		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) || ! $config ) {
 			return false;
