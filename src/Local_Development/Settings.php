@@ -300,7 +300,7 @@ class Settings {
 	 */
 	public function update_settings() {
 
-		if ( ! isset( $_POST['_wp_http_referer'] ) ) {
+		if ( ! isset( $_POST['_wp_http_referer'] ) || is_multisite() ) {
 			return false;
 		}
 		$query = parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
@@ -309,8 +309,8 @@ class Settings {
 			$arr['tab'] = 'local_dev_settings_plugins';
 		}
 
-		if ( ( isset( $_POST['option_page'] ) && ( 'local_development_settings' === $_POST['option_page'] ) ) &&
-		     isset( $_POST['local_dev'] ) && ! is_multisite()
+		if ( isset( $_POST['option_page'] ) &&
+		     'local_development_settings' === $_POST['option_page']
 		) {
 			if ( 'local_dev_settings_plugins' === $arr['tab'] ) {
 				self::$options['plugins'] = self::sanitize( $_POST['local_dev'] );

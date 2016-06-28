@@ -30,6 +30,9 @@ If you use this plugin you really shouldn't need these.
 
 == Changelog ==
 
+= 1.2.3 =
+* fixed saving on single install when nothing selected
+
 = 1.2.2 =
 * fix PHP notices on initial install and no saved settings
 
