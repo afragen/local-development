@@ -3,7 +3,7 @@ Contributors: afragen
 Tags: localhost development upgrade plugin theme
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: trunk
+Stable tag: 1.2.3
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
