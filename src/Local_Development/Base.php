@@ -82,7 +82,7 @@ class Base {
 	 */
 	public function set_theme_description( $prepared_themes ) {
 		foreach ( $prepared_themes as $theme ) {
-			if ( array_key_exists( $theme['id'], self::$themes ) ) {
+			if ( array_key_exists( $theme['id'], (array) self::$themes ) ) {
 				$message = wp_get_theme( $theme['id'] )->get( 'Description' );
 				$message .= '<p><strong>' . self::$message . '</strong></p>';
 				$prepared_themes[ $theme['id'] ]['description'] = $message;
