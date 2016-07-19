@@ -1,3 +1,6 @@
+#### 1.2.4
+* cast `self::$themes` as array when empty, fixes PHP notice
+
 #### 1.2.3
 * fixed saving on single install when nothing selected
 
