@@ -6,6 +6,7 @@
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
  * Version:           1.2.4
+ * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -34,7 +35,7 @@ if ( ! $updatePhp->does_it_meet_required_php_version( PHP_VERSION ) ) {
 }
 
 // Load textdomain
-load_plugin_textdomain( 'local-development', false, __DIR__ . '/languages' );
+load_plugin_textdomain( 'local-development', false, basename( __DIR__ ) . '/languages' );
 
 // Plugin namespace root
 $root = array( 'Fragen\\Local_Development' => __DIR__ . '/src/Local_Development' );
