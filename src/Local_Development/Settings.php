@@ -287,10 +287,10 @@ class Settings {
 	 * @param $args
 	 */
 	public function token_callback_checkbox( $args ) {
-		self::$options[ $args['type'] ][ $args['id'] ] = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : null;
+		$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : null;
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', self::$options[ $args['type'] ][ $args['id'] ], true ); ?> >
+			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', $checked, true ); ?> >
 		</label>
 		<?php
 	}
