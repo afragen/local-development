@@ -1,9 +1,9 @@
 # Local Development
 Contributors: afragen
-Tags: localhost development upgrade plugin theme
+Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 1.2.4
+Tested up to: 4.7
+Stable tag: 1.3.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
@@ -29,6 +29,11 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 1.3.0 / 2016-11-06
+* fixed PHP notice on settings page
+* correctly load translations
+* added our own PHP version check
 
 #### 1.2.4
 * cast `self::$themes` as array when empty, fixes PHP notice

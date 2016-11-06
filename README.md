@@ -2,7 +2,7 @@
 * Contributors: afragen
 * Tags: localhost development upgrade plugin theme
 * Requires at least: 4.0
-* Tested up to: 4.6
+* Tested up to: 4.7
 * Stable tag: master
 * License: GPLv2
 * Network: true

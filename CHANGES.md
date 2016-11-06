@@ -1,3 +1,10 @@
+#### [unreleased]
+
+#### 1.3.0 / 2016-11-06
+* fixed PHP notice on settings page
+* correctly load translations
+* added our own PHP version check
+
 #### 1.2.4
 * cast `self::$themes` as array when empty, fixes PHP notice
 
