@@ -5,7 +5,7 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2
@@ -41,15 +41,10 @@ load_plugin_textdomain( 'local-development', false, basename( __DIR__ ) . '/lang
 // Plugin namespace root
 $root = array( 'Fragen\\Local_Development' => __DIR__ . '/src/Local_Development' );
 
-// Add extra classes
-$extra_classes = array(
-	'WPUpdatePHP' => __DIR__ . '/vendor/wp-update-php/src/WPUpdatePhp.php',
-);
-
 // Load Autoloader
-require_once( __DIR__ . '/src/Local_Development/Autoloader.php' );
-$loader = 'Fragen\\Local_Development\\Autoloader';
-new $loader( $root, $extra_classes );
+require_once( __DIR__ . '/src/Autoloader.php' );
+$loader = 'Fragen\\Autoloader';
+new $loader( $root );
 
 // Instantiate
 $instantiate = 'Fragen\\Local_Development\\Init';

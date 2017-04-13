@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 1.3.1 / 2017-04-13
+* move Autoloader to new location
+* cleanup
+
 #### 1.3.0 / 2016-11-06
 * fixed PHP notice on settings page
 * correctly load translations
