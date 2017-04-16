@@ -3,7 +3,7 @@ Contributors: afragen
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
 Tested up to: 4.7
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
@@ -29,6 +29,10 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 1.4.0 / 2017-04-16
+* redesigned Settings to put checkbox in front of plugin/theme name
+* updated screenshots
 
 #### 1.3.1 / 2017-04-13
 * move Autoloader to new location

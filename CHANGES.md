@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 1.4.0 / 2017-04-16
+* redesigned Settings to put checkbox in front of plugin/theme name
+* updated screenshots
+
 #### 1.3.1 / 2017-04-13
 * move Autoloader to new location
 * cleanup
