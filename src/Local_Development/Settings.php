@@ -213,11 +213,11 @@ class Settings {
 		foreach ( $this->plugins as $id => $name ) {
 			add_settings_field(
 				$id,
-				esc_html__( $name ),
+				null,
 				array( &$this, 'token_callback_checkbox' ),
 				'local_dev_plugins',
 				'local_dev_plugins',
-				array( 'id' => $id, 'type' => 'plugins' )
+				array( 'id' => $id, 'type' => 'plugins', 'name' => $name )
 			);
 		}
 
@@ -240,11 +240,11 @@ class Settings {
 		foreach ( $this->themes as $id => $name ) {
 			add_settings_field(
 				$id,
-				esc_html__( $name ),
+				null,
 				array( &$this, 'token_callback_checkbox' ),
 				'local_dev_themes',
 				'local_dev_themes',
-				array( 'id' => $id, 'type' => 'themes' )
+				array( 'id' => $id, 'type' => 'themes', 'name' => $name )
 			);
 		}
 
@@ -291,6 +291,7 @@ class Settings {
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
 			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', $checked, true ); ?> >
+			<?php esc_html_e( $args['name'] ); ?>
 		</label>
 		<?php
 	}
@@ -383,7 +384,9 @@ class Settings {
 		?>
 		<!-- Local Development -->
 		<style>
-			.form-table th { width: 40%; }
+			.form-table th[scope='row']:empty {
+				display: none;
+			}
 		</style>
 		<?php
 	}
@@ -417,7 +420,9 @@ class Settings {
 		?>
 		<!-- Local Development -->
 		<style>
-			<?php echo $css; ?> { display: none; }
+			<?php echo $css; ?> {
+				display: none;
+			}
 		</style>
 		<?php
 	}
