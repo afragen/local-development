@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 1.5.0 / 2017-11-11
+* stopped creation of generic global variables
+
 #### 1.4.0 / 2017-04-16
 * redesigned Settings to put checkbox in front of plugin/theme name
 * updated screenshots

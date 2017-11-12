@@ -70,13 +70,13 @@ class Settings {
 	 * Initialize plugin/theme data. Needs to be called in the 'init' hook.
 	 */
 	public function init() {
-		$plugins = null;
-		$themes  = null;
+		$plugins = array();
+		$themes  = array();
 
 		/*
 		 * Ensure get_plugins() function is available.
 		 */
-		include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		include_once ABSPATH . '/wp-admin/includes/plugin.php';
 
 		$this->plugins = get_plugins();
 		$this->themes  = wp_get_themes( array( 'errors' => null ) );
