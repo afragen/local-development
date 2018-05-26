@@ -2,15 +2,16 @@
 * Contributors: afragen
 * Tags: localhost development upgrade plugin theme
 * Requires at least: 4.0
-* Tested up to: 4.7
+* Tested up to: 5.0
+* Requires PHP: 5.3
 * Stable tag: master
 * License: GPLv2
 * Network: true
 
-Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
+Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using local file server.
 
 ## Description
-Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes.
+Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes. Allows for using a local file server.
 
 Pull Requests are welcome at https://github.com/afragen/local-development
 

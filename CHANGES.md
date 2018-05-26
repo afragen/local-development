@@ -1,5 +1,10 @@
 #### [unreleased]
 
+#### 1.6.0 / 2018-05-26
+* added abilty to use local file server on LAN during development
+* refactored hiding of update row to use jQuery and remove row, not CSS dislay none
+* update to PSR-2
+
 #### 1.5.0 / 2017-11-11
 * stopped creation of generic global variables
 

@@ -2,15 +2,16 @@
 Contributors: afragen
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
-Tested up to: 4.9
-Stable tag: 1.5.0
+Tested up to: 5.0
+Requires PHP: 5.3
+Stable tag: 1.6.0
 License: GPLv2
 
-Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes.
+Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
 
 ## Description
 
-Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes.
+Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes. Allows for using a local file server.
 
 Pull Requests are welcome at https://github.com/afragen/local-development
 
@@ -29,6 +30,11 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 1.6.0 / 2018-05-26
+* added abilty to use local file server on LAN during development
+* refactored hiding of update row to use jQuery and remove row, not CSS dislay none
+* update to PSR-2
 
 #### 1.5.0
 * stopped creation of generic global variables
