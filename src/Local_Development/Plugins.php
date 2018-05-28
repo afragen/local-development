@@ -10,8 +10,6 @@ if (! defined('WPINC')) {
 }
 
 class Plugins extends Settings {
-	//protected $plugins;
-
 	/**
 	 * Let's get going.
 	 *
