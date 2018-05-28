@@ -67,6 +67,7 @@ class Settings {
 
 		// Ensure get_plugins() function is available.
 		include_once ABSPATH . '/wp-admin/includes/plugin.php';
+		include_once ABSPATH . '/wp-admin/includes/theme.php';
 
 		$this->plugins = get_plugins();
 		$this->themes  = wp_get_themes([ 'errors' => null ]);
