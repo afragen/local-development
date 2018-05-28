@@ -48,8 +48,8 @@ class Settings {
 	public function load_hooks() {
 		add_action('init', [$this, 'init']);
 		add_action(is_multisite() ? 'network_admin_menu' : 'admin_menu', [$this, 'add_plugin_page']);
-		add_action('network_admin_edit_local-development', [$this, 'update_network_settings']);
-		add_action('admin_init', [$this, 'update_settings']);
+		add_action('network_admin_edit_local-development', [$this, 'update_settings']);
+		add_action('admin_edit_local-development', [$this, 'update_settings']);
 		add_action('admin_head-settings_page_local-development', [$this, 'style_settings']);
 
 		add_filter(
@@ -179,7 +179,7 @@ class Settings {
 	 */
 	public function admin_page_notices() {
 		if (isset($_GET['updated']) && true == $_GET['updated']) {
-			echo '<div class="updated"><p><strong>' . esc_html_e('Saved.', 'local-development') . '</strong></p></div>';
+			echo '<div class="updated"><p><strong>' . esc_html__('Saved.', 'local-development') . '</strong></p></div>';
 		}
 	}
 
@@ -214,10 +214,14 @@ class Settings {
 	}
 
 	/**
-	 * Update settings for single install.
+	 * Update single site and network settings.
+	 * Used when plugin is network activated to save settings.
+	 *
+	 * @link http://wordpress.stackexchange.com/questions/64968/settings-api-in-multisite-missing-update-message
+	 * @link http://benohead.com/wordpress-network-wide-plugin-settings/
 	 */
 	public function update_settings() {
-		if (! isset($_POST['_wp_http_referer']) || is_multisite()) {
+		if (! isset($_POST['_wp_http_referer'])) {
 			return false;
 		}
 		$query = parse_url($_POST['_wp_http_referer'], PHP_URL_QUERY);
@@ -240,42 +244,38 @@ class Settings {
 			}
 			update_site_option('local_development', self::$options);
 		}
+
+		$this->redirect_on_save();
 	}
 
 	/**
-	 * Update network settings.
-	 * Used when plugin is network activated to save settings.
-	 *
-	 * @link http://wordpress.stackexchange.com/questions/64968/settings-api-in-multisite-missing-update-message
-	 * @link http://benohead.com/wordpress-network-wide-plugin-settings/
+	 * Redirect to correct Settings tab on Save.
 	 */
-	public function update_network_settings() {
-		$query = parse_url($_POST['_wp_http_referer'], PHP_URL_QUERY);
-		parse_str($query, $arr);
-		if (empty($arr['tab'])) {
-			$arr['tab'] = 'local_dev_settings_plugins';
+	protected function redirect_on_save() {
+		$update = false;
+
+		if ((isset($_POST['action']) && 'update' === $_POST['action'])) {
+			$update = true;
 		}
 
-		if ('local_development_settings' === $_POST['option_page']) {
-			if ('local_dev_settings_plugins' === $arr['tab']) {
-				self::$options['plugins'] = self::sanitize($_POST['local_dev']);
-			}
-			if ('local_dev_settings_themes' === $arr['tab']) {
-				self::$options['themes'] = self::sanitize($_POST['local_dev']);
-			}
-			update_site_option('local_development', self::$options);
-		}
+		$redirect_url = is_multisite() ? network_admin_url('settings.php') : admin_url('options-general.php');
 
-		$location = add_query_arg(
-			[
-				'page'    => 'local-development',
-				'updated' => 'true',
-				'tab'     => $arr['tab'],
-			],
-			network_admin_url('settings.php')
-		);
-		wp_redirect($location);
-		exit;
+		if ($update) {
+			$query = isset($_POST['_wp_http_referer']) ? parse_url($_POST['_wp_http_referer'], PHP_URL_QUERY) : null;
+			parse_str($query, $arr);
+			$arr['tab'] = ! empty($arr['tab']) ? $arr['tab'] : 'local_dev_settings_plugins';
+
+			$location = add_query_arg(
+				[
+					'page'    => 'local-development',
+					'tab'     => $arr['tab'],
+					'updated' => $update,
+				],
+				$redirect_url
+			);
+			wp_redirect($location);
+			exit;
+		}
 	}
 
 	/**
