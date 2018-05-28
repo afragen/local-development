@@ -9,10 +9,6 @@ if (! defined('WPINC')) {
 	die;
 }
 
-/**
- * Class Base
- *
- */
 class Base {
 	/**
 	 * Static to hold slugs of plugins under development.
@@ -50,16 +46,15 @@ class Base {
 		self::$message = esc_html__('In Local Development', 'local-development');
 		self::$options = get_site_option('local_development');
 
-		add_filter('plugin_row_meta', array( $this, 'row_meta' ), 15, 2);
-		add_filter('site_transient_update_plugins', array( &$this, 'hide_update_nag' ), 15, 1);
+		add_filter('plugin_row_meta', [ $this, 'row_meta' ], 15, 2);
+		add_filter('site_transient_update_plugins', [ &$this, 'hide_update_nag' ], 15, 1);
 
-		add_filter('theme_row_meta', array( $this, 'row_meta' ), 15, 2);
-		add_filter('site_transient_update_themes', array( &$this, 'hide_update_nag' ), 15, 1);
+		add_filter('theme_row_meta', [ $this, 'row_meta' ], 15, 2);
+		add_filter('site_transient_update_themes', [ &$this, 'hide_update_nag' ], 15, 1);
 
 		if (! is_multisite()) {
-			add_filter('wp_prepare_themes_for_js', array( $this, 'set_theme_description' ), 15, 1);
+			add_filter('wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1);
 		}
-		$this->allow_local_servers();
 	}
 
 	/**
@@ -75,8 +70,8 @@ class Base {
 			(! empty(self::$themes) && array_key_exists($file, self::$themes))
 		) {
 			$links[] = '<strong>' . self::$message . '</strong>';
-			add_action("after_plugin_row_{$file}", array( $this, 'remove_update_row' ), 15, 1);
-			add_action("after_theme_row_{$file}", array( $this, 'remove_update_row' ), 15, 1);
+			add_action("after_plugin_row_{$file}", [ $this, 'remove_update_row' ], 15, 1);
+			add_action("after_theme_row_{$file}", [ $this, 'remove_update_row' ], 15, 1);
 		}
 
 		return $links;
@@ -162,34 +157,5 @@ class Base {
 		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . $repo_name . '\']").remove();';
 		print 'jQuery(".update[data-plugin=\'' . $repo_name . '\']").removeClass("update");';
 		print '</script>' ;
-	}
-
-	/**
-	 * In case the developer is running a local instance of a git server.
-	 *
-	 * @return void
-	 */
-	public function allow_local_servers() {
-		add_filter('http_request_args', function ($r, $url) {
-			if (! $r['reject_unsafe_urls']) {
-				return $r;
-			}
-			$host = parse_url($url, PHP_URL_HOST);
-			if (preg_match('#^(([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)\.){3}([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)$#', $host)) {
-				$ip = $host;
-			} else {
-				return $r;
-			}
-
-			$parts = array_map('intval', explode('.', $ip));
-			if (127 === $parts[0] || 10 === $parts[0] || 0 === $parts[0]
-				|| (172 === $parts[0] && 16 <= $parts[1] && 31 >= $parts[1])
-				|| (192 === $parts[0] && 168 === $parts[1])
-			) {
-				$r['reject_unsafe_urls'] = false;
-			}
-
-			return $r;
-		}, 10, 2);
 	}
 }
