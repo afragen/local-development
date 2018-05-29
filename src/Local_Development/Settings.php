@@ -178,8 +178,8 @@ class Settings {
 	 * @return void
 	 */
 	public function admin_page_notices() {
-		if (isset($_GET['updated']) && true == $_GET['updated']) {
-			echo '<div class="updated"><p><strong>' . esc_html__('Saved.', 'local-development') . '</strong></p></div>';
+		if (isset($_GET['updated']) && '1' === $_GET['updated'] && is_multisite()) {
+			echo '<div class="updated"><p><strong>' . esc_html__('Settings saved.', 'local-development') . '</strong></p></div>';
 		}
 	}
 
