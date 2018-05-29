@@ -233,6 +233,7 @@ class Settings {
 		if (isset($_POST['option_page']) &&
 			'local_development_settings' === $_POST['option_page']
 		) {
+			$_POST['local_dev'] = isset($_POST['local_dev']) ? $_POST['local_dev'] : [];
 			if ('local_dev_settings_plugins' === $arr['tab']) {
 				self::$options['plugins'] = self::sanitize($_POST['local_dev']);
 			}
