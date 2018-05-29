@@ -49,7 +49,7 @@ class Settings {
 		add_action('init', [$this, 'init']);
 		add_action(is_multisite() ? 'network_admin_menu' : 'admin_menu', [$this, 'add_plugin_page']);
 		add_action('network_admin_edit_local-development', [$this, 'update_settings']);
-		add_action('admin_edit_local-development', [$this, 'update_settings']);
+		add_action('admin_init', [$this, 'update_settings']);
 		add_action('admin_head-settings_page_local-development', [$this, 'style_settings']);
 
 		add_filter(
