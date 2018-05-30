@@ -20,6 +20,7 @@ class Extras extends Settings {
 		$this->init();
 		$this->add_settings();
 		$this->load_extras();
+		add_filter('local_development_update_settings_extras', [$this, 'save_tab_settings'], 10, 2);
 	}
 
 	/**

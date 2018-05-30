@@ -19,6 +19,7 @@ class Themes extends Settings {
 		add_action('admin_init', [ $this, 'page_init' ]);
 		$this->init();
 		$this->add_settings();
+		add_filter('local_development_update_settings_themes', [$this, 'save_tab_settings'], 10, 2);
 	}
 
 	/**

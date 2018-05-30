@@ -233,20 +233,38 @@ class Settings {
 		if (isset($_POST['option_page']) &&
 			'local_development_settings' === $_POST['option_page']
 		) {
-			$_POST['local_dev'] = isset($_POST['local_dev']) ? $_POST['local_dev'] : [];
-			if ('local_dev_settings_plugins' === $arr['tab']) {
-				self::$options['plugins'] = self::sanitize($_POST['local_dev']);
-			}
-			if ('local_dev_settings_themes' === $arr['tab']) {
-				self::$options['themes'] = self::sanitize($_POST['local_dev']);
-			}
-			if ('local_dev_settings_extras' === $arr['tab']) {
-				self::$options['extras'] = self::sanitize($_POST['local_dev']);
-			}
+			$options = isset($_POST['local_dev']) ? $_POST['local_dev'] : [];
+			$tab     = explode('_', $arr['tab']);
+			$tab     = array_pop($tab);
+
+			/**
+			 * Filter options from added classes.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param array $options Array of options returned from Save.
+			 * @param array $arr     Array of setting page info.
+			 *
+			 * @return array $options Array of options.
+			 */
+			$options       = apply_filters("local_development_update_settings_{$tab}", $options, $tab);
+			self::$options = array_merge((array) self::$options, $options);
 			update_site_option('local_development', self::$options);
 		}
 
 		$this->redirect_on_save();
+	}
+
+	/**
+	 * Save added class settings.
+	 *
+	 * @param array  $options Settings of specific tab.
+	 * @param string $tab     Unique part of tab, should correspond to class.
+	 *
+	 * @return array
+	 */
+	public function save_tab_settings($options, $tab) {
+		return [ $tab => self::sanitize($options)];
 	}
 
 	/**
