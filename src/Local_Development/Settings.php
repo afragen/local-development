@@ -273,7 +273,9 @@ class Settings {
 	protected function redirect_on_save() {
 		$update = false;
 
-		if ((isset($_POST['action']) && 'update' === $_POST['action'])) {
+		if ((isset($_POST['action']) && 'update' === $_POST['action']) &&
+			(isset($_POST['option_page']) && 'local_development_settings' === $_POST['option_page'])
+		) {
 			$update = true;
 		}
 
