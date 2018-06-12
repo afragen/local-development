@@ -5,7 +5,7 @@ namespace Fragen\Local_Development;
 /*
  * Exit if called directly.
  */
-if (! defined('WPINC')) {
+if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -16,11 +16,11 @@ class Extras extends Settings {
 	 * @return void
 	 */
 	public function run() {
-		add_action('admin_init', [ $this, 'page_init' ]);
+		add_action( 'admin_init', [ $this, 'page_init' ] );
 		$this->init();
 		$this->add_settings();
 		$this->load_extras();
-		add_filter('local_development_update_settings_extras', [$this, 'save_tab_settings'], 10, 2);
+		add_filter( 'local_development_update_settings_extras', [ $this, 'save_tab_settings' ], 10, 2 );
 	}
 
 	/**
@@ -29,15 +29,19 @@ class Extras extends Settings {
 	 * @return void
 	 */
 	public function add_settings() {
-		add_filter('local_development_add_settings_tabs', function ($tabs) {
-			$install_tabs = ['local_dev_settings_extras' => esc_html__('Extras', 'local-development')];
+		add_filter(
+			'local_development_add_settings_tabs', function ( $tabs ) {
+				$install_tabs = [ 'local_dev_settings_extras' => esc_html__( 'Extras', 'local-development' ) ];
 
-			return  array_merge($tabs, $install_tabs);
-		});
+				return  array_merge( $tabs, $install_tabs );
+			}
+		);
 
-		add_filter('local_development_add_admin_page', function ($tab, $action) {
-			$this->add_admin_page($tab, $action);
-		}, 10, 2);
+		add_filter(
+			'local_development_add_admin_page', function ( $tab, $action ) {
+				$this->add_admin_page( $tab, $action );
+			}, 10, 2
+		);
 	}
 
 	/**
@@ -54,7 +58,7 @@ class Extras extends Settings {
 
 		add_settings_section(
 			'local_dev_extras',
-			esc_html__('Extras', 'local-development'),
+			esc_html__( 'Extras', 'local-development' ),
 			[ $this, 'print_section_extras' ],
 			'local_dev_extras'
 		);
@@ -65,7 +69,11 @@ class Extras extends Settings {
 			[ $this, 'token_callback_checkbox' ],
 			'local_dev_extras',
 			'local_dev_extras',
-			[ 'id' => 'local_servers', 'type'=>'extras', 'name' => esc_html('Enable Local Git Servers (192.168.x.x)', 'local_development') ]
+			[
+				'id'   => 'local_servers',
+				'type' => 'extras',
+				'name' => esc_html( 'Enable Local Git Servers (192.168.x.x)', 'local_development' ),
+			]
 		);
 	}
 
@@ -73,7 +81,7 @@ class Extras extends Settings {
 	 * Print the plugin text.
 	 */
 	public function print_section_extras() {
-		esc_html_e('Select the extra options.', 'local-development');
+		esc_html_e( 'Select the extra options.', 'local-development' );
 	}
 
 	/**
@@ -83,13 +91,13 @@ class Extras extends Settings {
 	 * @param  mixed $action
 	 * @return void
 	 */
-	public function add_admin_page($tab, $action) {
-		if ('local_dev_settings_extras' === $tab) {
-			$action = add_query_arg('tab', $tab, $action); ?>
-            <form method="post" action="<?php esc_attr_e($action); ?>">
+	public function add_admin_page( $tab, $action ) {
+		if ( 'local_dev_settings_extras' === $tab ) {
+			$action = add_query_arg( 'tab', $tab, $action ); ?>
+			<form method="post" action="<?php esc_attr_e( $action ); ?>">
 			<?php
-			settings_fields('local_development_settings');
-			do_settings_sections('local_dev_extras');
+			settings_fields( 'local_development_settings' );
+			do_settings_sections( 'local_dev_extras' );
 			submit_button();
 			echo'</form>';
 		}
@@ -101,7 +109,7 @@ class Extras extends Settings {
 	 * @return void
 	 */
 	protected function load_extras() {
-		if (isset(static::$options['extras']['local_servers']) &&
+		if ( isset( static::$options['extras']['local_servers'] ) &&
 			'1' === static::$options['extras']['local_servers']
 			) {
 			$this->allow_local_servers();
@@ -114,26 +122,28 @@ class Extras extends Settings {
 	 * @return void
 	 */
 	public function allow_local_servers() {
-		add_filter('http_request_args', function ($r, $url) {
-			if (! $r['reject_unsafe_urls']) {
-				return $r;
-			}
-			$host = parse_url($url, PHP_URL_HOST);
-			if (preg_match('#^(([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)\.){3}([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)$#', $host)) {
-				$ip = $host;
-			} else {
-				return $r;
-			}
+		add_filter(
+			'http_request_args', function ( $r, $url ) {
+				if ( ! $r['reject_unsafe_urls'] ) {
+					return $r;
+				}
+				$host = parse_url( $url, PHP_URL_HOST );
+				if ( preg_match( '#^(([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)\.){3}([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)$#', $host ) ) {
+					$ip = $host;
+				} else {
+					return $r;
+				}
 
-			$parts = array_map('intval', explode('.', $ip));
-			if (127 === $parts[0] || 10 === $parts[0] || 0 === $parts[0]
-				|| (172 === $parts[0] && 16 <= $parts[1] && 31 >= $parts[1])
-				|| (192 === $parts[0] && 168 === $parts[1])
-			) {
-				$r['reject_unsafe_urls'] = false;
-			}
+				$parts = array_map( 'intval', explode( '.', $ip ) );
+				if ( 127 === $parts[0] || 10 === $parts[0] || 0 === $parts[0]
+				|| ( 172 === $parts[0] && 16 <= $parts[1] && 31 >= $parts[1] )
+				|| ( 192 === $parts[0] && 168 === $parts[1] )
+				) {
+					$r['reject_unsafe_urls'] = false;
+				}
 
-			return $r;
-		}, 10, 2);
+				return $r;
+			}, 10, 2
+		);
 	}
 }

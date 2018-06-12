@@ -5,7 +5,7 @@ namespace Fragen\Local_Development;
 /*
  * Exit if called directly.
  */
-if (! defined('WPINC')) {
+if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -16,10 +16,10 @@ class Themes extends Settings {
 	 * @return void
 	 */
 	public function run() {
-		add_action('admin_init', [ $this, 'page_init' ]);
+		add_action( 'admin_init', [ $this, 'page_init' ] );
 		$this->init();
 		$this->add_settings();
-		add_filter('local_development_update_settings_themes', [$this, 'save_tab_settings'], 10, 2);
+		add_filter( 'local_development_update_settings_themes', [ $this, 'save_tab_settings' ], 10, 2 );
 	}
 
 	/**
@@ -28,15 +28,19 @@ class Themes extends Settings {
 	 * @return void
 	 */
 	public function add_settings() {
-		add_action('local_development_add_settings_tabs', function ($tabs) {
-			$install_tabs = ['local_dev_settings_themes' => esc_html__('Themes', 'local-development')];
+		add_action(
+			'local_development_add_settings_tabs', function ( $tabs ) {
+				$install_tabs = [ 'local_dev_settings_themes' => esc_html__( 'Themes', 'local-development' ) ];
 
-			return array_merge($tabs, $install_tabs);
-		});
+				return array_merge( $tabs, $install_tabs );
+			}
+		);
 
-		add_filter('local_development_add_admin_page', function ($tab, $action) {
-			$this->add_admin_page($tab, $action);
-		}, 10, 2);
+		add_filter(
+			'local_development_add_admin_page', function ( $tab, $action ) {
+				$this->add_admin_page( $tab, $action );
+			}, 10, 2
+		);
 	}
 
 	/**
@@ -53,19 +57,23 @@ class Themes extends Settings {
 
 		add_settings_section(
 			'local_dev_themes',
-			esc_html__('Themes', 'local-development'),
+			esc_html__( 'Themes', 'local-development' ),
 			[ $this, 'print_section_themes' ],
 			'local_dev_themes'
 		);
 
-		foreach ($this->themes as $id => $name) {
+		foreach ( $this->themes as $id => $name ) {
 			add_settings_field(
 				$id,
 				null,
 				[ $this, 'token_callback_checkbox' ],
 				'local_dev_themes',
 				'local_dev_themes',
-				[ 'id' => $id, 'type' => 'themes', 'name' => $name ]
+				[
+					'id'   => $id,
+					'type' => 'themes',
+					'name' => $name,
+				]
 			);
 		}
 	}
@@ -74,7 +82,7 @@ class Themes extends Settings {
 	 * Print the theme text.
 	 */
 	public function print_section_themes() {
-		esc_html_e('Select the locally developed themes.', 'local-development');
+		esc_html_e( 'Select the locally developed themes.', 'local-development' );
 	}
 
 	/**
@@ -84,13 +92,13 @@ class Themes extends Settings {
 	 * @param  mixed $action
 	 * @return void
 	 */
-	public function add_admin_page($tab, $action) {
-		if ('local_dev_settings_themes' === $tab) {
-			$action = add_query_arg('tab', $tab, $action); ?>
-			<form method="post" action="<?php esc_attr_e($action); ?>">
+	public function add_admin_page( $tab, $action ) {
+		if ( 'local_dev_settings_themes' === $tab ) {
+			$action = add_query_arg( 'tab', $tab, $action ); ?>
+			<form method="post" action="<?php esc_attr_e( $action ); ?>">
 			<?php
-			settings_fields('local_development_settings');
-			do_settings_sections('local_dev_themes');
+			settings_fields( 'local_development_settings' );
+			do_settings_sections( 'local_dev_themes' );
 			submit_button();
 			echo'</form>';
 		}

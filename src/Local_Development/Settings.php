@@ -5,7 +5,7 @@ namespace Fragen\Local_Development;
 /*
  * Exit if called directly.
  */
-if (! defined('WPINC')) {
+if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
@@ -42,19 +42,19 @@ class Settings {
 	 * Settings constructor.
 	 */
 	public function __construct() {
-		self::$options = get_site_option('local_development');
+		self::$options = get_site_option( 'local_development' );
 	}
 
 	public function load_hooks() {
-		add_action('init', [$this, 'init']);
-		add_action(is_multisite() ? 'network_admin_menu' : 'admin_menu', [$this, 'add_plugin_page']);
-		add_action('network_admin_edit_local-development', [$this, 'update_settings']);
-		add_action('admin_init', [$this, 'update_settings']);
-		add_action('admin_head-settings_page_local-development', [$this, 'style_settings']);
+		add_action( 'init', [ $this, 'init' ] );
+		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', [ $this, 'add_plugin_page' ] );
+		add_action( 'network_admin_edit_local-development', [ $this, 'update_settings' ] );
+		add_action( 'admin_init', [ $this, 'update_settings' ] );
+		add_action( 'admin_head-settings_page_local-development', [ $this, 'style_settings' ] );
 
 		add_filter(
 			is_multisite() ? 'network_admin_plugin_action_links_' . $this->plugin_slug : 'plugin_action_links_' . $this->plugin_slug,
-			[$this, 'plugin_action_links']
+			[ $this, 'plugin_action_links' ]
 		);
 	}
 
@@ -69,15 +69,15 @@ class Settings {
 		include_once ABSPATH . '/wp-admin/includes/plugin.php';
 
 		$this->plugins = get_plugins();
-		$this->themes  = wp_get_themes([ 'errors' => null ]);
+		$this->themes  = wp_get_themes( [ 'errors' => null ] );
 
-		foreach (array_keys($this->plugins) as $slug) {
-			$plugins[$slug] = $this->plugins[$slug]['Name'];
+		foreach ( array_keys( $this->plugins ) as $slug ) {
+			$plugins[ $slug ] = $this->plugins[ $slug ]['Name'];
 		}
 		$this->plugins = $plugins;
 
-		foreach (array_keys($this->themes) as $slug) {
-			$themes[$slug] = $this->themes[$slug]->get('Name');
+		foreach ( array_keys( $this->themes ) as $slug ) {
+			$themes[ $slug ] = $this->themes[ $slug ]->get( 'Name' );
 		}
 		$this->themes = $themes;
 	}
@@ -99,26 +99,26 @@ class Settings {
 		 *
 		 * @param array $tabs Array of default tabs.
 		 */
-		return apply_filters('local_development_add_settings_tabs', $tabs);
+		return apply_filters( 'local_development_add_settings_tabs', $tabs );
 	}
 
 	/**
 	 * Add options page.
 	 */
 	public function add_plugin_page() {
-		if (is_multisite()) {
+		if ( is_multisite() ) {
 			add_submenu_page(
 				'settings.php',
-				esc_html__('Local Development Settings', 'local-development'),
-				esc_html__('Local Development', 'local-development'),
+				esc_html__( 'Local Development Settings', 'local-development' ),
+				esc_html__( 'Local Development', 'local-development' ),
 				'manage_network',
 				'local-development',
 				[ $this, 'create_admin_page' ]
 			);
 		} else {
 			add_options_page(
-				esc_html__('Local Development Settings', 'local-development'),
-				esc_html__('Local Development', 'local-development'),
+				esc_html__( 'Local Development Settings', 'local-development' ),
+				esc_html__( 'Local Development', 'local-development' ),
 				'manage_options',
 				'local-development',
 				[ $this, 'create_admin_page' ]
@@ -135,10 +135,10 @@ class Settings {
 	 * @access private
 	 */
 	private function options_tabs() {
-		$current_tab = isset($_GET['tab']) ? $_GET['tab'] : 'local_dev_settings_plugins';
+		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'local_dev_settings_plugins';
 		echo '<h2 class="nav-tab-wrapper">';
-		foreach ($this->settings_tabs() as $key => $name) {
-			$active = ($current_tab == $key) ? 'nav-tab-active' : '';
+		foreach ( $this->settings_tabs() as $key => $name ) {
+			$active = ( $current_tab == $key ) ? 'nav-tab-active' : '';
 			echo '<a class="nav-tab ' . $active . '" href="?page=local-development&tab=' . $key . '">' . $name . '</a>';
 		}
 		echo '</h2>';
@@ -149,17 +149,17 @@ class Settings {
 	 */
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
-		$tab    = isset($_GET['tab']) ? $_GET['tab'] : 'local_dev_settings_plugins'; ?>
+		$tab    = isset( $_GET['tab'] ) ? $_GET['tab'] : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
-				<?php esc_html_e('Local Development Settings', 'local-development'); ?>
+				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
 			</h2>
 			<p>Selected repositories will not display an update notice.</p>
 			<?php
-		$this->options_tabs();
-		$this->admin_page_notices();
+			$this->options_tabs();
+			$this->admin_page_notices();
 
-		/**
+			/**
 		 * Action hook to add admin page data to appropriate $tab.
 		 *
 		 * @since 8.0.0
@@ -168,8 +168,8 @@ class Settings {
 		 * @param string $action Save action for appropriate WordPress installation.
 		 *                       Single site or Multisite.
 		 */
-		do_action('local_development_add_admin_page', $tab, $action);
-		echo'</div>';
+			do_action( 'local_development_add_admin_page', $tab, $action );
+			echo'</div>';
 	}
 
 	/**
@@ -178,8 +178,8 @@ class Settings {
 	 * @return void
 	 */
 	public function admin_page_notices() {
-		if (isset($_GET['updated']) && '1' === $_GET['updated'] && is_multisite()) {
-			echo '<div class="updated"><p><strong>' . esc_html__('Settings saved.', 'local-development') . '</strong></p></div>';
+		if ( isset( $_GET['updated'] ) && '1' === $_GET['updated'] && is_multisite() ) {
+			echo '<div class="updated"><p><strong>' . esc_html__( 'Settings saved.', 'local-development' ) . '</strong></p></div>';
 		}
 	}
 
@@ -190,10 +190,10 @@ class Settings {
 	 *
 	 * @return array
 	 */
-	public static function sanitize($input) {
+	public static function sanitize( $input ) {
 		$new_input = [];
-		foreach (array_keys((array) $input) as $id) {
-			$new_input[sanitize_text_field($id)] = sanitize_text_field($input[$id]);
+		foreach ( array_keys( (array) $input ) as $id ) {
+			$new_input[ sanitize_text_field( $id ) ] = sanitize_text_field( $input[ $id ] );
 		}
 
 		return $new_input;
@@ -204,11 +204,12 @@ class Settings {
 	 *
 	 * @param $args
 	 */
-	public function token_callback_checkbox($args) {
-		$checked = isset(self::$options[$args['type']][$args['id']]) ? esc_attr(self::$options[$args['type']][$args['id']]) : null; ?>
-		<label for="<?php esc_attr_e($args['id']); ?>">
-			<input type="checkbox" name="local_dev[<?php esc_attr_e($args['id']); ?>]" value="1" <?php checked('1', $checked, true); ?> >
-			<?php esc_html_e($args['name']); ?>
+	public function token_callback_checkbox( $args ) {
+		$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : null;
+		?>
+		<label for="<?php esc_attr_e( $args['id'] ); ?>">
+			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', $checked, true ); ?> >
+			<?php esc_html_e( $args['name'] ); ?>
 		</label>
 		<?php
 	}
@@ -221,21 +222,21 @@ class Settings {
 	 * @link http://benohead.com/wordpress-network-wide-plugin-settings/
 	 */
 	public function update_settings() {
-		if (! isset($_POST['_wp_http_referer'])) {
+		if ( ! isset( $_POST['_wp_http_referer'] ) ) {
 			return false;
 		}
-		$query = parse_url($_POST['_wp_http_referer'], PHP_URL_QUERY);
-		parse_str($query, $arr);
-		if (empty($arr['tab'])) {
+		$query = parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
+		parse_str( $query, $arr );
+		if ( empty( $arr['tab'] ) ) {
 			$arr['tab'] = 'local_dev_settings_plugins';
 		}
 
-		if (isset($_POST['option_page']) &&
+		if ( isset( $_POST['option_page'] ) &&
 			'local_development_settings' === $_POST['option_page']
 		) {
-			$options = isset($_POST['local_dev']) ? $_POST['local_dev'] : [];
-			$tab     = explode('_', $arr['tab']);
-			$tab     = array_pop($tab);
+			$options = isset( $_POST['local_dev'] ) ? $_POST['local_dev'] : [];
+			$tab     = explode( '_', $arr['tab'] );
+			$tab     = array_pop( $tab );
 
 			/**
 			 * Filter options from added classes.
@@ -247,9 +248,9 @@ class Settings {
 			 *
 			 * @return array $options Array of options.
 			 */
-			$options       = apply_filters("local_development_update_settings_{$tab}", $options, $tab);
-			self::$options = array_merge((array) self::$options, $options);
-			update_site_option('local_development', self::$options);
+			$options       = apply_filters( "local_development_update_settings_{$tab}", $options, $tab );
+			self::$options = array_merge( (array) self::$options, $options );
+			update_site_option( 'local_development', self::$options );
 		}
 
 		$this->redirect_on_save();
@@ -263,8 +264,8 @@ class Settings {
 	 *
 	 * @return array
 	 */
-	public function save_tab_settings($options, $tab) {
-		return [ $tab => self::sanitize($options)];
+	public function save_tab_settings( $options, $tab ) {
+		return [ $tab => self::sanitize( $options ) ];
 	}
 
 	/**
@@ -273,18 +274,18 @@ class Settings {
 	protected function redirect_on_save() {
 		$update = false;
 
-		if ((isset($_POST['action']) && 'update' === $_POST['action']) &&
-			(isset($_POST['option_page']) && 'local_development_settings' === $_POST['option_page'])
+		if ( ( isset( $_POST['action'] ) && 'update' === $_POST['action'] ) &&
+			( isset( $_POST['option_page'] ) && 'local_development_settings' === $_POST['option_page'] )
 		) {
 			$update = true;
 		}
 
-		$redirect_url = is_multisite() ? network_admin_url('settings.php') : admin_url('options-general.php');
+		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
-		if ($update) {
-			$query = isset($_POST['_wp_http_referer']) ? parse_url($_POST['_wp_http_referer'], PHP_URL_QUERY) : null;
-			parse_str($query, $arr);
-			$arr['tab'] = ! empty($arr['tab']) ? $arr['tab'] : 'local_dev_settings_plugins';
+		if ( $update ) {
+			$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY ) : null;
+			parse_str( $query, $arr );
+			$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 			$location = add_query_arg(
 				[
@@ -294,7 +295,7 @@ class Settings {
 				],
 				$redirect_url
 			);
-			wp_redirect($location);
+			wp_redirect( $location );
 			exit;
 		}
 	}
@@ -309,11 +310,11 @@ class Settings {
 	 *
 	 * @return array
 	 */
-	public function plugin_action_links($links) {
+	public function plugin_action_links( $links ) {
 		$settings_page = is_multisite() ? 'settings.php' : 'options-general.php';
-		$link          = [ '<a href="' . esc_url(network_admin_url($settings_page)) . '?page=local-development">' . esc_html__('Settings', 'local-development') . '</a>' ];
+		$link          = [ '<a href="' . esc_url( network_admin_url( $settings_page ) ) . '?page=local-development">' . esc_html__( 'Settings', 'local-development' ) . '</a>' ];
 
-		return array_merge($links, $link);
+		return array_merge( $links, $link );
 	}
 
 	/**
