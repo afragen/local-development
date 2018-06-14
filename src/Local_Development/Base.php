@@ -50,10 +50,13 @@ class Base {
 		self::$options = get_site_option( 'local_development' );
 
 		add_filter( 'plugin_row_meta', [ $this, 'row_meta' ], 15, 2 );
-		add_filter( 'site_transient_update_plugins', [ &$this, 'hide_update_nag' ], 15, 1 );
+		add_filter( 'site_transient_update_plugins', [ $this, 'hide_update_nag' ], 15, 1 );
+		add_filter( 'plugin_action_links', [ $this, 'action_links' ], 15, 2 );
+		add_filter( 'network_admin_plugin_action_links', [ $this, 'action_links' ], 15, 2 );
 
 		add_filter( 'theme_row_meta', [ $this, 'row_meta' ], 15, 2 );
-		add_filter( 'site_transient_update_themes', [ &$this, 'hide_update_nag' ], 15, 1 );
+		add_filter( 'site_transient_update_themes', [ $this, 'hide_update_nag' ], 15, 1 );
+		add_filter( 'theme_action_links', [ $this, 'action_links' ], 15, 2 );
 
 		if ( ! is_multisite() ) {
 			add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
@@ -81,7 +84,25 @@ class Base {
 	}
 
 	/**
+	 * Remove 'delete' action link.
+	 *
+	 * @param array  $actions
+	 * @param string $file
+	 * @return array $actions
+	 */
+	public function action_links( $actions, $file ) {
+		$file  = $file instanceof \WP_Theme ? $file->stylesheet : $file;
+		$repos = array_merge( (array) self::$plugins, (array) self::$themes );
+		if ( array_key_exists( $file, $repos ) ) {
+			unset( $actions['delete'] );
+		}
+		return $actions;
+	}
+
+	/**
+	 * For single site.
 	 * Sets the description for the single install theme action.
+	 * Removes the delete option.
 	 *
 	 * @param $prepared_themes
 	 *
@@ -94,6 +115,7 @@ class Base {
 				$message .= '<p><strong>' . self::$message . '</strong></p>';
 
 				$prepared_themes[ $theme['id'] ]['description'] = $message;
+				unset( $prepared_themes[ $theme['id'] ]['actions']['delete'] );
 			}
 		}
 
@@ -152,6 +174,7 @@ class Base {
 
 	/**
 	 * Write out inline style to hide the update row notice.
+	 * Removes checkbox for bulk actions.
 	 *
 	 * @param string $repo_name Repository file name.
 	 */
@@ -159,6 +182,7 @@ class Base {
 		print '<script>';
 		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . $repo_name . '\']").remove();';
 		print 'jQuery(".update[data-plugin=\'' . $repo_name . '\']").removeClass("update");';
+		print 'jQuery("input[value=\'' . $repo_name . '\']").remove();';
 		print '</script>';
 	}
 }
