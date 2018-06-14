@@ -51,4 +51,4 @@ new $local_development['loader']($local_development['root'], $local_development[
 
 // Instantiate.
 $local_development['instantiate'] = 'Fragen\\Local_Development\\Init';
-new $local_development['instantiate'];
+new $local_development['instantiate']();

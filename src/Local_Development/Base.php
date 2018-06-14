@@ -12,18 +12,21 @@ if ( ! defined( 'WPINC' ) ) {
 class Base {
 	/**
 	 * Static to hold slugs of plugins under development.
+	 *
 	 * @var
 	 */
 	protected static $plugins;
 
 	/**
 	 * Static to hold slugs themes under development.
+	 *
 	 * @var
 	 */
 	protected static $themes;
 
 	/**
 	 * Static to hold message.
+	 *
 	 * @var
 	 */
 	protected static $message;

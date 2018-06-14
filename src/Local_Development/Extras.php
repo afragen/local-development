@@ -33,7 +33,7 @@ class Extras extends Settings {
 			'local_development_add_settings_tabs', function ( $tabs ) {
 				$install_tabs = [ 'local_dev_settings_extras' => esc_html__( 'Extras', 'local-development' ) ];
 
-				return  array_merge( $tabs, $install_tabs );
+				return array_merge( $tabs, $install_tabs );
 			}
 		);
 
@@ -99,7 +99,7 @@ class Extras extends Settings {
 			settings_fields( 'local_development_settings' );
 			do_settings_sections( 'local_dev_extras' );
 			submit_button();
-			echo'</form>';
+			echo '</form>';
 		}
 	}
 

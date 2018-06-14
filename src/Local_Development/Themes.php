@@ -100,7 +100,7 @@ class Themes extends Settings {
 			settings_fields( 'local_development_settings' );
 			do_settings_sections( 'local_dev_themes' );
 			submit_button();
-			echo'</form>';
+			echo '</form>';
 		}
 	}
 }

@@ -169,7 +169,7 @@ class Settings {
 		 *                       Single site or Multisite.
 		 */
 			do_action( 'local_development_add_admin_page', $tab, $action );
-			echo'</div>';
+			echo '</div>';
 	}
 
 	/**
