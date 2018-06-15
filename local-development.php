@@ -23,11 +23,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( version_compare( '5.3.0', PHP_VERSION, '>=' ) ) {
+if ( version_compare( '5.6.0', PHP_VERSION, '>=' ) ) {
 	echo '<div class="error notice is-dismissible"><p>';
 	printf(
 		/* translators: 1: minimum PHP version required, 2: Upgrade PHP URL */
-		esc_html__( 'Local Development cannot run on PHP versions older than %1$s. <a href="%2$s">Learn about upgrading your PHP.</a>', 'local-development' ),
+		wp_kses_post( __( 'Local Development cannot run on PHP versions older than %1$s. <a href="%2$s">Learn about upgrading your PHP.</a>', 'local-development' ) ),
 		'5.6.0',
 		esc_url( __( 'https://wordpress.org/support/upgrade-php/' ) )
 	);
