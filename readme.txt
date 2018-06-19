@@ -2,9 +2,9 @@
 Contributors: afragen
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
-Tested up to: 5.0
-Requires PHP: 5.3
-Stable tag: 1.6.0
+Tested up to: 4.9
+Requires PHP: 5.6
+Stable tag: 2.0.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
@@ -30,6 +30,11 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.0.0
+* refactored to have each group in its own class, much more OOPy ;)
+* use wpcs codesniffer
+* removed checkboxes and delete links for checked plugins/themes
 
 #### 1.6.0 / 2018-05-26
 * added abilty to use local file server on LAN during development

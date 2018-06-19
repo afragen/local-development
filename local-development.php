@@ -5,14 +5,14 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
- * Version:           1.6.0.7
+ * Version:           2.0.0
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2
  * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/local-development
- * Requires PHP:      5.3
+ * Requires PHP:      5.6
  */
 
 /*
