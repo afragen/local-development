@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Local Development\n"
-"POT-Creation-Date: 2016-11-06 09:55-0800\n"
+"POT-Creation-Date: 2018-06-19 10:38-0700\n"
 "PO-Revision-Date: 2016-01-11 07:40-0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,64 +10,76 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: local-development.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
+#. translators: 1: minimum PHP version required, 2: Upgrade PHP URL
 #: local-development.php:30
+#, php-format
 msgid ""
-"Local Development cannot run on PHP versions older than 5.3.0. Please "
-"contact your hosting provider to update your site."
+"Local Development cannot run on PHP versions older than %1$s. <a href="
+"\"%2$s\">Learn about upgrading your PHP.</a>"
 msgstr ""
 
-#: src/Local_Development/Base.php:45
+#: local-development.php:32
+msgid "https://wordpress.org/support/upgrade-php/"
+msgstr ""
+
+#: src/Local_Development/Base.php:49
 msgid "In Local Development"
 msgstr ""
 
-#: src/Local_Development/Settings.php:105
-#: src/Local_Development/Settings.php:208
+#: src/Local_Development/Extras.php:34 src/Local_Development/Extras.php:61
+msgid "Extras"
+msgstr ""
+
+#: src/Local_Development/Extras.php:84
+msgid "Select the extra options."
+msgstr ""
+
+#: src/Local_Development/Plugins.php:33 src/Local_Development/Plugins.php:60
 #, fuzzy
 msgid "Plugins"
 msgstr ""
 
-#: src/Local_Development/Settings.php:106
-#: src/Local_Development/Settings.php:235
-msgid "Themes"
+#: src/Local_Development/Plugins.php:85
+msgid "Select the locally developed plugins."
 msgstr ""
 
-#: src/Local_Development/Settings.php:117
-#: src/Local_Development/Settings.php:125
-#: src/Local_Development/Settings.php:161
+#: src/Local_Development/Settings.php:112
+#: src/Local_Development/Settings.php:120
+#: src/Local_Development/Settings.php:155
 msgid "Local Development Settings"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: src/Local_Development/Settings.php:118
-#: src/Local_Development/Settings.php:126
+#: src/Local_Development/Settings.php:113
+#: src/Local_Development/Settings.php:121
 msgid "Local Development"
 msgstr ""
 
-#: src/Local_Development/Settings.php:166
-msgid "Saved."
+#: src/Local_Development/Settings.php:182
+msgid "Settings saved."
 msgstr ""
 
-#: src/Local_Development/Settings.php:258
-msgid "Select the locally developed plugins."
-msgstr ""
-
-#: src/Local_Development/Settings.php:265
-msgid "Select the locally developed themes."
-msgstr ""
-
-#: src/Local_Development/Settings.php:374
+#: src/Local_Development/Settings.php:315
 msgid "Settings"
+msgstr ""
+
+#: src/Local_Development/Themes.php:33 src/Local_Development/Themes.php:60
+msgid "Themes"
+msgstr ""
+
+#: src/Local_Development/Themes.php:85
+msgid "Select the locally developed themes."
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -77,13 +89,14 @@ msgstr ""
 #. Description of the plugin/theme
 msgid ""
 "Places development notice for plugins or themes that are in local "
-"development. Prevents updating of selected plugins and themes."
+"development. Prevents updating of selected plugins and themes. Allows for "
+"using a local file server."
 msgstr ""
 
 #. Author of the plugin/theme
 #, fuzzy
 msgid "Andy Fragen"
-msgstr ""
+msgstr "Andy Fragen"
 
 #. Author URI of the plugin/theme
 msgid "http://thefragens.com/"
