@@ -1,4 +1,5 @@
 #### [unreleased]
+* updated error handling in Singleton factory
 
 #### 2.0.0
 * refactored to have each group in its own class, much more OOPy ;)

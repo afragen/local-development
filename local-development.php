@@ -5,7 +5,7 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
- * Version:           2.0.0
+ * Version:           2.0.0.1
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2
