@@ -21,7 +21,8 @@ class Init {
 	public function __construct() {
 		$config = get_site_option( 'local_development' );
 		add_action(
-			'init', function() {
+			'init',
+			function() {
 				Singleton::get_instance( 'Settings', $this )->load_hooks();
 				Singleton::get_instance( 'Plugins', $this )->run();
 				Singleton::get_instance( 'Themes', $this )->run();

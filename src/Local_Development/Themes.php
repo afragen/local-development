@@ -29,7 +29,8 @@ class Themes extends Settings {
 	 */
 	public function add_settings() {
 		add_action(
-			'local_development_add_settings_tabs', function ( $tabs ) {
+			'local_development_add_settings_tabs',
+			function ( $tabs ) {
 				$install_tabs = [ 'local_dev_settings_themes' => esc_html__( 'Themes', 'local-development' ) ];
 
 				return array_merge( $tabs, $install_tabs );
@@ -37,9 +38,12 @@ class Themes extends Settings {
 		);
 
 		add_filter(
-			'local_development_add_admin_page', function ( $tab, $action ) {
+			'local_development_add_admin_page',
+			function ( $tab, $action ) {
 				$this->add_admin_page( $tab, $action );
-			}, 10, 2
+			},
+			10,
+			2
 		);
 	}
 

@@ -30,7 +30,8 @@ class Extras extends Settings {
 	 */
 	public function add_settings() {
 		add_filter(
-			'local_development_add_settings_tabs', function ( $tabs ) {
+			'local_development_add_settings_tabs',
+			function ( $tabs ) {
 				$install_tabs = [ 'local_dev_settings_extras' => esc_html__( 'Extras', 'local-development' ) ];
 
 				return array_merge( $tabs, $install_tabs );
@@ -38,9 +39,12 @@ class Extras extends Settings {
 		);
 
 		add_filter(
-			'local_development_add_admin_page', function ( $tab, $action ) {
+			'local_development_add_admin_page',
+			function ( $tab, $action ) {
 				$this->add_admin_page( $tab, $action );
-			}, 10, 2
+			},
+			10,
+			2
 		);
 	}
 
@@ -123,7 +127,8 @@ class Extras extends Settings {
 	 */
 	public function allow_local_servers() {
 		add_filter(
-			'http_request_args', function ( $r, $url ) {
+			'http_request_args',
+			function ( $r, $url ) {
 				if ( ! $r['reject_unsafe_urls'] ) {
 					return $r;
 				}
@@ -143,7 +148,9 @@ class Extras extends Settings {
 				}
 
 				return $r;
-			}, 10, 2
+			},
+			10,
+			2
 		);
 	}
 }

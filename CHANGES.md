@@ -1,5 +1,6 @@
 #### [unreleased]
 * updated error handling in Singleton factory
+* added `class Bootstrap` to allow for easier time with main plugin file
 
 #### 2.0.0
 * refactored to have each group in its own class, much more OOPy ;)

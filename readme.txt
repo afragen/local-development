@@ -15,7 +15,7 @@ Places development notice for plugins or themes that are in local development. N
 
 Pull Requests are welcome at https://github.com/afragen/local-development
 
-Requires PHP 5.3 or greater.
+Requires PHP 5.6 or greater.
 
 ## Installation
 If you use this plugin you really shouldn't need these.
