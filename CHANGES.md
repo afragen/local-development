@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.1.0 / 2018-10-01
 * updated error handling in Singleton factory
 * added `class Bootstrap` to allow for easier time with main plugin file
 
