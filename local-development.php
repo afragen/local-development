@@ -5,7 +5,7 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2
@@ -13,6 +13,7 @@
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/local-development
  * Requires PHP:      5.6
+ * Requires WP:       4.0
  */
 
 /*
@@ -36,20 +37,7 @@ if ( version_compare( '5.6.0', PHP_VERSION, '>=' ) ) {
 	return false;
 }
 
-// Load textdomain.
-load_plugin_textdomain( 'local-development', false, basename( __DIR__ ) . '/languages' );
+define( 'LOCAL_DEVELOPMENT_DIR', __DIR__ );
 
-// Plugin namespace root.
-$local_development['root'] = array( 'Fragen\\Local_Development' => __DIR__ . '/src/Local_Development' );
-
-// Plugin extra classes.
-$local_development['extra_classes'] = array( 'Fragen\Singleton' => __DIR__ . '/src/Singleton.php' );
-
-// Load Autoloader.
-require_once __DIR__ . '/src/Autoloader.php';
-$local_development['loader'] = 'Fragen\\Autoloader';
-new $local_development['loader']($local_development['root'], $local_development['extra_classes']);
-
-// Instantiate.
-$local_development['instantiate'] = 'Fragen\\Local_Development\\Init';
-new $local_development['instantiate']();
+// Setup plugin loading.
+require_once __DIR__ . '/src/Local_Development/Bootstrap.php';

@@ -4,7 +4,7 @@ Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
 Tested up to: 4.9
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
@@ -15,7 +15,7 @@ Places development notice for plugins or themes that are in local development. N
 
 Pull Requests are welcome at https://github.com/afragen/local-development
 
-Requires PHP 5.3 or greater.
+Requires PHP 5.6 or greater.
 
 ## Installation
 If you use this plugin you really shouldn't need these.
@@ -30,6 +30,10 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.1.0 / 2018-10-01
+* updated error handling in Singleton factory
+* added `class Bootstrap` to allow for easier time with main plugin file
 
 #### 2.0.0
 * refactored to have each group in its own class, much more OOPy ;)
