@@ -1,0 +1,46 @@
+[
+    {
+        "name": "afragen/singleton",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/afragen/singleton.git",
+            "reference": "e2baf7c8d070d7a575cd430561ae945463146b5e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/afragen/singleton/zipball/e2baf7c8d070d7a575cd430561ae945463146b5e",
+            "reference": "e2baf7c8d070d7a575cd430561ae945463146b5e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "time": "2018-11-25T06:11:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "Singleton.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andy Fragen",
+                "email": "andy@thefragens.com",
+                "homepage": "https://github.com/afragen/singleton",
+                "role": "Developer"
+            }
+        ],
+        "description": "A singleton static proxy generator.",
+        "keywords": [
+            "singleton",
+            "wordpress"
+        ]
+    }
+]

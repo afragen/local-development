@@ -1,7 +1,7 @@
 # Local Development
 * Contributors: afragen
 * Tags: localhost development upgrade plugin theme
-* Requires at least: 4.9
+* Requires at least: 4.0
 * Tested up to: 5.0
 * Requires PHP: 5.6
 * Stable tag: master
@@ -16,12 +16,6 @@ Places development notice for plugins or themes that are in local development. N
 Pull Requests are welcome at https://github.com/afragen/local-development
 
 Requires PHP 5.6 or greater.
-
-## Installation
-If you use this plugin you really shouldn't need these.
-
-1. Upload the entire `/local-development` folder to the `/wp-content/plugins/` directory.
-1. Activate the plugin.
 
 ## Screenshots
 

@@ -2,9 +2,9 @@
 Contributors: afragen
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server.
@@ -17,12 +17,6 @@ Pull Requests are welcome at https://github.com/afragen/local-development
 
 Requires PHP 5.6 or greater.
 
-## Installation
-If you use this plugin you really shouldn't need these.
-
-1. Upload the entire `/local-development` folder to the `/wp-content/plugins/` directory.
-1. Activate the plugin.
-
 ## Screenshots
 1. Plugin Settings
 2. Plugins Page
@@ -30,6 +24,9 @@ If you use this plugin you really shouldn't need these.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.2.0 / 2018-11-25
+* use composer for dependencies and autoloader
 
 #### 2.1.0 / 2018-10-01
 * updated error handling in Singleton factory
