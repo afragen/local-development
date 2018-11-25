@@ -30,15 +30,8 @@ class Bootstrap {
 			}
 		);
 
-		// Plugin namespace root.
-		$root = array( 'Fragen\\Local_Development' => $dir . '/src/Local_Development' );
-
-		// Plugin extra classes.
-		$extra_classes = array( 'Fragen\Singleton' => $dir . '/src/Singleton.php' );
-
 		// Load Autoloader.
-		require_once $dir . '/src/Autoloader.php';
-		new \Fragen\Autoloader( $root, $extra_classes );
+		require_once $dir . '/vendor/autoload.php';
 
 		new Init();
 	}
