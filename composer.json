@@ -8,12 +8,6 @@
         "development"
     ],
     "license": "GPL-3.0-or-later",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/afragen/local-development"
-        }
-    ],
     "authors": [
         {
             "name": "Andy Fragen",
@@ -22,6 +16,16 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/afragen/local-development"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/afragen/local-development/issues",
+        "source": "https://github.com/afragen/local-development"
+    },
     "prefer-stable": true,
     "require": {
         "php": ">=5.6",
@@ -31,5 +35,10 @@
         "psr-4": {
             "Fragen\\Local_Development\\": "src/Local_Development/"
         }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "wp i18n make-pot . languages/local-development.pot"
+        ]
     }
 }
