@@ -1,5 +1,14 @@
 <?php
 /**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
+
+/**
  * Plugin Name:       Local Development
  * Plugin URI:        https://wordpress.org/plugins/local-development
  * Author:            Andy Fragen

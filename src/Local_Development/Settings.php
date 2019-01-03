@@ -1,4 +1,12 @@
 <?php
+/**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
 
 namespace Fragen\Local_Development;
 
@@ -16,28 +24,28 @@ class Settings {
 	/**
 	 * Holds plugin data.
 	 *
-	 * @var
+	 * @var $plugins
 	 */
 	protected $plugins;
 
 	/**
 	 * Holds theme data.
 	 *
-	 * @var
+	 * @var $themes
 	 */
 	protected $themes;
 
 	/**
 	 * Holds plugin settings.
 	 *
-	 * @var mixed|void
+	 * @var $options
 	 */
 	protected static $options;
 
 	/**
 	 * Holds the plugin basename.
 	 *
-	 * @var string
+	 * @var string $plugin_slug
 	 */
 	private $plugin_slug = 'local-development/local-development.php';
 
@@ -48,6 +56,11 @@ class Settings {
 		self::$options = get_site_option( 'local_development' );
 	}
 
+	/**
+	 * Load hooks.
+	 *
+	 * @return void
+	 */
 	public function load_hooks() {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', [ $this, 'add_plugin_page' ] );
@@ -191,7 +204,7 @@ class Settings {
 	 *
 	 * @param array $input Contains all settings fields as array keys
 	 *
-	 * @return array
+	 * @return array $new_input
 	 */
 	public static function sanitize( $input ) {
 		$new_input = [];
@@ -205,7 +218,7 @@ class Settings {
 	/**
 	 * Get the settings option array and print one of its values.
 	 *
-	 * @param $args
+	 * @param array $args Args for checkbox.
 	 */
 	public function token_callback_checkbox( $args ) {
 		$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : null;
@@ -298,7 +311,7 @@ class Settings {
 				],
 				$redirect_url
 			);
-			wp_redirect( $location );
+			wp_safe_redirect( $location );
 			exit;
 		}
 	}
@@ -309,7 +322,7 @@ class Settings {
 	 *
 	 * @link http://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
 	 *
-	 * @param $links
+	 * @param array $links plugins.php plugin row links.
 	 *
 	 * @return array
 	 */

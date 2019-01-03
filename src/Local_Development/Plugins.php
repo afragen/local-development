@@ -1,4 +1,12 @@
 <?php
+/**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
 
 namespace Fragen\Local_Development;
 
@@ -95,8 +103,8 @@ class Plugins extends Settings {
 	/**
 	 * Add plugins page data.
 	 *
-	 * @param  mixed $tab
-	 * @param  mixed $action
+	 * @param  mixed $tab Admin page tab.
+	 * @param  mixed $action Admin page action.
 	 * @return void
 	 */
 	public function add_admin_page( $tab, $action ) {

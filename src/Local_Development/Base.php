@@ -1,4 +1,12 @@
 <?php
+/**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
 
 namespace Fragen\Local_Development;
 
@@ -16,35 +24,35 @@ class Base {
 	/**
 	 * Static to hold slugs of plugins under development.
 	 *
-	 * @var
+	 * @var $plugins
 	 */
 	protected static $plugins;
 
 	/**
 	 * Static to hold slugs themes under development.
 	 *
-	 * @var
+	 * @var $themes
 	 */
 	protected static $themes;
 
 	/**
 	 * Static to hold message.
 	 *
-	 * @var
+	 * @var $message
 	 */
 	protected static $message;
 
 	/**
 	 * Holds plugin settings.
 	 *
-	 * @var mixed|void
+	 * @var $options
 	 */
 	protected static $options;
 
 	/**
 	 * Local_Development constructor.
 	 *
-	 * @param $config
+	 * @param array $config Configuration parameters.
 	 */
 	public function __construct( $config ) {
 		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
@@ -69,8 +77,8 @@ class Base {
 	/**
 	 * Add an additional element to the row meta links.
 	 *
-	 * @param $links
-	 * @param $file
+	 * @param array  $links Row meta links.
+	 * @param string $file Row meta file name.
 	 *
 	 * @return array
 	 */
@@ -89,9 +97,9 @@ class Base {
 	/**
 	 * Remove 'delete' action link.
 	 *
-	 * @param  array  $actions
-	 * @param  string $file
-	 * @return array  $actions
+	 * @param  array  $actions Row meta actions.
+	 * @param  string $file Row meta file name.
+	 * @return array  $actions Row meta actions.
 	 */
 	public function action_links( $actions, $file ) {
 		$file  = $file instanceof \WP_Theme ? $file->stylesheet : $file;
@@ -108,9 +116,9 @@ class Base {
 	 * Sets the description for the single install theme action.
 	 * Removes the delete option.
 	 *
-	 * @param $prepared_themes
+	 * @param array $prepared_themes Array of themes.
 	 *
-	 * @return array
+	 * @return array $prepared_themes
 	 */
 	public function set_theme_description( $prepared_themes ) {
 		foreach ( $prepared_themes as $theme ) {

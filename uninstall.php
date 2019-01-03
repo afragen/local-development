@@ -1,4 +1,12 @@
 <?php
+/**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
 
 /**
  * Fired when the plugin is uninstalled.
