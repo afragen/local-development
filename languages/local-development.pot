@@ -1,103 +1,87 @@
-#, fuzzy
+# Copyright (C) 2019 Andy Fragen
+# This file is distributed under the same license as the Local Development plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Local Development\n"
-"POT-Creation-Date: 2018-06-19 10:38-0700\n"
-"PO-Revision-Date: 2016-01-11 07:40-0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: en_US\n"
+"Project-Id-Version: Local Development 2.2.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/local-development\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-WPHeader: local-development.php\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"POT-Creation-Date: 2019-01-03T00:20:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: local-development\n"
 
-#. translators: 1: minimum PHP version required, 2: Upgrade PHP URL
-#: local-development.php:30
-#, php-format
-msgid ""
-"Local Development cannot run on PHP versions older than %1$s. <a href="
-"\"%2$s\">Learn about upgrading your PHP.</a>"
-msgstr ""
-
-#: local-development.php:32
-msgid "https://wordpress.org/support/upgrade-php/"
-msgstr ""
-
-#: src/Local_Development/Base.php:49
-msgid "In Local Development"
-msgstr ""
-
-#: src/Local_Development/Extras.php:34 src/Local_Development/Extras.php:61
-msgid "Extras"
-msgstr ""
-
-#: src/Local_Development/Extras.php:84
-msgid "Select the extra options."
-msgstr ""
-
-#: src/Local_Development/Plugins.php:33 src/Local_Development/Plugins.php:60
-#, fuzzy
-msgid "Plugins"
-msgstr ""
-
-#: src/Local_Development/Plugins.php:85
-msgid "Select the locally developed plugins."
-msgstr ""
-
-#: src/Local_Development/Settings.php:112
-#: src/Local_Development/Settings.php:120
-#: src/Local_Development/Settings.php:155
-msgid "Local Development Settings"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-#: src/Local_Development/Settings.php:113
-#: src/Local_Development/Settings.php:121
+#. Plugin Name of the plugin
+#: src/Local_Development/Settings.php:116
+#: src/Local_Development/Settings.php:124
 msgid "Local Development"
 msgstr ""
 
-#: src/Local_Development/Settings.php:182
-msgid "Settings saved."
-msgstr ""
-
-#: src/Local_Development/Settings.php:315
-msgid "Settings"
-msgstr ""
-
-#: src/Local_Development/Themes.php:33 src/Local_Development/Themes.php:60
-msgid "Themes"
-msgstr ""
-
-#: src/Local_Development/Themes.php:85
-msgid "Select the locally developed themes."
-msgstr ""
-
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
 msgid "https://wordpress.org/plugins/local-development"
 msgstr ""
 
-#. Description of the plugin/theme
-msgid ""
-"Places development notice for plugins or themes that are in local "
-"development. Prevents updating of selected plugins and themes. Allows for "
-"using a local file server."
+#. Description of the plugin
+msgid "Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server."
 msgstr ""
 
-#. Author of the plugin/theme
-#, fuzzy
+#. Author of the plugin
 msgid "Andy Fragen"
-msgstr "Andy Fragen"
+msgstr ""
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
 msgid "http://thefragens.com/"
+msgstr ""
+
+#. translators: 1: minimum PHP version required, 2: Upgrade PHP URL
+#: local-development.php:31
+msgid "Local Development cannot run on PHP versions older than %1$s. <a href=\"%2$s\">Learn about upgrading your PHP.</a>"
+msgstr ""
+
+#: src/Local_Development/Settings.php:115
+#: src/Local_Development/Settings.php:123
+#: src/Local_Development/Settings.php:158
+msgid "Local Development Settings"
+msgstr ""
+
+#: src/Local_Development/Settings.php:185
+msgid "Settings saved."
+msgstr ""
+
+#: src/Local_Development/Settings.php:318
+msgid "Settings"
+msgstr ""
+
+#: src/Local_Development/Themes.php:34
+#: src/Local_Development/Themes.php:64
+msgid "Themes"
+msgstr ""
+
+#: src/Local_Development/Themes.php:89
+msgid "Select the locally developed themes."
+msgstr ""
+
+#: src/Local_Development/Extras.php:38
+#: src/Local_Development/Extras.php:68
+msgid "Extras"
+msgstr ""
+
+#: src/Local_Development/Extras.php:91
+msgid "Select the extra options."
+msgstr ""
+
+#: src/Local_Development/Plugins.php:37
+#: src/Local_Development/Plugins.php:67
+msgid "Plugins"
+msgstr ""
+
+#: src/Local_Development/Plugins.php:92
+msgid "Select the locally developed plugins."
+msgstr ""
+
+#: src/Local_Development/Base.php:52
+msgid "In Local Development"
 msgstr ""
