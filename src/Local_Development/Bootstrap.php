@@ -15,17 +15,16 @@ if ( ! defined( 'WPINC' ) ) {
  * Class Bootstrap
  */
 class Bootstrap {
-
 	/**
 	 * Let's get started.
 	 *
-	 * @param string $dir Main plugin directory.
+	 * @param  string $dir Main plugin directory.
 	 * @return void
 	 */
 	public function run( $dir ) {
 		add_action(
 			'init',
-			function() {
+			function () {
 				load_plugin_textdomain( 'local-development' );
 			}
 		);

@@ -9,6 +9,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Class Plugins
+ */
 class Plugins extends Settings {
 	/**
 	 * Let's get going.

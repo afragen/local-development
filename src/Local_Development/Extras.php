@@ -9,6 +9,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Class Extras
+ */
 class Extras extends Settings {
 	/**
 	 * Let's get started.

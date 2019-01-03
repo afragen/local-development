@@ -9,6 +9,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Class Base
+ */
 class Base {
 	/**
 	 * Static to hold slugs of plugins under development.
@@ -86,9 +89,9 @@ class Base {
 	/**
 	 * Remove 'delete' action link.
 	 *
-	 * @param array  $actions
-	 * @param string $file
-	 * @return array $actions
+	 * @param  array  $actions
+	 * @param  string $file
+	 * @return array  $actions
 	 */
 	public function action_links( $actions, $file ) {
 		$file  = $file instanceof \WP_Theme ? $file->stylesheet : $file;
@@ -96,6 +99,7 @@ class Base {
 		if ( array_key_exists( $file, $repos ) ) {
 			unset( $actions['delete'] );
 		}
+
 		return $actions;
 	}
 

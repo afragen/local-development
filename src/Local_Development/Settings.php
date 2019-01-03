@@ -9,6 +9,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Class Settings
+ */
 class Settings {
 	/**
 	 * Holds plugin data.
@@ -160,14 +163,14 @@ class Settings {
 			$this->admin_page_notices();
 
 			/**
-		 * Action hook to add admin page data to appropriate $tab.
-		 *
-		 * @since 8.0.0
-		 *
-		 * @param string $tab    Name of tab.
-		 * @param string $action Save action for appropriate WordPress installation.
-		 *                       Single site or Multisite.
-		 */
+			 * Action hook to add admin page data to appropriate $tab.
+			 *
+			 * @since 8.0.0
+			 *
+			 * @param string $tab    Name of tab.
+			 * @param string $action Save action for appropriate WordPress installation.
+			 *                       Single site or Multisite.
+			 */
 			do_action( 'local_development_add_admin_page', $tab, $action );
 			echo '</div>';
 	}
