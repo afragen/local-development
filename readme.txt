@@ -13,7 +13,7 @@ Places development notice for plugins or themes that are in local development. P
 
 Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.1 WSOD Shutdown Handler.
 
-Pull Requests are welcome at https://github.com/afragen/local-development
+Pull Requests are welcome against the [develop branch on GitHub](https://github.com/afragen/local-development).
 
 Requires PHP 5.6 or greater.
 
