@@ -79,7 +79,7 @@ class Extras extends Settings {
 		);
 
 		add_settings_field(
-			'local_dev_extras',
+			'local_git_server',
 			null,
 			[ $this, 'token_callback_checkbox' ],
 			'local_dev_extras',
@@ -87,7 +87,20 @@ class Extras extends Settings {
 			[
 				'id'   => 'local_servers',
 				'type' => 'extras',
-				'name' => esc_html( 'Enable Local Git Servers (192.168.x.x)', 'local_development' ),
+				'name' => esc_html( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
+			]
+		);
+
+		add_settings_field(
+			'shutdown_hander',
+			null,
+			[ $this, 'token_callback_checkbox' ],
+			'local_dev_extras',
+			'local_dev_extras',
+			[
+				'id'   => 'bypass_shutdown_handler',
+				'type' => 'extras',
+				'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
 			]
 		);
 	}
@@ -124,11 +137,13 @@ class Extras extends Settings {
 	 * @return void
 	 */
 	protected function load_extras() {
-		if ( isset( static::$options['extras']['local_servers'] ) &&
-			'1' === static::$options['extras']['local_servers']
-			) {
+		if ( isset( static::$options['extras']['local_servers'] ) ) {
 			$this->allow_local_servers();
 		}
+		if ( isset( self::$options['extras']['bypass_shutdown_handler'] ) && version_compare( get_bloginfo( 'version' ), '5.1-beta', '>=' ) ) {
+			return new Shutdown_Handler();
+		}
+
 	}
 
 	/**
