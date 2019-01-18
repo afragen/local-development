@@ -17,19 +17,34 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-( new Bootstrap() )->run( LOCAL_DEVELOPMENT_DIR );
-
 /**
  * Class Bootstrap
  */
 class Bootstrap {
+
+	/**
+	 * Holds plugin directory.
+	 *
+	 * @var string $dir
+	 */
+	protected $dir;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param string $dir Plugin directory.
+	 * @return void
+	 */
+	public function __construct( $dir ) {
+		$this->dir = $dir;
+	}
 	/**
 	 * Let's get started.
 	 *
 	 * @param  string $dir Main plugin directory.
 	 * @return void
 	 */
-	public function run( $dir ) {
+	public function run() {
 		add_action(
 			'init',
 			function () {
@@ -38,7 +53,7 @@ class Bootstrap {
 		);
 
 		// Load Autoloader.
-		require_once $dir . '/vendor/autoload.php';
+		require_once $this->dir . '/vendor/autoload.php';
 
 		new Init();
 	}

@@ -25,6 +25,8 @@
  * Requires WP:       4.0
  */
 
+namespace Fragen\Local_Development;
+
 /*
  * Exit if called directly.
  * PHP version check and exit.
@@ -46,7 +48,6 @@ if ( version_compare( '5.6.0', PHP_VERSION, '>=' ) ) {
 	return false;
 }
 
-define( 'LOCAL_DEVELOPMENT_DIR', __DIR__ );
-
 // Setup plugin loading.
 require_once __DIR__ . '/src/Local_Development/Bootstrap.php';
+( new Bootstrap( __DIR__ ) )->run();
