@@ -134,7 +134,7 @@ class Extras extends Settings {
 	/**
 	 * Load extras.
 	 *
-	 * @return void
+	 * @return void|Shutdown_Handler
 	 */
 	protected function load_extras() {
 		if ( isset( static::$options['extras']['local_servers'] ) ) {

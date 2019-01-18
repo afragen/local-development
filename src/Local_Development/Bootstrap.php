@@ -41,7 +41,6 @@ class Bootstrap {
 	/**
 	 * Let's get started.
 	 *
-	 * @param  string $dir Main plugin directory.
 	 * @return void
 	 */
 	public function run() {

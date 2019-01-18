@@ -17,7 +17,7 @@ namespace Fragen\Local_Development;
  */
 class Shutdown_Handler extends \WP_Shutdown_Handler {
 	/**
-	 * handle
+	 * Handle.
 	 *
 	 * @return void
 	 */
