@@ -142,10 +142,9 @@ class Extras extends Settings {
 		if ( isset( static::$options['extras']['local_servers'] ) ) {
 			$this->allow_local_servers();
 		}
-		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) && version_compare( get_bloginfo( 'version' ), '5.1-beta2', '>=' ) ) {
-			return new Fatal_Error_Handler();
+		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) ) {
+			add_filter( 'wp_fatal_error_handler_enabled', '__return_false' );
 		}
-
 	}
 
 	/**
