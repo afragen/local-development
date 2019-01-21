@@ -91,18 +91,20 @@ class Extras extends Settings {
 			]
 		);
 
-		add_settings_field(
-			'shutdown_hander',
-			null,
-			[ $this, 'token_callback_checkbox' ],
-			'local_dev_extras',
-			'local_dev_extras',
-			[
-				'id'   => 'bypass_shutdown_handler',
-				'type' => 'extras',
-				'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
-			]
-		);
+		if ( version_compare( get_bloginfo( 'version' ), '5.1-beta2', '>=' ) ) {
+			add_settings_field(
+				'fatal_error_handler',
+				null,
+				[ $this, 'token_callback_checkbox' ],
+				'local_dev_extras',
+				'local_dev_extras',
+				[
+					'id'   => 'bypass_fatal_error_handler',
+					'type' => 'extras',
+					'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 	'local-development' ),
+				]
+			);
+		}
 	}
 
 	/**
@@ -140,8 +142,8 @@ class Extras extends Settings {
 		if ( isset( static::$options['extras']['local_servers'] ) ) {
 			$this->allow_local_servers();
 		}
-		if ( isset( self::$options['extras']['bypass_shutdown_handler'] ) && version_compare( get_bloginfo( 'version' ), '5.1-beta', '>=' ) ) {
-			return new Shutdown_Handler();
+		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) && version_compare( get_bloginfo( 'version' ), '5.1-beta2', '>=' ) ) {
+			return new Fatal_Error_Handler();
 		}
 
 	}

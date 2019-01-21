@@ -15,7 +15,7 @@ namespace Fragen\Local_Development;
  *
  * @link https://gist.github.com/westonruter/583a42392a0b8684dc268b40d44eb7f1
  */
-class Shutdown_Handler extends \WP_Shutdown_Handler {
+class Fatal_Error_Handler extends \WP_Fatal_Error_Handler {
 	/**
 	 * Handle.
 	 *
