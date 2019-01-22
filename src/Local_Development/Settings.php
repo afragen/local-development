@@ -51,9 +51,11 @@ class Settings {
 
 	/**
 	 * Settings constructor.
+	 *
+	 * @param array $config Saved options.
 	 */
-	public function __construct() {
-		self::$options = get_site_option( 'local_development' );
+	public function __construct( $config ) {
+		self::$options = $config;
 	}
 
 	/**
