@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-01-22T18:22:06+00:00\n"
+"POT-Creation-Date: 2019-01-22T18:46:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: local-development\n"
@@ -38,7 +38,7 @@ msgstr ""
 
 #. translators: 1: minimum PHP version required, 2: Upgrade PHP URL
 #: local-development.php:42
-msgid "Local Development cannot run on PHP versions older than %1$s. <a href=\"%2$s\">Learn about upgrading your PHP.</a>"
+msgid "Local Development cannot run on PHP versions older than %1$s. <a href=\"%2$s\">Learn about updating your PHP.</a>"
 msgstr ""
 
 #: src/Local_Development/Settings.php:130
