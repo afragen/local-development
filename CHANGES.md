@@ -1,5 +1,6 @@
 #### [unreleased]
 * add bypass for WordPress 5.1 WSOD Shutdown Handler
+* move loading hooks out of constructors
 
 #### 2.2.0 / 2018-11-25
 * use composer for dependencies and autoloader

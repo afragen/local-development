@@ -59,7 +59,14 @@ class Base {
 		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
 		self::$message = esc_html__( 'In Local Development', 'local-development' );
 		self::$options = get_site_option( 'local_development' );
+	}
 
+	/**
+	 * Let's get going.
+	 *
+	 * @return void
+	 */
+	public function load_hooks() {
 		add_filter( 'plugin_row_meta', [ $this, 'row_meta' ], 15, 2 );
 		add_filter( 'site_transient_update_plugins', [ $this, 'hide_update_nag' ], 15, 1 );
 		add_filter( 'plugin_action_links', [ $this, 'action_links' ], 15, 2 );
