@@ -101,7 +101,7 @@ class Extras extends Settings {
 				[
 					'id'   => 'bypass_fatal_error_handler',
 					'type' => 'extras',
-					'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 	'local-development' ),
+					'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
 				]
 			);
 		}
