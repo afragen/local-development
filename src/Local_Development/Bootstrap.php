@@ -1,4 +1,12 @@
 <?php
+/**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
 
 namespace Fragen\Local_Development;
 
@@ -9,29 +17,42 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-( new Bootstrap() )->run( LOCAL_DEVELOPMENT_DIR );
-
 /**
  * Class Bootstrap
  */
 class Bootstrap {
 
 	/**
-	 * Let's get started.
+	 * Holds plugin directory.
 	 *
-	 * @param string $dir Main plugin directory.
+	 * @var string $dir
+	 */
+	protected $dir;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param string $dir Plugin directory.
 	 * @return void
 	 */
-	public function run( $dir ) {
+	public function __construct( $dir ) {
+		$this->dir = $dir;
+	}
+	/**
+	 * Let's get started.
+	 *
+	 * @return void
+	 */
+	public function run() {
 		add_action(
 			'init',
-			function() {
+			function () {
 				load_plugin_textdomain( 'local-development' );
 			}
 		);
 
 		// Load Autoloader.
-		require_once $dir . '/vendor/autoload.php';
+		require_once $this->dir . '/vendor/autoload.php';
 
 		new Init();
 	}

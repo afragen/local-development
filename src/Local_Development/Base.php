@@ -1,4 +1,12 @@
 <?php
+/**
+ * Local Development
+ *
+ * @package local-development
+ * @author Andy Fragen <andy@thefragens.com>
+ * @license GPLv2
+ * @link https://github.com/afragen/local-development
+ */
 
 namespace Fragen\Local_Development;
 
@@ -9,46 +17,56 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Class Base
+ */
 class Base {
 	/**
 	 * Static to hold slugs of plugins under development.
 	 *
-	 * @var
+	 * @var $plugins
 	 */
 	protected static $plugins;
 
 	/**
 	 * Static to hold slugs themes under development.
 	 *
-	 * @var
+	 * @var $themes
 	 */
 	protected static $themes;
 
 	/**
 	 * Static to hold message.
 	 *
-	 * @var
+	 * @var $message
 	 */
 	protected static $message;
 
 	/**
 	 * Holds plugin settings.
 	 *
-	 * @var mixed|void
+	 * @var $options
 	 */
 	protected static $options;
 
 	/**
 	 * Local_Development constructor.
 	 *
-	 * @param $config
+	 * @param array $config Configuration parameters.
 	 */
 	public function __construct( $config ) {
 		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
 		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
 		self::$message = esc_html__( 'In Local Development', 'local-development' );
 		self::$options = get_site_option( 'local_development' );
+	}
 
+	/**
+	 * Let's get going.
+	 *
+	 * @return void
+	 */
+	public function load_hooks() {
 		add_filter( 'plugin_row_meta', [ $this, 'row_meta' ], 15, 2 );
 		add_filter( 'site_transient_update_plugins', [ $this, 'hide_update_nag' ], 15, 1 );
 		add_filter( 'plugin_action_links', [ $this, 'action_links' ], 15, 2 );
@@ -66,8 +84,8 @@ class Base {
 	/**
 	 * Add an additional element to the row meta links.
 	 *
-	 * @param $links
-	 * @param $file
+	 * @param array  $links Row meta links.
+	 * @param string $file Row meta file name.
 	 *
 	 * @return array
 	 */
@@ -86,9 +104,9 @@ class Base {
 	/**
 	 * Remove 'delete' action link.
 	 *
-	 * @param array  $actions
-	 * @param string $file
-	 * @return array $actions
+	 * @param  array  $actions Row meta actions.
+	 * @param  string $file Row meta file name.
+	 * @return array  $actions Row meta actions.
 	 */
 	public function action_links( $actions, $file ) {
 		$file  = $file instanceof \WP_Theme ? $file->stylesheet : $file;
@@ -96,6 +114,7 @@ class Base {
 		if ( array_key_exists( $file, $repos ) ) {
 			unset( $actions['delete'] );
 		}
+
 		return $actions;
 	}
 
@@ -104,9 +123,9 @@ class Base {
 	 * Sets the description for the single install theme action.
 	 * Removes the delete option.
 	 *
-	 * @param $prepared_themes
+	 * @param array $prepared_themes Array of themes.
 	 *
-	 * @return array
+	 * @return array $prepared_themes
 	 */
 	public function set_theme_description( $prepared_themes ) {
 		foreach ( $prepared_themes as $theme ) {
