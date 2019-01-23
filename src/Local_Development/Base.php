@@ -168,6 +168,13 @@ class Base {
 				if ( isset( $transient->response[ $repo ] ) ) {
 					unset( $transient->response[ $repo ] );
 				}
+				if ( isset( $transient->translations ) ) {
+					foreach ( $transient->translations as $key => $translation ) {
+						if ( $translation['slug'] === dirname( $repo ) ) {
+							unset( $transient->translations[ $key ] );
+						}
+					}
+				}
 			}
 		}
 
