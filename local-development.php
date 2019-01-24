@@ -14,7 +14,7 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WSOD Shutdown Handler.
- * Version:           2.3.0.2
+ * Version:           2.3.0.3
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2

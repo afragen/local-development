@@ -149,6 +149,9 @@ class Base {
 	 * @return object $transient Modified site_transient_update_{plugins|themes}.
 	 */
 	public function hide_update_nag( $transient ) {
+		if ( ! is_object( $transient ) ) {
+			return $transient;
+		}
 		switch ( current_filter() ) {
 			case 'site_transient_update_plugins':
 				$repos = self::$plugins;
@@ -162,9 +165,7 @@ class Base {
 
 		if ( ! empty( $repos ) ) {
 			foreach ( array_keys( $repos ) as $repo ) {
-				if ( isset( $transient->response[ $repo ] ) ) {
-					unset( $transient->response[ $repo ] );
-				}
+				unset( $transient->response[ $repo ] );
 				foreach ( $transient->translations as $key => $translation ) {
 					if ( $translation['slug'] === dirname( $repo ) ) {
 						unset( $transient->translations[ $key ] );
