@@ -162,17 +162,12 @@ class Base {
 
 		if ( ! empty( $repos ) ) {
 			foreach ( array_keys( $repos ) as $repo ) {
-				if ( 'update_nag' === $repo ) {
-					continue;
-				}
 				if ( isset( $transient->response[ $repo ] ) ) {
 					unset( $transient->response[ $repo ] );
 				}
-				if ( isset( $transient->translations ) ) {
-					foreach ( $transient->translations as $key => $translation ) {
-						if ( $translation['slug'] === dirname( $repo ) ) {
-							unset( $transient->translations[ $key ] );
-						}
+				foreach ( $transient->translations as $key => $translation ) {
+					if ( $translation['slug'] === dirname( $repo ) ) {
+						unset( $transient->translations[ $key ] );
 					}
 				}
 			}
