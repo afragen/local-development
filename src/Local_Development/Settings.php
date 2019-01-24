@@ -245,9 +245,7 @@ class Settings {
 		}
 		$query = parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
 		parse_str( $query, $arr );
-		if ( empty( $arr['tab'] ) ) {
-			$arr['tab'] = 'local_dev_settings_plugins';
-		}
+		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 		if ( isset( $_POST['option_page'] ) &&
 			'local_development_settings' === $_POST['option_page']
@@ -321,8 +319,6 @@ class Settings {
 	/**
 	 * Add setting link to plugin page.
 	 * Applied to the list of links to display on the plugins page (beside the activate/deactivate links).
-	 *
-	 * @link http://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
 	 *
 	 * @param array $links plugins.php plugin row links.
 	 *
