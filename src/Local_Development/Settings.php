@@ -65,7 +65,7 @@ class Settings {
 	 */
 	public function load_hooks() {
 		add_action( 'init', [ $this, 'init' ] );
-		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', [ $this, 'add_plugin_page' ] );
+		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', [ $this, 'add_plugin_menu' ] );
 		add_action( 'network_admin_edit_local-development', [ $this, 'update_settings' ] );
 		add_action( 'admin_init', [ $this, 'update_settings' ] );
 		add_action( 'admin_head-settings_page_local-development', [ $this, 'style_settings' ] );
@@ -123,25 +123,18 @@ class Settings {
 	/**
 	 * Add options page.
 	 */
-	public function add_plugin_page() {
-		if ( is_multisite() ) {
-			add_submenu_page(
-				'settings.php',
-				esc_html__( 'Local Development Settings', 'local-development' ),
-				esc_html__( 'Local Development', 'local-development' ),
-				'manage_network',
-				'local-development',
-				[ $this, 'create_admin_page' ]
-			);
-		} else {
-			add_options_page(
-				esc_html__( 'Local Development Settings', 'local-development' ),
-				esc_html__( 'Local Development', 'local-development' ),
-				'manage_options',
-				'local-development',
-				[ $this, 'create_admin_page' ]
-			);
-		}
+	public function add_plugin_menu() {
+		$parent     = is_multisite() ? 'settings.php' : 'options-general.php';
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+
+		add_submenu_page(
+			$parent,
+			esc_html__( 'Local Development Settings', 'local-development' ),
+			esc_html__( 'Local Development', 'local-development' ),
+			$capability,
+			'local-development',
+			[ $this, 'create_admin_page' ]
+		);
 	}
 
 	/**
