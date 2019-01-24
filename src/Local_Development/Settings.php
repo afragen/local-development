@@ -156,7 +156,7 @@ class Settings {
 		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'local_dev_settings_plugins';
 		echo '<h2 class="nav-tab-wrapper">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
-			$active = ( $current_tab == $key ) ? 'nav-tab-active' : '';
+			$active = ( $current_tab === $key ) ? 'nav-tab-active' : '';
 			echo '<a class="nav-tab ' . $active . '" href="?page=local-development&tab=' . $key . '">' . $name . '</a>';
 		}
 		echo '</h2>';
