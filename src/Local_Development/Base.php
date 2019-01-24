@@ -55,10 +55,10 @@ class Base {
 	 * @param array $config Configuration parameters.
 	 */
 	public function __construct( $config ) {
+		self::$options = $config;
 		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
 		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
 		self::$message = esc_html__( 'In Local Development', 'local-development' );
-		self::$options = get_site_option( 'local_development' );
 	}
 
 	/**
