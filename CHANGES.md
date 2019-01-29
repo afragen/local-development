@@ -1,5 +1,6 @@
 #### [unreleased]
 * remove language pack updates for selected plugins/themes
+* remove WSOD bypass as no longer in WP core
 
 #### 2.3.0 / 2019-01-22
 * add bypass for WordPress 5.1 WSOD Shutdown Handler
