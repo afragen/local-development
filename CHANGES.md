@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.4.0 / 2019-01-30
 * remove language pack updates for selected plugins/themes
 * only add WSOD bypass when appropriate
 
