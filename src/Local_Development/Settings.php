@@ -65,7 +65,7 @@ class Settings {
 	 */
 	public function load_hooks() {
 		add_action( 'init', [ $this, 'init' ] );
-		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', [ $this, 'add_plugin_page' ] );
+		add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', [ $this, 'add_plugin_menu' ] );
 		add_action( 'network_admin_edit_local-development', [ $this, 'update_settings' ] );
 		add_action( 'admin_init', [ $this, 'update_settings' ] );
 		add_action( 'admin_head-settings_page_local-development', [ $this, 'style_settings' ] );
@@ -123,25 +123,18 @@ class Settings {
 	/**
 	 * Add options page.
 	 */
-	public function add_plugin_page() {
-		if ( is_multisite() ) {
-			add_submenu_page(
-				'settings.php',
-				esc_html__( 'Local Development Settings', 'local-development' ),
-				esc_html__( 'Local Development', 'local-development' ),
-				'manage_network',
-				'local-development',
-				[ $this, 'create_admin_page' ]
-			);
-		} else {
-			add_options_page(
-				esc_html__( 'Local Development Settings', 'local-development' ),
-				esc_html__( 'Local Development', 'local-development' ),
-				'manage_options',
-				'local-development',
-				[ $this, 'create_admin_page' ]
-			);
-		}
+	public function add_plugin_menu() {
+		$parent     = is_multisite() ? 'settings.php' : 'options-general.php';
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+
+		add_submenu_page(
+			$parent,
+			esc_html__( 'Local Development Settings', 'local-development' ),
+			esc_html__( 'Local Development', 'local-development' ),
+			$capability,
+			'local-development',
+			[ $this, 'create_admin_page' ]
+		);
 	}
 
 	/**
@@ -153,10 +146,10 @@ class Settings {
 	 * @access private
 	 */
 	private function options_tabs() {
-		$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'local_dev_settings_plugins';
+		$current_tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins';
 		echo '<h2 class="nav-tab-wrapper">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
-			$active = ( $current_tab == $key ) ? 'nav-tab-active' : '';
+			$active = ( $current_tab === $key ) ? 'nav-tab-active' : '';
 			echo '<a class="nav-tab ' . $active . '" href="?page=local-development&tab=' . $key . '">' . $name . '</a>';
 		}
 		echo '</h2>';
@@ -167,7 +160,7 @@ class Settings {
 	 */
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
-		$tab    = isset( $_GET['tab'] ) ? $_GET['tab'] : 'local_dev_settings_plugins'; ?>
+		$tab    = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
@@ -245,9 +238,7 @@ class Settings {
 		}
 		$query = parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
 		parse_str( $query, $arr );
-		if ( empty( $arr['tab'] ) ) {
-			$arr['tab'] = 'local_dev_settings_plugins';
-		}
+		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 		if ( isset( $_POST['option_page'] ) &&
 			'local_development_settings' === $_POST['option_page']
@@ -321,8 +312,6 @@ class Settings {
 	/**
 	 * Add setting link to plugin page.
 	 * Applied to the list of links to display on the plugins page (beside the activate/deactivate links).
-	 *
-	 * @link http://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
 	 *
 	 * @param array $links plugins.php plugin row links.
 	 *

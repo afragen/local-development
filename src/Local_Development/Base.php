@@ -55,10 +55,10 @@ class Base {
 	 * @param array $config Configuration parameters.
 	 */
 	public function __construct( $config ) {
+		self::$options = $config;
 		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
 		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
 		self::$message = esc_html__( 'In Local Development', 'local-development' );
-		self::$options = get_site_option( 'local_development' );
 	}
 
 	/**
@@ -149,6 +149,9 @@ class Base {
 	 * @return object $transient Modified site_transient_update_{plugins|themes}.
 	 */
 	public function hide_update_nag( $transient ) {
+		if ( ! is_object( $transient ) ) {
+			return $transient;
+		}
 		switch ( current_filter() ) {
 			case 'site_transient_update_plugins':
 				$repos = self::$plugins;
@@ -162,11 +165,15 @@ class Base {
 
 		if ( ! empty( $repos ) ) {
 			foreach ( array_keys( $repos ) as $repo ) {
-				if ( 'update_nag' === $repo ) {
-					continue;
-				}
 				if ( isset( $transient->response[ $repo ] ) ) {
 					unset( $transient->response[ $repo ] );
+				}
+				if ( isset( $transient->translations ) ) {
+					foreach ( $transient->translations as $key => $translation ) {
+						if ( $translation['slug'] === dirname( $repo ) ) {
+							unset( $transient->translations[ $key ] );
+						}
+					}
 				}
 			}
 		}

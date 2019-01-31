@@ -91,7 +91,7 @@ class Extras extends Settings {
 			]
 		);
 
-		if ( version_compare( get_bloginfo( 'version' ), '5.1-beta2', '>=' ) ) {
+		if ( version_compare( get_bloginfo( 'version' ), '5.2', '>=' ) ) {
 			add_settings_field(
 				'fatal_error_handler',
 				null,

@@ -4,14 +4,14 @@ Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
 Tested up to: 5.1
 Requires PHP: 5.6
-Stable tag: 2.3.0
+Stable tag: 2.4.0
 License: GPLv2
 
-Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing WSOD Shutdown Handler.
+Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing WordPress 5.2 WSOD Shutdown Handler.
 
 ## Description
 
-Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.1 WSOD Shutdown Handler.
+Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
 
 Pull Requests are welcome against the [develop branch on GitHub](https://github.com/afragen/local-development).
 
@@ -25,8 +25,12 @@ Requires PHP 5.6 or greater.
 
 ## Changelog
 
+#### 2.4.0 / 2019-01-30
+* remove language pack updates for selected plugins/themes
+* only add WSOD bypass when appropriate
+
 #### 2.3.0 / 2019-01-22
-* add bypass for WordPress 5.1 WSOD Shutdown Handler
+* add bypass for WordPress 5.2 WSOD Shutdown Handler
 * move loading hooks out of constructors
 * pass saved options to class constructors
 

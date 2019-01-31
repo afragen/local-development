@@ -1,7 +1,11 @@
 #### [unreleased]
 
+#### 2.4.0 / 2019-01-30
+* remove language pack updates for selected plugins/themes
+* only add WSOD bypass when appropriate
+
 #### 2.3.0 / 2019-01-22
-* add bypass for WordPress 5.1 WSOD Shutdown Handler
+* add bypass for WordPress 5.2 WSOD Shutdown Handler
 * move loading hooks out of constructors
 * pass saved options to class constructors
 
