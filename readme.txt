@@ -4,7 +4,7 @@ Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
 Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 2.4.2
+Stable tag: 2.4.1
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing WordPress 5.2 WSOD Shutdown Handler.
