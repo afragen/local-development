@@ -1,0 +1,7 @@
+.plugins_svnignore
+README.md
+.github
+.git
+.gitattributes
+.gitignore
+composer.lock
