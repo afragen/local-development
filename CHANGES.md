@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.4.1 / 2019-05-09
+* a11y updates for settings tabs
+
 #### 2.4.0 / 2019-01-30
 * remove language pack updates for selected plugins/themes
 * only add WSOD bypass when appropriate
