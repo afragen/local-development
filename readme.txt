@@ -50,7 +50,7 @@ Requires PHP 5.6 or greater.
 * removed checkboxes and delete links for checked plugins/themes
 
 #### 1.6.0 / 2018-05-26
-* added abilty to use local file server on LAN during development
+* added ability to use local file server on LAN during development
 * refactored hiding of update row to use jQuery and remove row, not CSS dislay none
 * update to PSR-2
 
