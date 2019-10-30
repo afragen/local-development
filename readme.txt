@@ -2,7 +2,7 @@
 Contributors: afragen
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.0
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 5.6
 Stable tag: 2.4.1
 License: GPLv2
