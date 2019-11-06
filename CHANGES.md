@@ -1,4 +1,5 @@
 #### [unreleased]
+* update `Requires at least` in plugin file
 
 #### 2.4.1 / 2019-05-09
 * a11y updates for settings tabs
