@@ -3,5 +3,5 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 composer.lock export-ignore
-.wordpress-org export-ignore
+/.wordpress-org export-ignore
 .svnignore export-ignore
