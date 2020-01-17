@@ -98,6 +98,11 @@ class Settings {
 			$themes[ $slug ] = $this->themes[ $slug ]->get( 'Name' );
 		}
 		$this->themes = $themes;
+
+		return [
+			'plugins' => $plugins,
+			'themes'  => $themes,
+		];
 	}
 
 	/**

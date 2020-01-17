@@ -7,10 +7,14 @@
 * License: GPLv2
 * Network: true
 
-Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
+Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
 
 ## Description
-Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
+Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes.
+
+Plugins and Themes that are under version control locally will automatically added.
+
+Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
 
 Pull Requests are welcome against the `develop` branch.
 

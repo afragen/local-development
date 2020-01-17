@@ -27,7 +27,7 @@ class Init {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		$config = get_site_option( 'local_development' );
+		$config = $this->get_vcs_checkouts();
 		add_action(
 			'init',
 			function () use ( $config ) {
@@ -45,5 +45,28 @@ class Init {
 			return false;
 		}
 		( new Base( $config ) )->load_hooks();
+	}
+
+	/**
+	 * Get VCS checkouts and add automatically to config.
+	 */
+	private function get_vcs_checkouts() {
+		$config         = get_site_option( 'local_development', [] );
+		$updater        = new \WP_Automatic_Updater();
+		$plugins_themes = Singleton::get_instance( 'Settings', $this )->init();
+
+		foreach ( [ 'plugins', 'themes' ] as $type ) {
+			foreach ( array_keys( $plugins_themes[ $type ] ) as $file ) {
+				$wp_path  = 'plugins' === $type ? wp_normalize_path( WP_PLUGIN_DIR ) : wp_normalize_path( get_theme_root() );
+				$slug     = 'plugins' === $type ? dirname( $file ) : $file;
+				$filepath = "$wp_path/$slug";
+				$is_vcs   = $updater->is_vcs_checkout( $filepath );
+				if ( $is_vcs ) {
+					$config[ $type ][ $file ] = '1';
+				}
+			}
+		}
+
+		return $config;
 	}
 }
