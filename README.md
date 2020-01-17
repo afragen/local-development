@@ -19,13 +19,13 @@ Requires PHP 5.6 or greater.
 ## Screenshots
 
 ### 1. Local Development Settings
-![Local Development Settings](./assets/screenshot-1.png)
+![Local Development Settings](./.wordpress-org/screenshot-1.png)
 
 ### 2. Plugins Page
-![Plugins Page](./assets/screenshot-2.png)
+![Plugins Page](./.wordpress-org/screenshot-2.png)
 
 ### 3. Themes Page
-![Themes Page](./assets/screenshot-3.png)
+![Themes Page](./.wordpress-org/screenshot-3.png)
 
 ### 4. Multisite Themes Page
-![Multisite Themes Page](./assets/screenshot-4.png)
+![Multisite Themes Page](./.wordpress-org/screenshot-4.png)
