@@ -93,7 +93,7 @@ class Base {
 		if ( ( ! empty( self::$plugins ) && array_key_exists( $file, self::$plugins ) ) ||
 			( ! empty( self::$themes ) && array_key_exists( $file, self::$themes ) )
 		) {
-			$links[] = '<strong>' . self::$message . '</strong>';
+			$links[] = '<strong style="color:red; font-weight:700;">' . self::$message . '</strong>';
 			add_action( "after_plugin_row_{$file}", [ $this, 'remove_update_row' ], 15, 1 );
 			add_action( "after_theme_row_{$file}", [ $this, 'remove_update_row' ], 15, 1 );
 		}
@@ -131,7 +131,7 @@ class Base {
 		foreach ( $prepared_themes as $theme ) {
 			if ( array_key_exists( $theme['id'], (array) self::$themes ) ) {
 				$message  = wp_get_theme( $theme['id'] )->get( 'Description' );
-				$message .= '<p><strong>' . self::$message . '</strong></p>';
+				$message .= '<p><strong style="color:red; font-weight:700;">' . self::$message . '</strong></p>';
 
 				$prepared_themes[ $theme['id'] ]['description'] = $message;
 				unset( $prepared_themes[ $theme['id'] ]['actions']['delete'] );

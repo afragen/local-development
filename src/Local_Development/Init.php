@@ -51,22 +51,25 @@ class Init {
 	 * Get VCS checkouts and add automatically to config.
 	 */
 	private function get_vcs_checkouts() {
-		if ( ! class_exists( '\WP_Automatic_Updater' ) ) {
-			return;
-		}
 		$config         = get_site_option( 'local_development', [] );
-		$updater        = new \WP_Automatic_Updater();
 		$plugins_themes = Singleton::get_instance( 'Settings', $this )->init();
+
+		$vcs_dirs   = array( '.svn', '.git', '.hg', '.bzr' );
 
 		foreach ( [ 'plugins', 'themes' ] as $type ) {
 			foreach ( array_keys( $plugins_themes[ $type ] ) as $file ) {
 				$wp_path  = 'plugins' === $type ? wp_normalize_path( WP_PLUGIN_DIR ) : wp_normalize_path( get_theme_root() );
 				$slug     = 'plugins' === $type ? dirname( $file ) : $file;
 				$filepath = "$wp_path/$slug";
-				$is_vcs   = $updater->is_vcs_checkout( $filepath );
-				if ( $is_vcs ) {
-					$config[ $type ][ $file ] = '1';
+
+				foreach ( $vcs_dirs as $vcs_dir ) {
+					$is_vcs = @is_dir( rtrim( $filepath, '\\/' ) . "/$vcs_dir" );
+					if ( $is_vcs ) {
+						$config[ $type ][ $file ] = '-1';
+						break;
+					}
 				}
+
 			}
 		}
 
