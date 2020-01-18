@@ -105,21 +105,6 @@ class Extras extends Settings {
 				]
 			);
 		}
-
-		if( in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ] ) ) {
-			add_settings_field(
-				'adminbar_visual_feedback',
-				null,
-				[ $this, 'token_callback_checkbox' ],
-				'local_dev_extras',
-				'local_dev_extras',
-				[
-					'id'   => 'disable_admin_bar_visual_feedback',
-					'type' => 'extras',
-					'name' => esc_html( 'Disable custom Admin Bar styles for Localhost Server', 'local-development' ),
-				]
-			);
-		}
 	}
 
 	/**
@@ -160,10 +145,6 @@ class Extras extends Settings {
 		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) ) {
 			add_filter( 'wp_fatal_error_handler_enabled', '__return_false' );
 		}
-		if ( ! isset( static::$options['extras']['disable_admin_bar_visual_feedback'] ) ) {
-			add_action( 'admin_head', [ $this, 'custom_local_admin_bar_css' ] ); // on backend area.
-			add_action( 'wp_head', [ $this, 'custom_local_admin_bar_css' ] ); // on frontend area.
-		}
 	}
 
 	/**
@@ -198,44 +179,5 @@ class Extras extends Settings {
 			10,
 			2
 		);
-	}
-
-	/**
-	 * Add custom admin bar colors while running a localhost server.
-	 *
-	 * @return void
-	 */
-	function custom_local_admin_bar_css() {
-
-		if ( is_admin_bar_showing() ) { ?>
-
-			<style type="text/css">
-
-				#wpadminbar #wp-admin-bar-site-name > .ab-item::after {
-					content: " - localhost";
-					font-weight: 800;
-					font-family: Monospace;
-					color: #fff;
-				}
-
-				#wpadminbar #wp-admin-bar-site-name > .ab-item {
-					background-color: #008000;
-					color: #ff0;
-				}
-
-				#wpadminbar #wp-admin-bar-site-name > .ab-item::before {
-					background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiB3aWR0aD0iMTQiIGhlaWdodD0iMTYiIHN0eWxlPSItbXMtdHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpOy13ZWJraXQtdHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpO3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKSI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOS41IDNMOCA0LjUgMTEuNSA4IDggMTEuNSA5LjUgMTMgMTQgOCA5LjUgM3ptLTUgMEwwIDhsNC41IDVMNiAxMS41IDIuNSA4IDYgNC41IDQuNSAzeiIgZmlsbD0iI2ZmMCIvPjwvc3ZnPg==) !important;
-					background-size: 100%;
-					background-position: center center;
-					background-repeat: no-repeat;
-					content: " " !important;
-					display: block;
-					width: 16px;
-					height: 21px;
-				}
-
-			</style>
-
-		<?php }
 	}
 }
