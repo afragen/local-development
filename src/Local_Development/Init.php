@@ -51,6 +51,9 @@ class Init {
 	 * Get VCS checkouts and add automatically to config.
 	 */
 	private function get_vcs_checkouts() {
+		if ( ! class_exists( '\WP_Automatic_Updater' ) ) {
+			return;
+		}
 		$config         = get_site_option( 'local_development', [] );
 		$updater        = new \WP_Automatic_Updater();
 		$plugins_themes = Singleton::get_instance( 'Settings', $this )->init();
