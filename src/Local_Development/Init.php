@@ -27,7 +27,8 @@ class Init {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		$config = $this->get_vcs_checkouts();
+		$config = get_site_option( 'local_development', [] );
+		$config = $this->get_vcs_checkouts( $config );
 		add_action(
 			'init',
 			function () use ( $config ) {
@@ -49,12 +50,12 @@ class Init {
 
 	/**
 	 * Get VCS checkouts and add automatically to config.
+	 *
+	 * @param array $config Plugins options.
 	 */
-	private function get_vcs_checkouts() {
-		$config         = get_site_option( 'local_development', [] );
+	private function get_vcs_checkouts( $config ) {
 		$plugins_themes = Singleton::get_instance( 'Settings', $this )->init();
-
-		$vcs_dirs   = array( '.svn', '.git', '.hg', '.bzr' );
+		$vcs_dirs       = [ '.git', '.svn', '.hg', '.bzr' ];
 
 		foreach ( [ 'plugins', 'themes' ] as $type ) {
 			foreach ( array_keys( $plugins_themes[ $type ] ) as $file ) {
@@ -69,7 +70,6 @@ class Init {
 						break;
 					}
 				}
-
 			}
 		}
 
