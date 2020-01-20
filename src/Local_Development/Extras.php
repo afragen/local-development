@@ -87,7 +87,7 @@ class Extras extends Settings {
 			[
 				'id'   => 'local_servers',
 				'type' => 'extras',
-				'name' => esc_html( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
+				'name' => esc_html__( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
 			]
 		);
 
