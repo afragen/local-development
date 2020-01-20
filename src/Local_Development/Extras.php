@@ -114,9 +114,9 @@ class Extras extends Settings {
 				'local_dev_extras',
 				'local_dev_extras',
 				[
-					'id'   => 'disable_admin_bar_visual_feedback',
+					'id'   => 'enable_admin_bar_visual_feedback',
 					'type' => 'extras',
-					'name' => esc_html( 'Disable custom Admin Bar styles for Localhost Server', 'local-development' ),
+					'name' => esc_html( 'Enable custom Admin Bar styles for localhost.', 'local-development' ),
 				]
 			);
 		}
@@ -160,7 +160,7 @@ class Extras extends Settings {
 		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) ) {
 			add_filter( 'wp_fatal_error_handler_enabled', '__return_false' );
 		}
-		if ( ! isset( static::$options['extras']['disable_admin_bar_visual_feedback'] ) ) {
+		if ( isset( static::$options['extras']['enable_admin_bar_visual_feedback'] ) ) {
 			add_action( 'admin_head', [ $this, 'custom_local_admin_bar_css' ] ); // on backend area.
 			add_action( 'wp_head', [ $this, 'custom_local_admin_bar_css' ] ); // on frontend area.
 		}
