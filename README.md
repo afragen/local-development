@@ -1,5 +1,5 @@
 # Local Development
-* Contributors: afragen
+* Contributors: afragen, raruto
 * Tags: localhost development upgrade plugin theme
 * Requires at least: 4.0
 * Requires PHP: 5.6
