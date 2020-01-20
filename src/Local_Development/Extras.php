@@ -220,7 +220,6 @@ class Extras extends Settings {
 
 			#wpadminbar #wp-admin-bar-site-name > .ab-item {
 				background-color: #008000;
-				font-weight: 700;
 				color: #ff0;
 			}
 
