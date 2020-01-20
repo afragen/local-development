@@ -106,7 +106,7 @@ class Extras extends Settings {
 			);
 		}
 
-		if( in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ] ) ) {
+		if( in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true ) ) {
 			add_settings_field(
 				'adminbar_visual_feedback',
 				null,
@@ -220,6 +220,7 @@ class Extras extends Settings {
 
 			#wpadminbar #wp-admin-bar-site-name > .ab-item {
 				background-color: #008000;
+				font-weight: 700;
 				color: #ff0;
 			}
 
@@ -229,6 +230,15 @@ class Extras extends Settings {
 				display: block;
 				width: 16px;
 				height: 21px;
+			}
+
+			@media screen and (max-width:782px) {
+				#wpadminbar #wp-admin-bar-site-name > .ab-item::before {
+					background-size: 60% !important;
+					width: 100%;
+					height: 100%;
+					top: 0;
+				}
 			}
 
 			</style>
