@@ -188,7 +188,7 @@ class Base {
 				}
 				if ( isset( $transient->translations ) ) {
 					foreach ( $transient->translations as $key => $translation ) {
-						if ( $translation['slug'] === dirname( $repo ) ) {
+						if ( dirname( $repo ) === $translation['slug'] ) {
 							unset( $transient->translations[ $key ] );
 						}
 					}
@@ -224,9 +224,9 @@ class Base {
 	 */
 	public function remove_update_row( $repo_name ) {
 		print '<script>';
-		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . $repo_name . '\']").remove();';
-		print 'jQuery(".update[data-plugin=\'' . $repo_name . '\']").removeClass("update");';
-		print 'jQuery("input[value=\'' . $repo_name . '\']").remove();';
+		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . esc_attr( $repo_name ) . '\']").remove();';
+		print 'jQuery(".update[data-plugin=\'' . esc_attr( $repo_name ) . '\']").removeClass("update");';
+		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print '</script>';
 	}
 

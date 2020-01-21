@@ -218,7 +218,7 @@ class Extras extends Settings {
 	 *
 	 * @return void
 	 */
-	function custom_local_admin_bar_css() {
+	public function custom_local_admin_bar_css() {
 
 		if ( is_admin_bar_showing() ) {
 			?>
