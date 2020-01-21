@@ -107,15 +107,15 @@ class Extras extends Settings {
 		}
 
 		add_settings_field(
-			'vcs_icons',
+			'git_host_icons',
 			null,
 			[ $this, 'token_callback_checkbox' ],
 			'local_dev_extras',
 			'local_dev_extras',
 			[
-				'id'   => 'enable_vcs_icons',
+				'id'   => 'disable_git_icons',
 				'type' => 'extras',
-				'name' => esc_html( 'Enable VCS plugin icons.', 'local-development' ),
+				'name' => esc_html__( 'Disable Git Host icons.', 'local-development' ),
 			]
 		);
 
@@ -129,7 +129,7 @@ class Extras extends Settings {
 				[
 					'id'   => 'enable_admin_bar_visual_feedback',
 					'type' => 'extras',
-					'name' => esc_html( 'Enable custom Admin Bar styles for localhost.', 'local-development' ),
+					'name' => esc_html__( 'Enable custom Admin Bar styles for localhost.', 'local-development' ),
 				]
 			);
 		}

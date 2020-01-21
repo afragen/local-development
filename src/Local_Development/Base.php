@@ -78,8 +78,8 @@ class Base {
 
 		if ( ! is_multisite() ) {
 			add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
+		if ( ! isset( static::$options['extras']['disable_git_icons'] ) ) {
 		}
-		if ( isset( static::$options['extras']['enable_vcs_icons'] ) ) {
 			add_filter( 'plugin_row_meta', [ $this, 'icon_links' ], 15, 2 );
 		}
 	}
