@@ -79,13 +79,16 @@ class Base {
 		if ( ! is_multisite() ) {
 			add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
 		}
+		if ( isset( static::$options['extras']['enable_vcs_icons'] ) ) {
+			add_filter( 'plugin_row_meta', [ $this, 'icon_links' ], 15, 2 );
+		}
 	}
 
 	/**
 	 * Add an additional element to the row meta links.
 	 *
 	 * @param array  $links Row meta links.
-	 * @param string $file Row meta file name.
+	 * @param string $file  Row meta file name.
 	 *
 	 * @return array
 	 */
@@ -105,7 +108,7 @@ class Base {
 	 * Remove 'delete' action link.
 	 *
 	 * @param  array  $actions Row meta actions.
-	 * @param  string $file Row meta file name.
+	 * @param  string $file    Row meta file name.
 	 * @return array  $actions Row meta actions.
 	 */
 	public function action_links( $actions, $file ) {
@@ -210,5 +213,45 @@ class Base {
 		print 'jQuery(".update[data-plugin=\'' . $repo_name . '\']").removeClass("update");';
 		print 'jQuery("input[value=\'' . $repo_name . '\']").remove();';
 		print '</script>';
+	}
+
+	/**
+	 * Add VCS based icons.
+	 *
+	 * @param array  $links Plugin meta row action links.
+	 * @param string $file  Plugin file.
+	 *
+	 * @return array $links
+	 */
+	public function icon_links( $links, $file ) {
+		$git_headers = [
+			'GitHubPluginURI'    => 'GitHub Plugin URI',
+			'GitLabPluginURI'    => 'GitLab Plugin URI',
+			'BitbucketPluginURI' => 'Bitbucket Plugin URI',
+			'GiteaPluginURI'     => 'Gitea Plugin URI',
+		];
+		$git_icons   = [
+			'github'    => 'github-logo.svg',
+			'gitlab'    => 'gitlab-logo.svg',
+			'bitbucket' => 'bitbucket-logo.svg',
+			'gitea'     => 'gitea-logo.svg',
+		];
+		$plugin_data = get_file_data( WP_PLUGIN_DIR . "/$file", $git_headers );
+
+		foreach ( $plugin_data as $key => $value ) {
+			if ( ! empty( $value ) ) {
+				$githost_name = str_replace( 'PluginURI', '', $key );
+				$icon         = sprintf(
+					'<img src="%s"  height="16" width="16" alt="%s" />',
+					plugins_url( '/local-development/assets/' . $git_icons[ strtolower( $githost_name ) ] ),
+					$githost_name
+				);
+				break;
+			}
+		}
+
+		isset( $icon ) ? $links[] = $icon : null;
+
+		return $links;
 	}
 }

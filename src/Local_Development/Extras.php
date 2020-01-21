@@ -106,7 +106,20 @@ class Extras extends Settings {
 			);
 		}
 
-		if( in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true ) ) {
+		add_settings_field(
+			'vcs_icons',
+			null,
+			[ $this, 'token_callback_checkbox' ],
+			'local_dev_extras',
+			'local_dev_extras',
+			[
+				'id'   => 'enable_vcs_icons',
+				'type' => 'extras',
+				'name' => esc_html( 'Enable VCS plugin icons.', 'local-development' ),
+			]
+		);
+
+		if ( in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true ) ) {
 			add_settings_field(
 				'adminbar_visual_feedback',
 				null,
