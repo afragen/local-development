@@ -242,7 +242,7 @@ class Base {
 			if ( ! empty( $value ) ) {
 				$githost_name = str_replace( 'PluginURI', '', $key );
 				$icon         = sprintf(
-					'<img src="%s"  height="16" width="16" alt="%s" />',
+					'<img src="%s" style="vertical-align:text-bottom;" height="16" width="16" alt="%s" />',
 					plugins_url( '/local-development/assets/' . $git_icons[ strtolower( $githost_name ) ] ),
 					$githost_name
 				);
