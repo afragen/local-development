@@ -39,9 +39,8 @@ class Init {
 			}
 		);
 
-		/*
-		 * Skip on heartbeat or if no saved settings.
-		 */
+		// Skip on heartbeat or if no saved settings.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) || ! $config ) {
 			return false;
 		}
