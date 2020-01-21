@@ -207,7 +207,8 @@ class Extras extends Settings {
 	 */
 	function custom_local_admin_bar_css() {
 
-		if ( is_admin_bar_showing() ) { ?>
+		if ( is_admin_bar_showing() ) {
+			?>
 
 			<style type="text/css">
 
@@ -242,6 +243,7 @@ class Extras extends Settings {
 
 			</style>
 
-		<?php }
+			<?php
+		}
 	}
 }
