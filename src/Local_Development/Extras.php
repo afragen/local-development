@@ -85,9 +85,10 @@ class Extras extends Settings {
 			'local_dev_extras',
 			'local_dev_extras',
 			[
-				'id'   => 'local_servers',
-				'type' => 'extras',
-				'name' => esc_html__( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
+				'id'    => 'local_servers',
+				'type'  => 'extras',
+				'name'  => esc_html__( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
+				'class' => $this->is_localhost() ? '' : 'hidden',
 			]
 		);
 
