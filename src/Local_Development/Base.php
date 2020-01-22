@@ -75,9 +75,11 @@ class Base {
 		add_filter( 'theme_row_meta', [ $this, 'row_meta' ], 15, 2 );
 		add_filter( 'site_transient_update_themes', [ $this, 'hide_update_nag' ], 15, 1 );
 		add_filter( 'theme_action_links', [ $this, 'action_links' ], 15, 2 );
+		add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
 
-		if ( ! is_multisite() ) {
-			add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
+		if ( ! isset( static::$options['extras']['disable_git_icons'] ) ) {
+			add_filter( 'plugin_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
+			add_filter( 'theme_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 		}
 	}
 
@@ -85,7 +87,7 @@ class Base {
 	 * Add an additional element to the row meta links.
 	 *
 	 * @param array  $links Row meta links.
-	 * @param string $file Row meta file name.
+	 * @param string $file  Row meta file name.
 	 *
 	 * @return array
 	 */
@@ -105,7 +107,7 @@ class Base {
 	 * Remove 'delete' action link.
 	 *
 	 * @param  array  $actions Row meta actions.
-	 * @param  string $file Row meta file name.
+	 * @param  string $file    Row meta file name.
 	 * @return array  $actions Row meta actions.
 	 */
 	public function action_links( $actions, $file ) {
@@ -120,8 +122,9 @@ class Base {
 
 	/**
 	 * For single site.
-	 * Sets the description for the single install theme action.
+	 * Sets the description for the non-network admin theme window.
 	 * Removes the delete option.
+	 * Removes the update and branch switch ability.
 	 *
 	 * @param array $prepared_themes Array of themes.
 	 *
@@ -130,12 +133,27 @@ class Base {
 	public function set_theme_description( $prepared_themes ) {
 		foreach ( $prepared_themes as $theme ) {
 			if ( array_key_exists( $theme['id'], (array) self::$themes ) ) {
-				$message  = wp_get_theme( $theme['id'] )->get( 'Description' );
-				$message .= '<p><strong style="color:red; font-weight:700;">' . self::$message . '</strong></p>';
-
-				$prepared_themes[ $theme['id'] ]['description'] = $message;
+				$message = '<strong style="color:red; font-weight:700;">' . self::$message . '</strong>';
 				unset( $prepared_themes[ $theme['id'] ]['actions']['delete'] );
+
+				// Remove branch switcher.
+				$description                                    = substr( $prepared_themes[ $theme['id'] ]['description'], 0, strpos( $prepared_themes[ $theme['id'] ]['description'], '<p>Current branch' ) );
+				$prepared_themes[ $theme['id'] ]['description'] = $description;
+
+				// Remove update notice.
+				$prepared_themes[ $theme['id'] ]['hasUpdate'] = false;
 			}
+			$icon = $this->row_meta_icons( [], $theme['id'] );
+
+			if ( isset( $icon[0] ) ) {
+				$message = ! empty( $message ) ? $message .= ' | ' . $icon[0] : $icon[0];
+			}
+			if ( ! empty( $message ) ) {
+				$message = '<p>' . $message . '</p>';
+				$prepared_themes[ $theme['id'] ]['description'] .= $message;
+			}
+			$message = '';
+			$icon    = [];
 		}
 
 		return $prepared_themes;
@@ -170,7 +188,7 @@ class Base {
 				}
 				if ( isset( $transient->translations ) ) {
 					foreach ( $transient->translations as $key => $translation ) {
-						if ( $translation['slug'] === dirname( $repo ) ) {
+						if ( dirname( $repo ) === $translation['slug'] ) {
 							unset( $transient->translations[ $key ] );
 						}
 					}
@@ -206,9 +224,53 @@ class Base {
 	 */
 	public function remove_update_row( $repo_name ) {
 		print '<script>';
-		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . $repo_name . '\']").remove();';
-		print 'jQuery(".update[data-plugin=\'' . $repo_name . '\']").removeClass("update");';
-		print 'jQuery("input[value=\'' . $repo_name . '\']").remove();';
+		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . esc_attr( $repo_name ) . '\']").remove();';
+		print 'jQuery(".update[data-plugin=\'' . esc_attr( $repo_name ) . '\']").removeClass("update");';
+		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print '</script>';
+	}
+
+	/**
+	 * Add git host based icons.
+	 *
+	 * @param array  $links Row meta action links.
+	 * @param string $file  Plugin or theme file.
+	 *
+	 * @return array $links
+	 */
+	public function row_meta_icons( $links, $file ) {
+		$type     = false !== strpos( current_filter(), 'plugin' ) ? 'plugin' : 'theme';
+		$type_cap = ucfirst( $type );
+		$filepath = 'plugin' === $type ? WP_PLUGIN_DIR . "/$file" : get_theme_root() . "/$file/style.css";
+
+		$git_headers = [
+			"GitHub{$type_cap}URI"    => "GitHub {$type_cap} URI",
+			"GitLab{$type_cap}URI"    => "GitLab {$type_cap} URI",
+			"Bitbucket{$type_cap}URI" => "Bitbucket {$type_cap} URI",
+			"Gitea{$type_cap}URI"     => "Gitea {$type_cap} URI",
+		];
+		$git_icons   = [
+			'github'    => 'github-logo.svg',
+			'gitlab'    => 'gitlab-logo.svg',
+			'bitbucket' => 'bitbucket-logo.svg',
+			'gitea'     => 'gitea-logo.svg',
+		];
+		$file_data   = get_file_data( $filepath, $git_headers );
+
+		foreach ( $file_data as $key => $value ) {
+			if ( ! empty( $value ) ) {
+				$githost = str_replace( "{$type_cap}URI", '', $key );
+				$icon    = sprintf(
+					'<img src="%s" style="vertical-align:text-bottom;" height="16" width="16" alt="%s" />',
+					plugins_url( '/local-development/assets/' . $git_icons[ strtolower( $githost ) ] ),
+					$githost
+				);
+				break;
+			}
+		}
+
+		isset( $icon ) ? $links[] = $icon : null;
+
+		return $links;
 	}
 }

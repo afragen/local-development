@@ -151,6 +151,7 @@ class Settings {
 	 * @access private
 	 */
 	private function options_tabs() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$current_tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins';
 		echo '<nav class="nav-tab-wrapper" aria-label="Secondary menu">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
@@ -165,7 +166,8 @@ class Settings {
 	 */
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
-		$tab    = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins'; ?>
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
@@ -194,6 +196,7 @@ class Settings {
 	 * @return void
 	 */
 	public function admin_page_notices() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( isset( $_GET['updated'] ) && '1' === $_GET['updated'] && is_multisite() ) {
 			echo '<div class="updated"><p><strong>' . esc_html__( 'Settings saved.', 'local-development' ) . '</strong></p></div>';
 		}
