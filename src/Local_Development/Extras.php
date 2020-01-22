@@ -99,9 +99,9 @@ class Extras extends Settings {
 			'local_dev_extras',
 			'local_dev_extras',
 			[
-				'id'   => 'bypass_fatal_error_handler',
-				'type' => 'extras',
-				'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
+				'id'    => 'bypass_fatal_error_handler',
+				'type'  => 'extras',
+				'name'  => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
 				'class' => version_compare( get_bloginfo( 'version' ), '5.2', '>=' ) ? '' : 'hidden',
 			]
 		);
@@ -213,7 +213,7 @@ class Extras extends Settings {
 	}
 
 	/**
-	 * Check if this a local wordpress instance.
+	 * Check if this a local WordPress instance.
 	 */
 	public function is_localhost() {
 		return in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true );
@@ -228,22 +228,24 @@ class Extras extends Settings {
 
 		if ( is_admin_bar_showing() ) {
 			?>
-
 			<style type="text/css">
 
-			#wpadminbar #wp-admin-bar-site-name > .ab-item::after {
+			#wpadminbar #wp-admin-bar-site-name > .ab-item::after
+			{
 				content: " - localhost";
 				font-weight: 800;
 				font-family: Monospace;
 				color: #fff;
 			}
 
-			#wpadminbar #wp-admin-bar-site-name > .ab-item {
+			#wpadminbar #wp-admin-bar-site-name > .ab-item
+			{
 				background-color: #008000;
 				color: #ff0;
 			}
 
-			#wpadminbar #wp-admin-bar-site-name > .ab-item::before {
+			#wpadminbar #wp-admin-bar-site-name > .ab-item::before
+			{
 				background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiB3aWR0aD0iMTQiIGhlaWdodD0iMTYiIHN0eWxlPSItbXMtdHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpOy13ZWJraXQtdHJhbnNmb3JtOnJvdGF0ZSgzNjBkZWcpO3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKSI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOS41IDNMOCA0LjUgMTEuNSA4IDggMTEuNSA5LjUgMTMgMTQgOCA5LjUgM3ptLTUgMEwwIDhsNC41IDVMNiAxMS41IDIuNSA4IDYgNC41IDQuNSAzeiIgZmlsbD0iI2ZmMCIvPjwvc3ZnPg==) center center no-repeat !important;
 				content: " " !important;
 				display: block;
@@ -252,7 +254,8 @@ class Extras extends Settings {
 			}
 
 			@media screen and (max-width:782px) {
-				#wpadminbar #wp-admin-bar-site-name > .ab-item::before {
+				#wpadminbar #wp-admin-bar-site-name > .ab-item::before
+				{
 					background-size: 60% !important;
 					width: 100%;
 					height: 100%;
@@ -261,7 +264,6 @@ class Extras extends Settings {
 			}
 
 			</style>
-
 			<?php
 		}
 	}
