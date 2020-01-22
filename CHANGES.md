@@ -2,6 +2,7 @@
 * update `Requires at least` in plugin file
 * add VCS checkouts automatically, thanks @Raruto
 * add Git Host icons as default setting for plugins and themes
+* automatically add localhost admin bar coloring when on localhost, default is on
 
 #### 2.4.1 / 2019-05-09
 * a11y updates for settings tabs
