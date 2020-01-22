@@ -21,23 +21,6 @@ if ( ! defined( 'WPINC' ) ) {
  * Class Bootstrap
  */
 class Bootstrap {
-
-	/**
-	 * Holds plugin directory.
-	 *
-	 * @var string $dir
-	 */
-	protected $dir;
-
-	/**
-	 * Constructor.
-	 *
-	 * @param string $dir Plugin directory.
-	 * @return void
-	 */
-	public function __construct( $dir ) {
-		$this->dir = $dir;
-	}
 	/**
 	 * Let's get started.
 	 *
@@ -50,9 +33,6 @@ class Bootstrap {
 				load_plugin_textdomain( 'local-development' );
 			}
 		);
-
-		// Load Autoloader.
-		require_once $this->dir . '/vendor/autoload.php';
 
 		new Init();
 	}
