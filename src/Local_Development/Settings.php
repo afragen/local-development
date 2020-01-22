@@ -135,7 +135,7 @@ class Settings {
 		add_submenu_page(
 			$parent,
 			esc_html__( 'Local Development Settings', 'local-development' ),
-			esc_html__( 'Local Development', 'local-development' ),
+			esc_html_x( 'Local Development', 'Menu item', 'local-development' ),
 			$capability,
 			'local-development',
 			[ $this, 'create_admin_page' ]
