@@ -14,8 +14,8 @@ Places development notice for plugins or themes that are in local development. N
 
 * Automatically adds plugins and themes under version control.
 * Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
-* May add a warning color to admin bar when running under localhost.
-* May add a git host icon to the plugins page. Default is on.
+* Add a warning color to admin bar when running under localhost. Default is on.
+* Add a git host icon to the plugins page. Default is on.
 
 Pull Requests are welcome against the `develop` branch.
 

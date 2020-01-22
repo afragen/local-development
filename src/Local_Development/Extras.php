@@ -216,7 +216,9 @@ class Extras extends Settings {
 	 * Check if this a local WordPress instance.
 	 */
 	private function is_localhost() {
-		return in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true );
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$server_addr = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : null;
+		return in_array( $server_addr, [ '127.0.0.1', '::1' ], true );
 	}
 
 	/**
