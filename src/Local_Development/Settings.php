@@ -172,7 +172,7 @@ class Settings {
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
 			</h2>
-			<p>Selected repositories will not display an update notice.</p>
+			<p><?php esc_html_e( 'Selected repositories will not display an update notice.', 'local-development' ); ?></p>
 			<?php
 			$this->options_tabs();
 			$this->admin_page_notices();
