@@ -91,20 +91,19 @@ class Extras extends Settings {
 			]
 		);
 
-		if ( version_compare( get_bloginfo( 'version' ), '5.2', '>=' ) ) {
-			add_settings_field(
-				'fatal_error_handler',
-				null,
-				[ $this, 'token_callback_checkbox' ],
-				'local_dev_extras',
-				'local_dev_extras',
-				[
-					'id'   => 'bypass_fatal_error_handler',
-					'type' => 'extras',
-					'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
-				]
-			);
-		}
+		add_settings_field(
+			'fatal_error_handler',
+			null,
+			[ $this, 'token_callback_checkbox' ],
+			'local_dev_extras',
+			'local_dev_extras',
+			[
+				'id'   => 'bypass_fatal_error_handler',
+				'type' => 'extras',
+				'name' => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
+				'class' => version_compare( get_bloginfo( 'version' ), '5.2', '>=' ) ? '' : 'hidden',
+			]
+		);
 
 		add_settings_field(
 			'git_host_icons',
@@ -119,20 +118,19 @@ class Extras extends Settings {
 			]
 		);
 
-		if ( in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true ) ) {
-			add_settings_field(
-				'adminbar_visual_feedback',
-				null,
-				[ $this, 'token_callback_checkbox' ],
-				'local_dev_extras',
-				'local_dev_extras',
-				[
-					'id'   => 'enable_admin_bar_visual_feedback',
-					'type' => 'extras',
-					'name' => esc_html__( 'Enable custom Admin Bar styles for localhost.', 'local-development' ),
-				]
-			);
-		}
+		add_settings_field(
+			'adminbar_visual_feedback',
+			null,
+			[ $this, 'token_callback_checkbox' ],
+			'local_dev_extras',
+			'local_dev_extras',
+			[
+				'id'    => 'disable_admin_bar_visual_feedback',
+				'type'  => 'extras',
+				'name'  => esc_html__( 'Disable custom Admin Bar styles for localhost.', 'local-development' ),
+				'class' => $this->is_localhost() ? '' : 'hidden',
+			]
+		);
 	}
 
 	/**
@@ -173,7 +171,7 @@ class Extras extends Settings {
 		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) ) {
 			add_filter( 'wp_fatal_error_handler_enabled', '__return_false' );
 		}
-		if ( isset( static::$options['extras']['enable_admin_bar_visual_feedback'] ) ) {
+		if ( $this->is_localhost() && ! isset( static::$options['extras']['disable_admin_bar_visual_feedback'] ) ) {
 			add_action( 'admin_head', [ $this, 'custom_local_admin_bar_css' ] ); // on backend area.
 			add_action( 'wp_head', [ $this, 'custom_local_admin_bar_css' ] ); // on frontend area.
 		}
@@ -211,6 +209,13 @@ class Extras extends Settings {
 			10,
 			2
 		);
+	}
+
+	/**
+	 * Check if this a local wordpress instance.
+	 */
+	public function is_localhost() {
+		return in_array( $_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ], true );
 	}
 
 	/**
