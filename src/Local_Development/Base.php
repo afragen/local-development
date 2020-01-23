@@ -67,12 +67,12 @@ class Base {
 	 * @return void
 	 */
 	public function load_hooks() {
-		add_filter( 'plugin_row_meta', [ $this, 'row_meta' ], 20, 2 );
+		add_filter( 'plugin_row_meta', [ $this, 'row_meta' ], 16, 2 );
 		add_filter( 'site_transient_update_plugins', [ $this, 'hide_update_nag' ], 99, 1 );
 		add_filter( 'plugin_action_links', [ $this, 'action_links' ], 15, 2 );
 		add_filter( 'network_admin_plugin_action_links', [ $this, 'action_links' ], 15, 2 );
 
-		add_filter( 'theme_row_meta', [ $this, 'row_meta' ], 20, 2 );
+		add_filter( 'theme_row_meta', [ $this, 'row_meta' ], 16, 2 );
 		add_filter( 'site_transient_update_themes', [ $this, 'hide_update_nag' ], 99, 1 );
 		add_filter( 'theme_action_links', [ $this, 'action_links' ], 15, 2 );
 		add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
