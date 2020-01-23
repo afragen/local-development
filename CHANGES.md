@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.5.0 / 2020-01-23
 * update `Requires at least` in plugin file
 * add VCS checkouts automatically, thanks @Raruto
 * add Git Host icons as default setting for plugins and themes
