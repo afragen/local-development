@@ -98,6 +98,11 @@ class Settings {
 			$themes[ $slug ] = $this->themes[ $slug ]->get( 'Name' );
 		}
 		$this->themes = $themes;
+
+		return [
+			'plugins' => $plugins,
+			'themes'  => $themes,
+		];
 	}
 
 	/**
@@ -130,7 +135,7 @@ class Settings {
 		add_submenu_page(
 			$parent,
 			esc_html__( 'Local Development Settings', 'local-development' ),
-			esc_html__( 'Local Development', 'local-development' ),
+			esc_html_x( 'Local Development', 'Menu item', 'local-development' ),
 			$capability,
 			'local-development',
 			[ $this, 'create_admin_page' ]
@@ -146,6 +151,7 @@ class Settings {
 	 * @access private
 	 */
 	private function options_tabs() {
+		// phpcs:ignore WordPress.Security.NonceVerification
 		$current_tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins';
 		echo '<nav class="nav-tab-wrapper" aria-label="Secondary menu">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
@@ -160,12 +166,13 @@ class Settings {
 	 */
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
-		$tab    = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins'; ?>
+		// phpcs:ignore WordPress.Security.NonceVerification
+		$tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
 			</h2>
-			<p>Selected repositories will not display an update notice.</p>
+			<p><?php esc_html_e( 'Selected repositories will not display an update notice.', 'local-development' ); ?></p>
 			<?php
 			$this->options_tabs();
 			$this->admin_page_notices();
@@ -189,6 +196,7 @@ class Settings {
 	 * @return void
 	 */
 	public function admin_page_notices() {
+		// phpcs:ignore WordPress.Security.NonceVerification
 		if ( isset( $_GET['updated'] ) && '1' === $_GET['updated'] && is_multisite() ) {
 			echo '<div class="updated"><p><strong>' . esc_html__( 'Settings saved.', 'local-development' ) . '</strong></p></div>';
 		}
@@ -197,7 +205,7 @@ class Settings {
 	/**
 	 * Sanitize each setting field as needed.
 	 *
-	 * @param array $input Contains all settings fields as array keys
+	 * @param array $input Contains all settings fields as array keys.
 	 *
 	 * @return array $new_input
 	 */
@@ -219,7 +227,7 @@ class Settings {
 		$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : null;
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', $checked, true ); ?> >
+			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( '1', abs( $checked ), true ); ?> <?php disabled( '-1', $checked, true ); ?> >
 			<?php esc_html_e( $args['name'] ); ?>
 		</label>
 		<?php

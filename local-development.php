@@ -13,8 +13,8 @@
  * Plugin URI:        https://wordpress.org/plugins/local-development
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
- * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
- * Version:           2.4.1
+ * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
+ * Version:           2.5.0
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2
@@ -22,7 +22,7 @@
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/local-development
  * Requires PHP:      5.6
- * Requires WP:       4.0
+ * Requires at least: 4.6
  */
 
 namespace Fragen\Local_Development;
@@ -48,6 +48,6 @@ if ( version_compare( phpversion(), '5.6', '<=' ) ) {
 	return false;
 }
 
-// Setup plugin loading.
-require_once __DIR__ . '/src/Local_Development/Bootstrap.php';
-( new Bootstrap( __DIR__ ) )->run();
+// Load Autoloader.
+require_once __DIR__ . '/vendor/autoload.php';
+( new Bootstrap() )->run();
