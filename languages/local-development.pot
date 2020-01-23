@@ -1,21 +1,20 @@
-# Copyright (C) 2019 Andy Fragen
+# Copyright (C) 2020 Andy Fragen
 # This file is distributed under the same license as the Local Development plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Local Development 2.4.1\n"
+"Project-Id-Version: Local Development 2.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/local-development\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-05-09T20:48:13+00:00\n"
+"POT-Creation-Date: 2020-01-23T20:47:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.2.0\n"
+"X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: local-development\n"
 
 #. Plugin Name of the plugin
-#: src/Local_Development/Settings.php:133
 msgid "Local Development"
 msgstr ""
 
@@ -24,7 +23,7 @@ msgid "https://wordpress.org/plugins/local-development"
 msgstr ""
 
 #. Description of the plugin
-msgid "Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler."
+msgid "Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler."
 msgstr ""
 
 #. Author of the plugin
@@ -40,26 +39,8 @@ msgstr ""
 msgid "Local Development cannot run on PHP versions older than %1$s. <a href=\"%2$s\">Learn about updating your PHP.</a>"
 msgstr ""
 
-#: src/Local_Development/Settings.php:132
-#: src/Local_Development/Settings.php:166
-msgid "Local Development Settings"
-msgstr ""
-
-#: src/Local_Development/Settings.php:193
-msgid "Settings saved."
-msgstr ""
-
-#: src/Local_Development/Settings.php:322
-msgid "Settings"
-msgstr ""
-
-#: src/Local_Development/Themes.php:45
-#: src/Local_Development/Themes.php:75
-msgid "Themes"
-msgstr ""
-
-#: src/Local_Development/Themes.php:100
-msgid "Select the locally developed themes."
+#: src/Local_Development/Base.php:61
+msgid "In Local Development"
 msgstr ""
 
 #: src/Local_Development/Extras.php:46
@@ -67,11 +48,23 @@ msgstr ""
 msgid "Extras"
 msgstr ""
 
+#: src/Local_Development/Extras.php:90
+msgid "Enable Local Git Servers (192.168.x.x)"
+msgstr ""
+
 #: src/Local_Development/Extras.php:104
 msgid "Bypass WordPress 5.1 WSOD protection."
 msgstr ""
 
-#: src/Local_Development/Extras.php:114
+#: src/Local_Development/Extras.php:118
+msgid "Disable Git Host icons."
+msgstr ""
+
+#: src/Local_Development/Extras.php:131
+msgid "Disable custom Admin Bar styles for localhost."
+msgstr ""
+
+#: src/Local_Development/Extras.php:141
 msgid "Select the extra options."
 msgstr ""
 
@@ -84,6 +77,33 @@ msgstr ""
 msgid "Select the locally developed plugins."
 msgstr ""
 
-#: src/Local_Development/Base.php:61
-msgid "In Local Development"
+#: src/Local_Development/Settings.php:137
+#: src/Local_Development/Settings.php:173
+msgid "Local Development Settings"
+msgstr ""
+
+#: src/Local_Development/Settings.php:138
+msgctxt "Menu item"
+msgid "Local Development"
+msgstr ""
+
+#: src/Local_Development/Settings.php:175
+msgid "Selected repositories will not display an update notice."
+msgstr ""
+
+#: src/Local_Development/Settings.php:201
+msgid "Settings saved."
+msgstr ""
+
+#: src/Local_Development/Settings.php:330
+msgid "Settings"
+msgstr ""
+
+#: src/Local_Development/Themes.php:45
+#: src/Local_Development/Themes.php:75
+msgid "Themes"
+msgstr ""
+
+#: src/Local_Development/Themes.php:100
+msgid "Select the locally developed themes."
 msgstr ""
