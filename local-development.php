@@ -22,7 +22,7 @@
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/local-development
  * Requires PHP:      5.6
- * Requires at least: 4.0
+ * Requires at least: 4.6
  */
 
 namespace Fragen\Local_Development;

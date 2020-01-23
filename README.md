@@ -1,7 +1,7 @@
 # Local Development
 * Contributors: afragen, raruto
 * Tags: localhost development upgrade plugin theme
-* Requires at least: 4.0
+* Requires at least: 4.6
 * Requires PHP: 5.6
 * Stable tag: master
 * License: GPLv2
