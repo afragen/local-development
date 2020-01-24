@@ -29,7 +29,7 @@ Requires PHP 5.6 or greater.
 
 ## Changelog
 
-#### 2.5.2 / 2020-01-24
+#### 2.5.1 / 2020-01-24
 * run if no settings yet saved
 
 #### 2.5.0 / 2020-01-23
