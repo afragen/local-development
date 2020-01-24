@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.5.2 / 2020-01-24
+* run if no settings yet saved
+
 #### 2.5.0 / 2020-01-23
 * update `Requires at least` in plugin file
 * add VCS checkouts automatically, thanks @Raruto
