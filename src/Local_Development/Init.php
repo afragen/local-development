@@ -41,7 +41,7 @@ class Init {
 
 		// Skip on heartbeat or if no saved settings.
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) || ! $config ) {
+		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
 			return false;
 		}
 		( new Base( $config ) )->load_hooks();
