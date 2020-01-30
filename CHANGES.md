@@ -1,4 +1,5 @@
 #### [unreleased]
+* use `is_localhost()` for local git server setting
 
 #### 2.5.1 / 2020-01-24
 * run if no settings yet saved
