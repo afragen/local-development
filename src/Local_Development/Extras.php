@@ -79,20 +79,6 @@ class Extras extends Settings {
 		);
 
 		add_settings_field(
-			'local_git_server',
-			null,
-			[ $this, 'token_callback_checkbox' ],
-			'local_dev_extras',
-			'local_dev_extras',
-			[
-				'id'    => 'local_servers',
-				'type'  => 'extras',
-				'name'  => esc_html__( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
-				'class' => $this->is_localhost() ? '' : 'hidden',
-			]
-		);
-
-		add_settings_field(
 			'fatal_error_handler',
 			null,
 			[ $this, 'token_callback_checkbox' ],
@@ -163,10 +149,10 @@ class Extras extends Settings {
 	/**
 	 * Load extras.
 	 *
-	 * @return void|Shutdown_Handler
+	 * @return void
 	 */
 	protected function load_extras() {
-		if ( isset( static::$options['extras']['local_servers'] ) ) {
+		if ( $this->is_localhost() ) {
 			$this->allow_local_servers();
 		}
 		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) ) {
