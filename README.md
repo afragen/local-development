@@ -13,7 +13,8 @@ Places development notice for plugins or themes that are in local development. P
 Places development notice for plugins or themes that are in local development. Notices are placed on the plugins page and the themes page. Prevents updating of selected plugins and themes.
 
 * Automatically adds plugins and themes under version control.
-* Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
+* Automatically allows for using a local file server.
+* Allows for bypassing the WordPress 5.2 WSOD Shutdown Handler.
 * Add a warning color to admin bar when running under localhost. Default is on.
 * Add a git host icon to the plugins page. Default is on.
 

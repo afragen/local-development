@@ -79,20 +79,6 @@ class Extras extends Settings {
 		);
 
 		add_settings_field(
-			'local_git_server',
-			null,
-			[ $this, 'token_callback_checkbox' ],
-			'local_dev_extras',
-			'local_dev_extras',
-			[
-				'id'    => 'local_servers',
-				'type'  => 'extras',
-				'name'  => esc_html__( 'Enable Local Git Servers (192.168.x.x)', 'local-development' ),
-				'class' => $this->is_localhost() ? '' : 'hidden',
-			]
-		);
-
-		add_settings_field(
 			'fatal_error_handler',
 			null,
 			[ $this, 'token_callback_checkbox' ],
@@ -163,10 +149,10 @@ class Extras extends Settings {
 	/**
 	 * Load extras.
 	 *
-	 * @return void|Shutdown_Handler
+	 * @return void
 	 */
 	protected function load_extras() {
-		if ( isset( static::$options['extras']['local_servers'] ) ) {
+		if ( $this->is_localhost() ) {
 			$this->allow_local_servers();
 		}
 		if ( isset( self::$options['extras']['bypass_fatal_error_handler'] ) ) {
@@ -190,20 +176,7 @@ class Extras extends Settings {
 				if ( ! $r['reject_unsafe_urls'] ) {
 					return $r;
 				}
-				$host = parse_url( $url, PHP_URL_HOST );
-				if ( preg_match( '#^(([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)\.){3}([1-9]?\d|1\d\d|25[0-5]|2[0-4]\d)$#', $host ) ) {
-					$ip = $host;
-				} else {
-					return $r;
-				}
-
-				$parts = array_map( 'intval', explode( '.', $ip ) );
-				if ( 127 === $parts[0] || 10 === $parts[0] || 0 === $parts[0]
-				|| ( 172 === $parts[0] && 16 <= $parts[1] && 31 >= $parts[1] )
-				|| ( 192 === $parts[0] && 168 === $parts[1] )
-				) {
-					$r['reject_unsafe_urls'] = false;
-				}
+				$this->is_localhost() ? $r['reject_unsafe_urls'] = false : true;
 
 				return $r;
 			},
