@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.5.2 / 2020-02-03
 * use `is_localhost()` for local git server setting and make automatic
 
 #### 2.5.1 / 2020-01-24
