@@ -60,10 +60,10 @@ class Init {
 			foreach ( array_keys( $plugins_themes[ $type ] ) as $file ) {
 				$wp_path  = 'plugins' === $type ? wp_normalize_path( WP_PLUGIN_DIR ) : wp_normalize_path( get_theme_root() );
 				$slug     = 'plugins' === $type ? dirname( $file ) : $file;
-				$filepath = untrailingslashit( "$wp_path/$slug" );
+				$filepath = untrailingslashit( "{$wp_path}/{$slug}" );
 
 				foreach ( $vcs_dirs as $vcs_dir ) {
-					$is_vcs = @is_dir( "$filepath/$vcs_dir" );
+					$is_vcs = @is_dir( "{$filepath}/{$vcs_dir}" );
 					if ( $is_vcs ) {
 						$config[ $type ][ $file ] = '-1';
 						break;

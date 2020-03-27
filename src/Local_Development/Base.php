@@ -146,7 +146,7 @@ class Base {
 			$icon = $this->row_meta_icons( [], $theme['id'] );
 
 			if ( isset( $icon[0] ) ) {
-				$message = ! empty( $message ) ? "$icon[0] | $message" : $icon[0];
+				$message = ! empty( $message ) ? "{$icon[0]} | {$message}" : $icon[0];
 			}
 			if ( ! empty( $message ) ) {
 				$message = '<p>' . $message . '</p>';
