@@ -130,7 +130,7 @@ class Settings {
 	 */
 	public function add_plugin_menu() {
 		$parent     = is_multisite() ? 'settings.php' : 'options-general.php';
-		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		$capability = is_multisite() ? 'manage_network_options' : 'manage_options';
 
 		add_submenu_page(
 			$parent,
@@ -329,7 +329,7 @@ class Settings {
 		$settings_page = is_multisite() ? 'settings.php' : 'options-general.php';
 		$link          = [ '<a href="' . esc_url( network_admin_url( $settings_page ) ) . '?page=local-development">' . esc_html__( 'Settings', 'local-development' ) . '</a>' ];
 
-		return array_merge( $links, $link );
+		return array_merge( $link, $links );
 	}
 
 	/**

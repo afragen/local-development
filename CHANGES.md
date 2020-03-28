@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.5.3 / 2020-03-28
+* move `Settings` action link to front
+
 #### 2.5.2 / 2020-02-03
 * use `is_localhost()` for local git server setting and make automatic
 
