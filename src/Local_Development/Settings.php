@@ -269,7 +269,7 @@ class Settings {
 			 * @return array $options Array of options.
 			 */
 			$options       = apply_filters( "local_development_update_settings_{$tab}", $options, $tab );
-			self::$options = array_merge( (array) self::$options, $this->sanitize( $options ) );
+			self::$options = array_merge( (array) self::$options, $options );
 			update_site_option( 'local_development', self::$options );
 		}
 
