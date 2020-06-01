@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.5.4 / 2020-06-01
 * sanitizing, escaping & ignoring
 
 #### 2.5.3 / 2020-03-28
