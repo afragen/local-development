@@ -152,11 +152,11 @@ class Settings {
 	 */
 	private function options_tabs() {
 		// phpcs:ignore WordPress.Security.NonceVerification
-		$current_tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins';
+		$current_tab = isset( $_GET['tab'] ) ? sanitize_file_name( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins';
 		echo '<nav class="nav-tab-wrapper" aria-label="Secondary menu">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
 			$active = ( $current_tab === $key ) ? 'nav-tab-active' : '';
-			echo '<a class="nav-tab ' . $active . '" href="?page=local-development&tab=' . $key . '">' . $name . '</a>';
+			echo '<a class="nav-tab ' . esc_attr( $active ) . '" href="?page=local-development&tab=' . esc_attr( $key ) . '">' . esc_attr( $name ) . '</a>';
 		}
 		echo '</nav>';
 	}
@@ -167,7 +167,7 @@ class Settings {
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
 		// phpcs:ignore WordPress.Security.NonceVerification
-		$tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'local_dev_settings_plugins'; ?>
+		$tab = isset( $_GET['tab'] ) ? sanitize_file_name( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
@@ -241,19 +241,22 @@ class Settings {
 	 * @link http://benohead.com/wordpress-network-wide-plugin-settings/
 	 */
 	public function update_settings() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		if ( ! isset( $_POST['_wp_http_referer'] ) ) {
 			return false;
 		}
-		$query = parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY );
+		$query = parse_url( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ), PHP_URL_QUERY );
 		parse_str( $query, $arr );
 		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 		if ( isset( $_POST['option_page'] ) &&
-			'local_development_settings' === $_POST['option_page']
+			'local_development_settings' === sanitize_file_name( wp_unslash( $_POST['option_page'] ) )
 		) {
-			$options = isset( $_POST['local_dev'] ) ? $_POST['local_dev'] : [];
-			$tab     = explode( '_', $arr['tab'] );
-			$tab     = array_pop( $tab );
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$options = isset( $_POST['local_dev'] ) ? wp_unslash( $_POST['local_dev'] ) : [];
+			// phpcs:enable
+			$tab = explode( '_', $arr['tab'] );
+			$tab = array_pop( $tab );
 
 			/**
 			 * Filter options from added classes.
@@ -291,6 +294,7 @@ class Settings {
 	protected function redirect_on_save() {
 		$update = false;
 
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		if ( ( isset( $_POST['action'] ) && 'update' === $_POST['action'] ) &&
 			( isset( $_POST['option_page'] ) && 'local_development_settings' === $_POST['option_page'] )
 		) {
@@ -300,7 +304,8 @@ class Settings {
 		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
 		if ( $update ) {
-			$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( $_POST['_wp_http_referer'], PHP_URL_QUERY ) : null;
+			$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ), PHP_URL_QUERY ) : null;
+			// phpcs:enable
 			parse_str( $query, $arr );
 			$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
