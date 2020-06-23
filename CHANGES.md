@@ -1,4 +1,5 @@
 #### [unreleased]
+* skip mu-plugins and drop-ins
 
 #### 2.5.4 / 2020-06-01
 * sanitizing, escaping & ignoring

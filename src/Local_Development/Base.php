@@ -255,7 +255,9 @@ class Base {
 			'bitbucket' => 'bitbucket-logo.svg',
 			'gitea'     => 'gitea-logo.svg',
 		];
-		$file_data   = get_file_data( $filepath, $git_headers );
+
+		// Skip on mu-plugins or drop-ins.
+		$file_data = file_exists( $filepath ) ? get_file_data( $filepath, $git_headers ) : [];
 
 		/**
 		 * Insert repositories added via GitHub Updater Additions plugin.
