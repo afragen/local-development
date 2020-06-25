@@ -270,10 +270,32 @@ class Settings {
 			 */
 			$options       = apply_filters( "local_development_update_settings_{$tab}", $options, $tab );
 			self::$options = array_merge( (array) self::$options, $options );
+			self::$options = $this->filter_options( self::$options );
 			update_site_option( 'local_development', self::$options );
 		}
 
 		$this->redirect_on_save();
+	}
+
+	/**
+	 * Filter options to remove unchecked/VCS checkbox options.
+	 *
+	 * @access private
+	 * @param array $options Options to save.
+	 *
+	 * @return array|mixed
+	 */
+	private function filter_options( $options ) {
+		foreach ( $options as $key => $arr ) {
+			$options[ $key ] = array_filter(
+				$arr,
+				function ( $e ) {
+					return '1' === $e;
+				}
+			);
+		}
+
+		return $options;
 	}
 
 	/**
