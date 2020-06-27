@@ -1,6 +1,7 @@
 #### [unreleased]
 * skip mu-plugins and drop-ins
 * filter options to save to remove unchecked and VCS repos
+* add Git Host icon for Gists
 
 #### 2.5.4 / 2020-06-01
 * sanitizing, escaping & ignoring

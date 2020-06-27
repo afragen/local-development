@@ -248,12 +248,14 @@ class Base {
 			"GitLab{$type_cap}URI"    => "GitLab {$type_cap} URI",
 			"Bitbucket{$type_cap}URI" => "Bitbucket {$type_cap} URI",
 			"Gitea{$type_cap}URI"     => "Gitea {$type_cap} URI",
+			"Gist{$type_cap}URI"      => "Gist {$type_cap} URI",
 		];
 		$git_icons   = [
 			'github'    => 'github-logo.svg',
 			'gitlab'    => 'gitlab-logo.svg',
 			'bitbucket' => 'bitbucket-logo.svg',
 			'gitea'     => 'gitea-logo.svg',
+			'gist'      => 'github-logo.svg',
 		];
 
 		// Skip on mu-plugins or drop-ins.
