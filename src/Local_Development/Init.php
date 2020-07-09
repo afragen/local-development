@@ -81,7 +81,7 @@ class Init {
 	 *
 	 * @param array $config Plugin options.
 	 *
-	 * @return void
+	 * @return array
 	 */
 	private function get_github_updater_running( $config ) {
 		if ( is_plugin_active( 'github-updater/github-updater.php' ) ) {
