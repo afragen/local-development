@@ -77,9 +77,23 @@ class Base {
 		add_filter( 'theme_action_links', [ $this, 'action_links' ], 15, 2 );
 		add_filter( 'wp_prepare_themes_for_js', [ $this, 'set_theme_description' ], 15, 1 );
 
-		if ( ! isset( static::$options['extras']['disable_git_icons'] ) ) {
+		if ( $this->show_git_icons() ) {
 			add_filter( 'plugin_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 			add_filter( 'theme_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
+		}
+	}
+
+	/**
+	 * Show git icons.
+	 *
+	 * @return bool
+	 */
+	private function show_git_icons() {
+		if ( isset( static::$options['extras']['enable_git_icons'] ) ) {
+			if ( '-1' === static::$options['extras']['enable_git_icons'] ) {
+				return false;
+			}
+			return true;
 		}
 	}
 

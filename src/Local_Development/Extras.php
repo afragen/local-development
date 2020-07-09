@@ -99,9 +99,10 @@ class Extras extends Settings {
 			'local_dev_extras',
 			'local_dev_extras',
 			[
-				'id'   => 'disable_git_icons',
-				'type' => 'extras',
-				'name' => esc_html__( 'Disable Git Host icons.', 'local-development' ),
+				'id'    => 'enable_git_icons',
+				'type'  => 'extras',
+				'name'  => esc_html__( 'Enable Git Host icons.', 'local-development' ),
+				'class' => isset( static::$options['extras']['enable_git_icons'] ) && '-1' === static::$options['extras']['enable_git_icons'] ? 'hidden' : '',
 			]
 		);
 

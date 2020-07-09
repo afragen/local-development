@@ -1,7 +1,8 @@
 #### [unreleased]
 * skip mu-plugins and drop-ins
 * filter options to save to remove unchecked and VCS repos
-* add Git Host icon for Gists
+* add git host icon for Gists
+* defer to GitHub Updater to show git host icons
 
 #### 2.5.4 / 2020-06-01
 * sanitizing, escaping & ignoring
@@ -18,7 +19,7 @@
 #### 2.5.0 / 2020-01-23
 * update `Requires at least` in plugin file
 * add VCS checkouts automatically, thanks @Raruto
-* add Git Host icons as default setting for plugins and themes
+* add git host icons as default setting for plugins and themes
 * add localhost admin bar coloring when on localhost, default is on
 * some now settings only display when running in localhost
 * add repositories that are added from [GitHub Updater Additions](https://github.com/afragen/github-updater-additions)
