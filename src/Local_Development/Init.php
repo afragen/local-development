@@ -29,6 +29,7 @@ class Init {
 	public function __construct() {
 		$config = get_site_option( 'local_development', [] );
 		$config = $this->get_vcs_checkouts( $config );
+		$config = $this->get_github_updater_running( $config );
 		add_action(
 			'init',
 			function () use ( $config ) {
@@ -50,7 +51,7 @@ class Init {
 	/**
 	 * Get VCS checkouts and add automatically to config.
 	 *
-	 * @param array $config Plugins options.
+	 * @param array $config Plugin options.
 	 */
 	private function get_vcs_checkouts( $config ) {
 		$plugins_themes = Singleton::get_instance( 'Settings', $this )->init();
@@ -72,6 +73,20 @@ class Init {
 			}
 		}
 
+		return $config;
+	}
+
+	/**
+	 * Modify option if GitHub Updater is running.
+	 *
+	 * @param array $config Plugin options.
+	 *
+	 * @return array
+	 */
+	private function get_github_updater_running( $config ) {
+		if ( is_plugin_active( 'github-updater/github-updater.php' ) ) {
+			$config['extras']['enable_git_icons'] = '-1';
+		}
 		return $config;
 	}
 }
