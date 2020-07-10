@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.5.6 / 2020-07-10
 * fix logic for no setting
 
 #### 2.5.5 / 2020-07-09
