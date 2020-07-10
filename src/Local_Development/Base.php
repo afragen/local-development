@@ -90,11 +90,9 @@ class Base {
 	 */
 	private function show_git_icons() {
 		if ( isset( static::$options['extras']['enable_git_icons'] ) ) {
-			if ( '-1' === static::$options['extras']['enable_git_icons'] ) {
-				return false;
-			}
-			return true;
+			return '-1' !== static::$options['extras']['enable_git_icons'];
 		}
+		return false;
 	}
 
 	/**
