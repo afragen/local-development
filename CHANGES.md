@@ -1,4 +1,5 @@
 #### [unreleased]
+* fix logic for no setting
 
 #### 2.5.5 / 2020-07-09
 * skip mu-plugins and drop-ins
