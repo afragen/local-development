@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.5.7 / 2020-07-20
 * set disabled checked option if `WP_DISABLE_FATAL_ERROR_HANDLER` is true
 
 #### 2.5.6 / 2020-07-10
