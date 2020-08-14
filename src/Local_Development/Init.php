@@ -121,7 +121,14 @@ class Init {
 			}
 		}
 
-		return $config_path;
-	}
 
+		/**
+		 * Filter the config file path.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $config_path
+		 */
+		return apply_filters( 'local_development_config_path', $config_path );
+	}
 }
