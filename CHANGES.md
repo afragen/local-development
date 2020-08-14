@@ -1,4 +1,5 @@
 #### [unreleased]
+* add setting for `WP_ENVIRONMENT_TYPE` in WP 5.5+
 
 #### 2.5.7 / 2020-07-20
 * set disabled checked option if `WP_DISABLE_FATAL_ERROR_HANDLER` is true

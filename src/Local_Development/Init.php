@@ -40,6 +40,16 @@ class Init {
 			}
 		);
 
+		// For WP 5.5 setting environment type.
+		if ( isset( $config['extras']['environment_type'] ) ) {
+			$config_args        = [
+				'raw'       => false,
+				'normalize' => true,
+			];
+			$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
+			$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $config['extras']['environment_type'], $config_args );
+		}
+
 		// Skip on heartbeat or if no saved settings.
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
@@ -92,4 +102,26 @@ class Init {
 		}
 		return $config;
 	}
+
+	/**
+	 * Get the `wp-config.php` file path.
+	 *
+	 * The config file may reside one level above ABSPATH but is not part of another installation.
+	 *
+	 * @see wp-load.php#L26-L42
+	 *
+	 * @return string $config_path
+	 */
+	private function get_config_path() {
+		$config_path = ABSPATH . 'wp-config.php';
+
+		if ( ! file_exists( $config_path ) ) {
+			if ( @file_exists( dirname( ABSPATH ) . '/wp-config.php' ) && ! @file_exists( dirname( ABSPATH ) . '/wp-settings.php' ) ) {
+				$config_path = dirname( ABSPATH ) . '/wp-config.php';
+			}
+		}
+
+		return $config_path;
+	}
+
 }
