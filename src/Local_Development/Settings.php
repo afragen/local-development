@@ -245,7 +245,7 @@ class Settings {
 			'production'  => __( 'production', 'local-development' ),
 		];
 		?>
-		<?php esc_html_e( $args['name'] ); ?>
+		<div style="float:left;margin-top:8px;"><?php esc_html_e( $args['name'] ); ?></div>
 		<?php foreach ( $environments as $key => $value ) : ?>
 			<?php $checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) && $key === self::$options[ $args['type'] ][ $args['id'] ] ? 'checked' : ''; ?>
 			<p style="padding-left:15em;">
