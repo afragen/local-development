@@ -42,12 +42,18 @@ class Init {
 
 		// For WP 5.5 setting environment type.
 		if ( isset( $config['extras']['environment_type'] ) ) {
-			$config_args        = [
+			$config_args = [
 				'raw'       => false,
 				'normalize' => true,
 			];
-			$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
-			$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $config['extras']['environment_type'], $config_args );
+			try {
+				$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
+				$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $config['extras']['environment_type'], $config_args );
+			} catch ( \Exceptions $e ) {
+				$messsage = 'Caught Exception: \Fragen\Local_Development\Init::__construct() - ' . $e->getMessage();
+				// error_log( $messsage );
+				wp_die( esc_html( $messsage ) );
+			}
 		}
 
 		// Skip on heartbeat or if no saved settings.
@@ -120,7 +126,6 @@ class Init {
 				$config_path = dirname( ABSPATH ) . '/wp-config.php';
 			}
 		}
-
 
 		/**
 		 * Filter the config file path.
