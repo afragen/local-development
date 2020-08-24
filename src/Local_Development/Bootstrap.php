@@ -34,6 +34,6 @@ class Bootstrap {
 			}
 		);
 
-		new Init();
+		( new Init() )->load_hooks()->run();
 	}
 }

@@ -24,12 +24,38 @@ if ( ! defined( 'WPINC' ) ) {
  */
 class Init {
 	/**
+	 * Options variable.
+	 *
+	 * @var array
+	 */
+	private $config;
+
+	/**
 	 * Init constructor.
 	 */
 	public function __construct() {
 		$config = get_site_option( 'local_development', [] );
 		$config = $this->get_vcs_checkouts( $config );
 		$config = $this->modify_options( $config );
+
+		$this->config = $config;
+
+		// Skip on heartbeat or if no saved settings.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
+			return false;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Load hooks.
+	 *
+	 * @return $this
+	 */
+	public function load_hooks() {
+		$config = $this->config;
 		add_action(
 			'init',
 			function () use ( $config ) {
@@ -40,28 +66,40 @@ class Init {
 			}
 		);
 
+		return $this;
+	}
+
+	/**
+	 * Set wp-config environment constant.
+	 *
+	 * @return void
+	 */
+	private function set_environment() {
 		// For WP 5.5 setting environment type.
-		if ( isset( $config['extras']['environment_type'] ) ) {
+		if ( isset( $this->config['extras']['environment_type'] ) ) {
 			$config_args = [
 				'raw'       => false,
 				'normalize' => true,
 			];
 			try {
 				$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
-				$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $config['extras']['environment_type'], $config_args );
+				$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $this->config['extras']['environment_type'], $config_args );
 			} catch ( \Exceptions $e ) {
 				$messsage = 'Caught Exception: \Fragen\Local_Development\Init::__construct() - ' . $e->getMessage();
 				// error_log( $messsage );
 				wp_die( esc_html( $messsage ) );
 			}
 		}
+	}
 
-		// Skip on heartbeat or if no saved settings.
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
-			return false;
-		}
-		( new Base( $config ) )->load_hooks();
+	/**
+	 * Let's get started.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		$this->set_environment();
+		( new Base( $this->config ) )->load_hooks();
 	}
 
 	/**
@@ -106,6 +144,7 @@ class Init {
 		if ( defined( 'WP_DISABLE_FATAL_ERROR_HANDLER' ) && WP_DISABLE_FATAL_ERROR_HANDLER ) {
 			$config['extras']['bypass_fatal_error_handler'] = '-1';
 		}
+
 		return $config;
 	}
 
