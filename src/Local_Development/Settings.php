@@ -240,6 +240,7 @@ class Settings {
 	 */
 	public function set_environment( $args ) {
 		$environments = [
+			'local'       => __( 'local', 'local-development' ),
 			'development' => __( 'development', 'local-development' ),
 			'staging'     => __( 'staging', 'local-development' ),
 			'production'  => __( 'production', 'local-development' ),
