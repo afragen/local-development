@@ -314,9 +314,9 @@ class Settings {
 		foreach ( $options as $key => $arr ) {
 			$options[ $key ] = array_filter(
 				$arr,
-				function ( $e ) use ( $arr ) {
-					if ( 'environment_type' === key( $arr ) ) {
-						return $e;
+				function ( $e ) use ( $key, $arr ) {
+					if ( 'extras' === $key ) {
+						return isset( $arr['environment_type'] ) ? $arr['environment_type'] : '1' === $e;
 					}
 
 					return '1' === $e;
