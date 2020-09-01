@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.6.2 / 2020-09-01
+* only set `WP_ENVIRONMENT_TYPE` when changed
+
 #### 2.6.1 / 2020-09-01
 * fix for saving `WP_ENVIRONMENT_TYPE`
 
