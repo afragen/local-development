@@ -17,6 +17,7 @@ Places development notice for plugins or themes that are in local development. N
 * Allows for bypassing the WordPress 5.2 WSOD Shutdown Handler.
 * Add a warning color to admin bar when running under localhost. Default is on.
 * Add a git host icon to the plugins page. Default is off. No option if GitHub Updater is running.
+* Allows setting of `WP_ENVIRONMENT_TYPE`.
 
 Pull Requests are welcome against the `develop` branch.
 
