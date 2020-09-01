@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc919fd3f1864d470b207faef3625df8",
+    "content-hash": "18261ffd3fc71daf0c899ec8984ee3df",
     "packages": [
         {
             "name": "afragen/singleton",
@@ -47,6 +47,47 @@
                 "wordpress"
             ],
             "time": "2019-01-05T16:19:38+00:00"
+        },
+        {
+            "name": "wp-cli/wp-config-transformer",
+            "version": "v1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wp-cli/wp-config-transformer.git",
+                "reference": "bae1e975ed1277470e3dcc7fd0ef99c2d4f4c7a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wp-cli/wp-config-transformer/zipball/bae1e975ed1277470e3dcc7fd0ef99c2d4f4c7a8",
+                "reference": "bae1e975ed1277470e3dcc7fd0ef99c2d4f4c7a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.29"
+            },
+            "require-dev": {
+                "composer/composer": "^1.5.6",
+                "phpunit/phpunit": "^6.5.5 || ^7.0.0",
+                "wp-coding-standards/wpcs": "^0.14.0 || ^1.0.0 || ^2.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/WPConfigTransformer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frankie Jarrett",
+                    "email": "fjarrett@gmail.com"
+                }
+            ],
+            "description": "Programmatically edit a wp-config.php file.",
+            "time": "2020-07-05T12:30:35+00:00"
         }
     ],
     "packages-dev": [],

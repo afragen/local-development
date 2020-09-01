@@ -234,6 +234,31 @@ class Settings {
 	}
 
 	/**
+	 * Environment setting.
+	 *
+	 * @param array $args Args for radio button.
+	 */
+	public function set_environment( $args ) {
+		$environments = [
+			'local'       => __( 'local', 'local-development' ),
+			'development' => __( 'development', 'local-development' ),
+			'staging'     => __( 'staging', 'local-development' ),
+			'production'  => __( 'production', 'local-development' ),
+		];
+		?>
+		<div style="float:left;margin-top:8px;"><?php esc_html_e( $args['name'] ); ?></div>
+		<?php foreach ( $environments as $key => $value ) : ?>
+			<?php $checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) && $key === self::$options[ $args['type'] ][ $args['id'] ] ? 'checked' : ''; ?>
+			<p style="padding-left:15em;">
+			<label for="<?php esc_attr_e( $args['id'] ); ?>">
+				<input type="radio" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
+				<?php esc_html_e( $value ); ?>
+			</label></p>
+		<?php endforeach ?>
+		<?php
+	}
+
+	/**
 	 * Update single site and network settings.
 	 * Used when plugin is network activated to save settings.
 	 *
@@ -289,7 +314,11 @@ class Settings {
 		foreach ( $options as $key => $arr ) {
 			$options[ $key ] = array_filter(
 				$arr,
-				function ( $e ) {
+				function ( $e ) use ( $arr ) {
+					if ( 'environment_type' === key( $arr ) ) {
+						return $e;
+					}
+
 					return '1' === $e;
 				}
 			);

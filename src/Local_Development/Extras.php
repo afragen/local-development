@@ -87,7 +87,7 @@ class Extras extends Settings {
 			[
 				'id'    => 'bypass_fatal_error_handler',
 				'type'  => 'extras',
-				'name'  => esc_html__( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
+				'name'  => __( 'Bypass WordPress 5.1 WSOD protection.', 'local-development' ),
 				'class' => version_compare( get_bloginfo( 'version' ), '5.2', '>=' ) ? '' : 'hidden',
 			]
 		);
@@ -101,7 +101,7 @@ class Extras extends Settings {
 			[
 				'id'    => 'enable_git_icons',
 				'type'  => 'extras',
-				'name'  => esc_html__( 'Enable Git Host icons.', 'local-development' ),
+				'name'  => __( 'Enable Git Host icons.', 'local-development' ),
 				'class' => isset( static::$options['extras']['enable_git_icons'] ) && '-1' === static::$options['extras']['enable_git_icons'] ? 'hidden' : '',
 			]
 		);
@@ -115,8 +115,22 @@ class Extras extends Settings {
 			[
 				'id'    => 'disable_admin_bar_visual_feedback',
 				'type'  => 'extras',
-				'name'  => esc_html__( 'Disable custom Admin Bar styles for localhost.', 'local-development' ),
+				'name'  => __( 'Disable custom Admin Bar styles for localhost.', 'local-development' ),
 				'class' => $this->is_localhost() ? '' : 'hidden',
+			]
+		);
+
+		add_settings_field(
+			'environment_type',
+			null,
+			[ $this, 'set_environment' ],
+			'local_dev_extras',
+			'local_dev_extras',
+			[
+				'id'    => 'environment_type',
+				'type'  => 'extras',
+				'name'  => __( 'Set WP_ENVIRONMENT_TYPE', 'local-development' ),
+				'class' => version_compare( get_bloginfo( 'version' ), '5.5', '>=' ) ? '' : 'hidden',
 			]
 		);
 	}

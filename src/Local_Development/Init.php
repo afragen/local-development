@@ -24,12 +24,38 @@ if ( ! defined( 'WPINC' ) ) {
  */
 class Init {
 	/**
+	 * Options variable.
+	 *
+	 * @var array
+	 */
+	private $config;
+
+	/**
 	 * Init constructor.
 	 */
 	public function __construct() {
 		$config = get_site_option( 'local_development', [] );
 		$config = $this->get_vcs_checkouts( $config );
 		$config = $this->modify_options( $config );
+
+		$this->config = $config;
+
+		// Skip on heartbeat or if no saved settings.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
+			return false;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Load hooks.
+	 *
+	 * @return $this
+	 */
+	public function load_hooks() {
+		$config = $this->config;
 		add_action(
 			'init',
 			function () use ( $config ) {
@@ -40,12 +66,40 @@ class Init {
 			}
 		);
 
-		// Skip on heartbeat or if no saved settings.
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		if ( ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) ) {
-			return false;
+		return $this;
+	}
+
+	/**
+	 * Set wp-config environment constant.
+	 *
+	 * @return void
+	 */
+	private function set_environment() {
+		// For WP 5.5 setting environment type.
+		if ( isset( $this->config['extras']['environment_type'] ) ) {
+			$config_args = [
+				'raw'       => false,
+				'normalize' => true,
+			];
+			try {
+				$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
+				$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $this->config['extras']['environment_type'], $config_args );
+			} catch ( \Exception $e ) {
+				$messsage = 'Caught Exception: \Fragen\Local_Development\Init::__construct() - ' . $e->getMessage();
+				// error_log( $messsage );
+				wp_die( esc_html( $messsage ) );
+			}
 		}
-		( new Base( $config ) )->load_hooks();
+	}
+
+	/**
+	 * Let's get started.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		$this->set_environment();
+		( new Base( $this->config ) )->load_hooks();
 	}
 
 	/**
@@ -90,6 +144,35 @@ class Init {
 		if ( defined( 'WP_DISABLE_FATAL_ERROR_HANDLER' ) && WP_DISABLE_FATAL_ERROR_HANDLER ) {
 			$config['extras']['bypass_fatal_error_handler'] = '-1';
 		}
+
 		return $config;
+	}
+
+	/**
+	 * Get the `wp-config.php` file path.
+	 *
+	 * The config file may reside one level above ABSPATH but is not part of another installation.
+	 *
+	 * @see wp-load.php#L26-L42
+	 *
+	 * @return string $config_path
+	 */
+	private function get_config_path() {
+		$config_path = ABSPATH . 'wp-config.php';
+
+		if ( ! file_exists( $config_path ) ) {
+			if ( @file_exists( dirname( ABSPATH ) . '/wp-config.php' ) && ! @file_exists( dirname( ABSPATH ) . '/wp-settings.php' ) ) {
+				$config_path = dirname( ABSPATH ) . '/wp-config.php';
+			}
+		}
+
+		/**
+		 * Filter the config file path.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $config_path
+		 */
+		return apply_filters( 'local_development_config_path', $config_path );
 	}
 }
