@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.6.1 / 2020-09-01
+* fix for saving `WP_ENVIRONMENT_TYPE`
+
 #### 2.6.0 / 2020-09-01
 * add setting for `WP_ENVIRONMENT_TYPE` in WP 5.5+
 * refactor plugin startup a bit
