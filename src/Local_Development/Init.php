@@ -75,8 +75,13 @@ class Init {
 	 * @return void
 	 */
 	private function set_environment() {
+		// Get `WP_ENVIRONMENT_TYPE`.
+		$environment_type = defined( 'WP_ENVIRONMENT_TYPE' ) ? \WP_ENVIRONMENT_TYPE : false;
+
 		// For WP 5.5 setting environment type.
-		if ( isset( $this->config['extras']['environment_type'] ) ) {
+		if ( isset( $this->config['extras']['environment_type'] )
+			&& $environment_type !== $this->config['extras']['environment_type']
+		) {
 			$config_args = [
 				'raw'       => false,
 				'normalize' => true,
