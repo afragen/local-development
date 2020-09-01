@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Local Development plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Local Development 2.5.7\n"
+"Project-Id-Version: Local Development 2.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/local-development\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-08-14T05:44:21+00:00\n"
+"POT-Creation-Date: 2020-09-01T21:48:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: local-development\n"
@@ -95,19 +95,23 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
-#: src/Local_Development/Settings.php:242
+#: src/Local_Development/Settings.php:243
+msgid "local"
+msgstr ""
+
+#: src/Local_Development/Settings.php:244
 msgid "development"
 msgstr ""
 
-#: src/Local_Development/Settings.php:242
+#: src/Local_Development/Settings.php:245
 msgid "staging"
 msgstr ""
 
-#: src/Local_Development/Settings.php:242
+#: src/Local_Development/Settings.php:246
 msgid "production"
 msgstr ""
 
-#: src/Local_Development/Settings.php:380
+#: src/Local_Development/Settings.php:386
 msgid "Settings"
 msgstr ""
 
