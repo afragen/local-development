@@ -97,6 +97,27 @@ class Init {
 		}
 	}
 
+		/**
+		 * Remove constants from wp-config.php file.
+		 *
+		 * @uses https://github.com/wp-cli/wp-config-transformer
+		 *
+		 * @param  array $remove Constants to remove from wp-config.php.
+		 * @return void
+		 */
+	public function remove_constants( $remove ) {
+		try {
+			$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
+			foreach ( array_keys( $remove ) as $constant ) {
+				$config_transformer->remove( 'constant', strtoupper( $constant ) );
+			}
+		} catch ( \Exception $e ) {
+			$messsage = 'Caught Exception: \Fragen\Local_Development\Init::remove_constants() - ' . $e->getMessage();
+			// error_log( $messsage );
+			wp_die( esc_html( $messsage ) );
+		}
+	}
+
 	/**
 	 * Let's get started.
 	 *

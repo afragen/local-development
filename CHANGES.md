@@ -1,5 +1,6 @@
 #### [unreleased]
 * set custom admin bar to display environment type
+* remove `WP_ENVIRONMENT_TYPE` on deactivation
 
 #### 2.6.2 / 2020-09-01
 * only set `WP_ENVIRONMENT_TYPE` when changed

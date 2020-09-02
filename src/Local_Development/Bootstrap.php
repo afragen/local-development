@@ -24,9 +24,11 @@ class Bootstrap {
 	/**
 	 * Let's get started.
 	 *
+	 * @param string File name.
+	 *
 	 * @return void
 	 */
-	public function run() {
+	public function run( $file ) {
 		add_action(
 			'init',
 			function () {
@@ -35,5 +37,10 @@ class Bootstrap {
 		);
 
 		( new Init() )->load_hooks()->run();
+		\register_deactivation_hook( $file, [ $this, 'deactivate' ] );
+	}
+
+	public function deactivate() {
+		( new Init() )->remove_constants( [ 'wp_environment_type' => null ] );
 	}
 }
