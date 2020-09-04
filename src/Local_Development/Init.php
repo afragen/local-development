@@ -97,14 +97,14 @@ class Init {
 		}
 	}
 
-		/**
-		 * Remove constants from wp-config.php file.
-		 *
-		 * @uses https://github.com/wp-cli/wp-config-transformer
-		 *
-		 * @param  array $remove Constants to remove from wp-config.php.
-		 * @return void
-		 */
+	/**
+	 * Remove constants from wp-config.php file.
+	 *
+	 * @uses https://github.com/wp-cli/wp-config-transformer
+	 *
+	 * @param  array $remove Constants to remove from wp-config.php.
+	 * @return void
+	 */
 	public function remove_constants( $remove ) {
 		try {
 			$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
