@@ -237,7 +237,7 @@ class Base {
 	public function remove_update_row( $repo_name ) {
 		print '<script>';
 		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . esc_attr( $repo_name ) . '\']").remove();';
-		print 'jQuery(".update[data-plugin=\'' . esc_attr( $repo_name ) . '\']").removeClass("update");';
+		// print 'jQuery(".update[data-plugin=\'' . esc_attr( $repo_name ) . '\']").removeClass("update");';
 		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print '</script>';
 	}
