@@ -24,7 +24,7 @@ class Bootstrap {
 	/**
 	 * Let's get started.
 	 *
-	 * @param string File name.
+	 * @param string $file File name.
 	 *
 	 * @return void
 	 */
@@ -40,6 +40,11 @@ class Bootstrap {
 		\register_deactivation_hook( $file, [ $this, 'deactivate' ] );
 	}
 
+	/**
+	 * Remove constants on deactive.
+	 *
+	 * @return void
+	 */
 	public function deactivate() {
 		( new Init() )->remove_constants( [ 'wp_environment_type' => null ] );
 	}
