@@ -81,6 +81,7 @@ class Base {
 			add_filter( 'plugin_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 			add_filter( 'theme_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 		}
+		$this->disable_autoupdate_link();
 	}
 
 	/**
@@ -224,6 +225,32 @@ class Base {
 		if ( 'themes.php' === $pagenow && ! empty( self::$options['themes'] ) ) {
 			foreach ( array_keys( self::$options['themes'] ) as $theme ) {
 				$this->remove_update_row( $theme );
+			}
+		}
+	}
+
+	/**
+	 * Disable the auto-update link.
+	 *
+	 * @return void
+	 */
+	public function disable_autoupdate_link() {
+		global $pagenow;
+
+		if ( in_array( $pagenow, [ 'plugins.php', 'themes.php' ], true ) ) {
+			foreach ( array_keys( array_merge( self::$plugins, self::$themes ) ) as $repo ) {
+				$type = 'plugins.php' === $pagenow ? 'plugin' : 'theme';
+				add_filter(
+					"auto_update_{$type}",
+					function( $update, $slug ) use ( $repo, $type ) {
+						if ( $repo === $slug->{$type} ) {
+							return false;
+						}
+						return $update;
+					},
+					10,
+					2
+				);
 			}
 		}
 	}
