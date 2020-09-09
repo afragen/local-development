@@ -56,8 +56,8 @@ class Base {
 	 */
 	public function __construct( $config ) {
 		self::$options = $config;
-		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
-		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
+		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : [];
+		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : [];
 		self::$message = esc_html__( 'In Local Development', 'local-development' );
 	}
 
