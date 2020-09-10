@@ -81,7 +81,12 @@ class Base {
 			add_filter( 'plugin_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 			add_filter( 'theme_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 		}
-		$this->disable_autoupdate_link();
+		add_action(
+			'admin_init',
+			function() {
+				$this->disable_autoupdate_link();
+			}
+		);
 	}
 
 	/**
@@ -197,6 +202,7 @@ class Base {
 		if ( ! empty( $repos ) ) {
 			foreach ( array_keys( $repos ) as $repo ) {
 				if ( isset( $transient->response[ $repo ] ) ) {
+					$transient->no_update[ $repo ] = $transient->response[ $repo ];
 					unset( $transient->response[ $repo ] );
 				}
 				if ( isset( $transient->translations ) ) {
@@ -238,8 +244,9 @@ class Base {
 		global $pagenow;
 
 		if ( in_array( $pagenow, [ 'plugins.php', 'themes.php' ], true ) ) {
-			foreach ( array_keys( array_merge( self::$plugins, self::$themes ) ) as $repo ) {
-				$type = 'plugins.php' === $pagenow ? 'plugin' : 'theme';
+			$repos = 'plugins.php' === $pagenow ? self::$plugins : self::$themes;
+			$type  = 'plugins.php' === $pagenow ? 'plugin' : 'theme';
+			foreach ( array_keys( $repos ) as $repo ) {
 				add_filter(
 					"auto_update_{$type}",
 					function( $update, $slug ) use ( $repo, $type ) {
