@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.7.0 / 2020-099-15
 * set custom admin bar to display environment type
 * remove `WP_ENVIRONMENT_TYPE` on deactivation
 * remove a line of jQuery for removing `update` row class as unnecessary and now [conflicting with GHU](https://github.com/afragen/github-updater/pull/898)
