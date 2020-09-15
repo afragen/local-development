@@ -215,6 +215,7 @@ class Extras extends Settings {
 	 * @return void
 	 */
 	public function custom_local_admin_bar_css() {
+		$environment = isset( static::$options['extras']['environment_type'] ) ? static::$options['extras']['environment_type'] : 'localhost';
 
 		if ( is_admin_bar_showing() ) {
 			?>
@@ -222,7 +223,7 @@ class Extras extends Settings {
 
 			#wpadminbar #wp-admin-bar-site-name > .ab-item::after
 			{
-				content: " - localhost";
+				content: " - <?php esc_html_e( $environment ); ?>";
 				font-weight: 800;
 				font-family: Monospace;
 				color: #fff;

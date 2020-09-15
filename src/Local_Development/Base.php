@@ -56,8 +56,8 @@ class Base {
 	 */
 	public function __construct( $config ) {
 		self::$options = $config;
-		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : null;
-		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : null;
+		self::$plugins = isset( $config['plugins'] ) ? $config['plugins'] : [];
+		self::$themes  = isset( $config['themes'] ) ? $config['themes'] : [];
 		self::$message = esc_html__( 'In Local Development', 'local-development' );
 	}
 
@@ -81,6 +81,12 @@ class Base {
 			add_filter( 'plugin_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 			add_filter( 'theme_row_meta', [ $this, 'row_meta_icons' ], 15, 2 );
 		}
+		add_action(
+			'admin_init',
+			function() {
+				$this->disable_autoupdate_link();
+			}
+		);
 	}
 
 	/**
@@ -196,6 +202,7 @@ class Base {
 		if ( ! empty( $repos ) ) {
 			foreach ( array_keys( $repos ) as $repo ) {
 				if ( isset( $transient->response[ $repo ] ) ) {
+					$transient->no_update[ $repo ] = $transient->response[ $repo ];
 					unset( $transient->response[ $repo ] );
 				}
 				if ( isset( $transient->translations ) ) {
@@ -229,6 +236,33 @@ class Base {
 	}
 
 	/**
+	 * Disable the auto-update link.
+	 *
+	 * @return void
+	 */
+	public function disable_autoupdate_link() {
+		global $pagenow;
+
+		if ( in_array( $pagenow, [ 'plugins.php', 'themes.php' ], true ) ) {
+			$repos = 'plugins.php' === $pagenow ? self::$plugins : self::$themes;
+			$type  = 'plugins.php' === $pagenow ? 'plugin' : 'theme';
+			foreach ( array_keys( $repos ) as $repo ) {
+				add_filter(
+					"auto_update_{$type}",
+					function( $update, $slug ) use ( $repo, $type ) {
+						if ( $repo === $slug->{$type} ) {
+							return false;
+						}
+						return $update;
+					},
+					10,
+					2
+				);
+			}
+		}
+	}
+
+	/**
 	 * Write out inline style to hide the update row notice.
 	 * Removes checkbox for bulk actions.
 	 *
@@ -237,7 +271,7 @@ class Base {
 	public function remove_update_row( $repo_name ) {
 		print '<script>';
 		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . esc_attr( $repo_name ) . '\']").remove();';
-		print 'jQuery(".update[data-plugin=\'' . esc_attr( $repo_name ) . '\']").removeClass("update");';
+		// print 'jQuery(".update[data-plugin=\'' . esc_attr( $repo_name ) . '\']").removeClass("update");';
 		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print '</script>';
 	}

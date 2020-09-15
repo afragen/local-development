@@ -4,7 +4,7 @@ Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.6
 Tested up to: 5.5
 Requires PHP: 5.6
-Stable tag: 2.6.2
+Stable tag: 2.7.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
@@ -30,6 +30,12 @@ Requires PHP 5.6 or greater.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.7.0 / 2020-099-15
+* set custom admin bar to display environment type
+* remove `WP_ENVIRONMENT_TYPE` on deactivation
+* remove a line of jQuery for removing `update` row class as unnecessary and now [conflicting with GHU](https://github.com/afragen/github-updater/pull/898)
+* disable the auto-update link from WP 5.5
 
 #### 2.6.2 / 2020-09-01
 * only set `WP_ENVIRONMENT_TYPE` when changed
