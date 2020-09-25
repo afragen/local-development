@@ -245,17 +245,18 @@ class Settings {
 			'staging'     => __( 'staging', 'local-development' ),
 			'production'  => __( 'production', 'local-development' ),
 		];
-		?>
-		<div style="float:left;margin-top:8px;"><?php esc_html_e( $args['name'] ); ?></div>
-		<?php foreach ( $environments as $key => $value ) : ?>
-			<?php $checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) && $key === self::$options[ $args['type'] ][ $args['id'] ] ? 'checked' : ''; ?>
+
+		echo '<div style="float:left;margin-top:8px;">' . esc_html( $args['name'] ) . '</div>';
+		foreach ( $environments as $key => $value ) {
+			$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) && $key === self::$options[ $args['type'] ][ $args['id'] ] ? 'checked' : '';
+			?>
 			<p style="padding-left:15em;">
 			<label for="<?php esc_attr_e( $args['id'] ); ?>">
 				<input type="radio" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
 				<?php esc_html_e( $value ); ?>
 			</label></p>
-		<?php endforeach ?>
-		<?php
+			<?php
+		}
 	}
 
 	/**
