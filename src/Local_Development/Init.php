@@ -183,7 +183,7 @@ class Init {
 	 *
 	 * @return string $config_path
 	 */
-	private function get_config_path() {
+	public function get_config_path() {
 		$config_path = ABSPATH . 'wp-config.php';
 
 		if ( ! file_exists( $config_path ) ) {
