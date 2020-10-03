@@ -275,7 +275,7 @@ class Base {
 		print '<script>';
 		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print 'jQuery("ul[id=\'' . esc_attr( $slug ) . '-id\'] li").remove();';
-		print 'jQuery("ul[id=\'' . esc_attr( $slug ) . '-id\']").append("<li>' . esc_html__( 'In Local Development.', 'local-development' ) . '</li>");';
+		print 'jQuery("ul[id=\'' . esc_attr( $slug ) . '-id\']").append("<li>' . esc_html__( 'In Local Development', 'local-development' ) . '</li>");';
 		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print '</script>';
 	}
