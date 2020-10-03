@@ -1,6 +1,6 @@
 #### [unreleased]
 * try to correcty display defined `WP_ENVIRONMENT_TYPE` in Settings
-* remove branch switch list from GitHub Updater plugins/themes
+* remove branch switch list from GitHub Updater plugins/themes and add _In Local Development_ item
 
 #### 2.7.0 / 2020-099-15
 * set custom admin bar to display environment type
