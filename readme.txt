@@ -2,9 +2,9 @@
 Contributors: afragen, raruto
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.6
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
@@ -17,7 +17,7 @@ Places development notice for plugins or themes that are in local development. N
 * Allows for bypassing the WordPress 5.2 WSOD Shutdown Handler.
 * Add a warning color to admin bar when running under localhost. Default is on.
 * Add a git host icon to the plugins page. Default is off. No option if GitHub Updater is running.
-* Allows setting of `WP_ENVIRONMENT_TYPE`.
+* Allows setting of `WP_ENVIRONMENT_TYPE` in `wp-config.php`.
 
 Pull Requests are welcome against the [develop branch on GitHub](https://github.com/afragen/local-development).
 
@@ -30,6 +30,10 @@ Requires PHP 5.6 or greater.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.7.1 / 2020-10-05
+* try to correcty display defined `WP_ENVIRONMENT_TYPE` in Settings
+* remove branch switch list from GitHub Updater plugins/themes and add _In Local Development_ item
 
 #### 2.7.0 / 2020-099-15
 * set custom admin bar to display environment type
