@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.7.1 / 2020-10-05
 * try to correcty display defined `WP_ENVIRONMENT_TYPE` in Settings
 * remove branch switch list from GitHub Updater plugins/themes and add _In Local Development_ item
 
