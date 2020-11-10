@@ -1,4 +1,5 @@
 #### [unreleased]
+* remove 'Edit' action link
 
 #### 2.7.1 / 2020-10-05
 * try to correcty display defined `WP_ENVIRONMENT_TYPE` in Settings
