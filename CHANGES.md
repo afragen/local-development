@@ -1,5 +1,6 @@
 #### [unreleased]
 * remove 'Edit' action link
+* fix PHP warning when some settings not yet saved
 
 #### 2.7.1 / 2020-10-05
 * try to correcty display defined `WP_ENVIRONMENT_TYPE` in Settings

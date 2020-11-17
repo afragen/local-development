@@ -248,9 +248,11 @@ class Settings {
 
 		$environment_type = defined( 'WP_ENVIRONMENT_TYPE' ) ? \WP_ENVIRONMENT_TYPE : false;
 
-		self::$options['extras']['environment_type'] = ( ( new Extras( self::$options ) )->is_localhost() && $environment_type !== self::$options['extras']['environment_type'] )
+		if ( isset( self::$options['extras']['environment'] ) ) {
+			self::$options['extras']['environment_type'] = ( ( new Extras( self::$options ) )->is_localhost() && $environment_type !== self::$options['extras']['environment_type'] )
 			? $environment_type
 			: self::$options['extras']['environment_type'];
+		}
 
 		echo '<div style="float:left;margin-top:8px;">' . esc_html( $args['name'] ) . '</div>';
 		foreach ( $environments as $key => $value ) {
