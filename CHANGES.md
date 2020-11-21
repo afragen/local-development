@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.7.2 / 2020-11-21
 * remove 'Edit' action link
 * fix PHP warning when some settings not yet saved
 
