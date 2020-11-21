@@ -122,7 +122,7 @@ class Base {
 	}
 
 	/**
-	 * Remove 'delete' action link.
+	 * Remove 'delete' and 'edit' action links.
 	 *
 	 * @param  array  $actions Row meta actions.
 	 * @param  string $file    Row meta file name.
@@ -132,7 +132,7 @@ class Base {
 		$file  = $file instanceof \WP_Theme ? $file->stylesheet : $file;
 		$repos = array_merge( (array) self::$plugins, (array) self::$themes );
 		if ( array_key_exists( $file, $repos ) ) {
-			unset( $actions['delete'] );
+			unset( $actions['delete'], $actions['edit'] );
 		}
 
 		return $actions;
@@ -274,9 +274,10 @@ class Base {
 
 		print '<script>';
 		print 'jQuery("tr.plugin-update-tr[data-plugin=\'' . esc_attr( $repo_name ) . '\']").remove();';
+		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
+
 		print 'jQuery("ul[id=\'' . esc_attr( $slug ) . '-id\'] li").remove();';
 		print 'jQuery("ul[id=\'' . esc_attr( $slug ) . '-id\']").append("<li>' . esc_html__( 'In Local Development', 'local-development' ) . '</li>");';
-		print 'jQuery("input[value=\'' . esc_attr( $repo_name ) . '\']").remove();';
 		print '</script>';
 	}
 

@@ -25,6 +25,7 @@ class ComposerStaticInitc2642df8a652ae57417e030670a9ea31
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Fragen\\Singleton' => __DIR__ . '/..' . '/afragen/singleton/Singleton.php',
     );
 

@@ -216,6 +216,7 @@ class Extras extends Settings {
 	 */
 	public function custom_local_admin_bar_css() {
 		$environment = isset( static::$options['extras']['environment_type'] ) ? static::$options['extras']['environment_type'] : 'localhost';
+		$environment = defined( 'WP_ENVIRONMENT_TYPE' ) ? \WP_ENVIRONMENT_TYPE : $environment;
 
 		if ( is_admin_bar_showing() ) {
 			?>
