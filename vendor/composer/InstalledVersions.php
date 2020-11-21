@@ -14,24 +14,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-develop',
-    'version' => 'dev-develop',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => 'a7ec45bdb747635212b052eef23e121cdd723f84',
+    'reference' => 'd7ef0c568b0dd4e8036577c39eb99fdd179f097b',
     'name' => 'afragen/local-development',
   ),
   'versions' => 
   array (
     'afragen/local-development' => 
     array (
-      'pretty_version' => 'dev-develop',
-      'version' => 'dev-develop',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => 'a7ec45bdb747635212b052eef23e121cdd723f84',
+      'reference' => 'd7ef0c568b0dd4e8036577c39eb99fdd179f097b',
     ),
     'afragen/singleton' => 
     array (
