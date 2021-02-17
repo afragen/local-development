@@ -24,28 +24,28 @@ class Base {
 	/**
 	 * Static to hold slugs of plugins under development.
 	 *
-	 * @var $plugins
+	 * @var array $plugins
 	 */
 	protected static $plugins;
 
 	/**
 	 * Static to hold slugs themes under development.
 	 *
-	 * @var $themes
+	 * @var array $themes
 	 */
 	protected static $themes;
 
 	/**
 	 * Static to hold message.
 	 *
-	 * @var $message
+	 * @var string $message
 	 */
 	protected static $message;
 
 	/**
 	 * Holds plugin settings.
 	 *
-	 * @var $options
+	 * @var array $options
 	 */
 	protected static $options;
 
