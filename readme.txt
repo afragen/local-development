@@ -2,7 +2,7 @@
 Contributors: afragen, raruto
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 5.6
 Stable tag: 2.7.2
 License: GPLv2
