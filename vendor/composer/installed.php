@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd7ef0c568b0dd4e8036577c39eb99fdd179f097b',
+    'reference' => '7e827f3174304df49725786fd6e0642c72f0ac2b',
     'name' => 'afragen/local-development',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd7ef0c568b0dd4e8036577c39eb99fdd179f097b',
+      'reference' => '7e827f3174304df49725786fd6e0642c72f0ac2b',
     ),
     'afragen/singleton' => 
     array (
@@ -28,7 +28,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '75bce9e88abaefdbbf4d12bc02f71079e465326d',
+      'reference' => 'be8e3c3b3a53ba30db9f77f5b3bcf2d5e58ed9c0',
     ),
     'wp-cli/wp-config-transformer' => 
     array (
