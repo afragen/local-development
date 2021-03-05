@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 2.7.3 / 2021-03-05
+* update docblocks
+* update tested to 5.7
+
 #### 2.7.2 / 2020-11-21
 * remove 'Edit' action link
 * fix PHP warning when some settings not yet saved
