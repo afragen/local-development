@@ -1,4 +1,5 @@
 #### [unreleased]
+* update WPConfigTransformer to use alternate anchor if default not present
 
 #### 2.7.3 / 2021-03-05
 * update docblocks
