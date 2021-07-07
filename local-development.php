@@ -14,7 +14,7 @@
  * Author:            Andy Fragen
  * Author URI:        http://thefragens.com/
  * Description:       Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
- * Version:           2.7.3
+ * Version:           2.8.0
  * Domain Path:       /languages
  * Text Domain:       local-development
  * License:           GNU General Public License v2

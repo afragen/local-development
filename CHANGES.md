@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 2.8.0 / 2021-07-07
+* update WPConfigTransformer to use alternate anchor if default not present
+* add @10up GitHub Actions for WordPress SVN
+
 #### 2.7.3 / 2021-03-05
 * update docblocks
 * update tested to 5.7

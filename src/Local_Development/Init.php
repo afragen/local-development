@@ -86,6 +86,15 @@ class Init {
 				'raw'       => false,
 				'normalize' => true,
 			];
+			if ( false === strpos( file_get_contents( $this->get_config_path() ), "/* That's all, stop editing!" ) ) {
+				$config_args = array_merge(
+					$config_args,
+					[
+						'anchor'    => "dirname( __FILE__ ) . '/' );\n}",
+						'placement' => 'after',
+					]
+				);
+			}
 			try {
 				$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
 				$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $this->config['extras']['environment_type'], $config_args );
