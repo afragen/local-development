@@ -152,7 +152,7 @@ class Settings {
 	 */
 	private function options_tabs() {
 		// phpcs:ignore WordPress.Security.NonceVerification
-		$current_tab = isset( $_GET['tab'] ) ? sanitize_file_name( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins';
+		$current_tab = isset( $_GET['tab'] ) ? sanitize_title_with_dashes( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins';
 		echo '<nav class="nav-tab-wrapper" aria-label="Secondary menu">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
 			$active = ( $current_tab === $key ) ? 'nav-tab-active' : '';
@@ -167,7 +167,7 @@ class Settings {
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
 		// phpcs:ignore WordPress.Security.NonceVerification
-		$tab = isset( $_GET['tab'] ) ? sanitize_file_name( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins'; ?>
+		$tab = isset( $_GET['tab'] ) ? sanitize_title_with_dashes( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
@@ -284,7 +284,7 @@ class Settings {
 		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 		if ( isset( $_POST['option_page'] ) &&
-			'local_development_settings' === sanitize_file_name( wp_unslash( $_POST['option_page'] ) )
+			'local_development_settings' === sanitize_title_with_dashes( wp_unslash( $_POST['option_page'] ) )
 		) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$options = isset( $_POST['local_dev'] ) ? wp_unslash( $_POST['local_dev'] ) : [];
