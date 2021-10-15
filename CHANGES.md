@@ -1,4 +1,5 @@
 #### [unreleased]
+* only use `esc_attr_e` for translating strings
 
 #### 2.8.0 / 2021-07-07
 * update WPConfigTransformer to use alternate anchor if default not present

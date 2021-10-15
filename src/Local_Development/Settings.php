@@ -226,8 +226,8 @@ class Settings {
 	public function token_callback_checkbox( $args ) {
 		$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : 0;
 		?>
-		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( 1, intval( $checked ), true ); ?> <?php disabled( -1, $checked, true ); ?> >
+		<label for="<?php echo esc_attr( $args['id'] ); ?>">
+			<input type="checkbox" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="1" <?php checked( 1, intval( $checked ), true ); ?> <?php disabled( -1, $checked, true ); ?> >
 			<?php esc_html_e( $args['name'] ); ?>
 		</label>
 		<?php
@@ -259,8 +259,8 @@ class Settings {
 			$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) && $key === self::$options[ $args['type'] ][ $args['id'] ] ? 'checked' : '';
 			?>
 			<p style="padding-left:15em;">
-			<label for="<?php esc_attr_e( $args['id'] ); ?>">
-				<input type="radio" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
+			<label for="<?php echo esc_attr( $args['id'] ); ?>">
+				<input type="radio" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
 				<?php esc_html_e( $value ); ?>
 			</label></p>
 			<?php
