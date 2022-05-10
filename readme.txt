@@ -3,8 +3,8 @@ Contributors: afragen, raruto
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.6
 Requires PHP: 5.6
-Tested up to: 5.9
-Stable tag: 2.8.0
+Tested up to: 6.0
+Stable tag: 2.8.1
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
@@ -30,6 +30,11 @@ Requires PHP 5.6 or greater.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.8.1 / 2022-05-10
+* only use `esc_attr_e` for translating strings
+* use `sanitize_title_with_dashes()` as `sanitize_file_name()` maybe have attached filter that changes output
+* update for Local.app adding `WP_ENVIRONMENT_TYPE` constant in `local-bootstrap.php` file
 
 #### 2.8.0 / 2021-07-07
 * update WPConfigTransformer to use alternate anchor if default not present
