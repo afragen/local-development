@@ -152,7 +152,7 @@ class Settings {
 	 */
 	private function options_tabs() {
 		// phpcs:ignore WordPress.Security.NonceVerification
-		$current_tab = isset( $_GET['tab'] ) ? sanitize_file_name( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins';
+		$current_tab = isset( $_GET['tab'] ) ? sanitize_title_with_dashes( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins';
 		echo '<nav class="nav-tab-wrapper" aria-label="Secondary menu">';
 		foreach ( $this->settings_tabs() as $key => $name ) {
 			$active = ( $current_tab === $key ) ? 'nav-tab-active' : '';
@@ -167,7 +167,7 @@ class Settings {
 	public function create_admin_page() {
 		$action = is_multisite() ? 'edit.php?action=local-development' : 'options.php';
 		// phpcs:ignore WordPress.Security.NonceVerification
-		$tab = isset( $_GET['tab'] ) ? sanitize_file_name( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins'; ?>
+		$tab = isset( $_GET['tab'] ) ? sanitize_title_with_dashes( wp_unslash( $_GET['tab'] ) ) : 'local_dev_settings_plugins'; ?>
 		<div class="wrap">
 			<h2>
 				<?php esc_html_e( 'Local Development Settings', 'local-development' ); ?>
@@ -226,8 +226,8 @@ class Settings {
 	public function token_callback_checkbox( $args ) {
 		$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) ? esc_attr( self::$options[ $args['type'] ][ $args['id'] ] ) : 0;
 		?>
-		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="checkbox" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="1" <?php checked( 1, intval( $checked ), true ); ?> <?php disabled( -1, $checked, true ); ?> >
+		<label for="<?php echo esc_attr( $args['id'] ); ?>">
+			<input type="checkbox" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="1" <?php checked( 1, intval( $checked ), true ); ?> <?php disabled( -1, $checked, true ); ?> >
 			<?php esc_html_e( $args['name'] ); ?>
 		</label>
 		<?php
@@ -248,7 +248,7 @@ class Settings {
 
 		$environment_type = defined( 'WP_ENVIRONMENT_TYPE' ) ? \WP_ENVIRONMENT_TYPE : false;
 
-		if ( isset( self::$options['extras']['environment'] ) ) {
+		if ( isset( self::$options['extras']['environment_type'] ) ) {
 			self::$options['extras']['environment_type'] = ( ( new Extras( self::$options ) )->is_localhost() && $environment_type !== self::$options['extras']['environment_type'] )
 			? $environment_type
 			: self::$options['extras']['environment_type'];
@@ -259,8 +259,8 @@ class Settings {
 			$checked = isset( self::$options[ $args['type'] ][ $args['id'] ] ) && $key === self::$options[ $args['type'] ][ $args['id'] ] ? 'checked' : '';
 			?>
 			<p style="padding-left:15em;">
-			<label for="<?php esc_attr_e( $args['id'] ); ?>">
-				<input type="radio" name="local_dev[<?php esc_attr_e( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
+			<label for="<?php echo esc_attr( $args['id'] ); ?>">
+				<input type="radio" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
 				<?php esc_html_e( $value ); ?>
 			</label></p>
 			<?php
@@ -284,7 +284,7 @@ class Settings {
 		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 		if ( isset( $_POST['option_page'] ) &&
-			'local_development_settings' === sanitize_file_name( wp_unslash( $_POST['option_page'] ) )
+			'local_development_settings' === sanitize_title_with_dashes( wp_unslash( $_POST['option_page'] ) )
 		) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$options = isset( $_POST['local_dev'] ) ? wp_unslash( $_POST['local_dev'] ) : [];

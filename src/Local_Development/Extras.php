@@ -152,7 +152,7 @@ class Extras extends Settings {
 	public function add_admin_page( $tab, $action ) {
 		if ( 'local_dev_settings_extras' === $tab ) {
 			$action = add_query_arg( 'tab', $tab, $action ); ?>
-			<form method="post" action="<?php esc_attr_e( $action ); ?>">
+			<form method="post" action="<?php echo esc_attr( $action ); ?>">
 			<?php
 			settings_fields( 'local_development_settings' );
 			do_settings_sections( 'local_dev_extras' );

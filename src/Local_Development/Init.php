@@ -97,7 +97,12 @@ class Init {
 			}
 			try {
 				$config_transformer = new \WPConfigTransformer( $this->get_config_path() );
-				$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $this->config['extras']['environment_type'], $config_args );
+				$config_transformer->remove( 'constant', 'WP_ENVIRONMENT_TYPE' );
+
+				// Local.app adds constant in local-bootstrap.php file.
+				if ( ! defined( 'WP_ENVIRONMENT_TYPE' ) ) {
+					$config_transformer->update( 'constant', 'WP_ENVIRONMENT_TYPE', $this->config['extras']['environment_type'], $config_args );
+				}
 			} catch ( \Exception $e ) {
 				$messsage = 'Caught Exception: \Fragen\Local_Development\Init::__construct() - ' . $e->getMessage();
 				// error_log( $messsage );

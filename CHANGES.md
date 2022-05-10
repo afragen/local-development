@@ -1,5 +1,10 @@
 #### [unreleased]
 
+#### 2.8.1 / 2022-05-10
+* only use `esc_attr_e` for translating strings
+* use `sanitize_title_with_dashes()` as `sanitize_file_name()` maybe have attached filter that changes output
+* update for Local.app adding `WP_ENVIRONMENT_TYPE` constant in `local-bootstrap.php` file
+
 #### 2.8.0 / 2021-07-07
 * update WPConfigTransformer to use alternate anchor if default not present
 * add @10up GitHub Actions for WordPress SVN
