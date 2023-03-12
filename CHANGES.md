@@ -1,4 +1,5 @@
 #### [unreleased]
+* PHP 8.1 compatibilty updates
 
 #### 2.8.1 / 2022-05-10
 * only use `esc_attr_e` for translating strings

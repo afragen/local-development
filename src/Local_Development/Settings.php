@@ -275,12 +275,8 @@ class Settings {
 	 * @link http://benohead.com/wordpress-network-wide-plugin-settings/
 	 */
 	public function update_settings() {
-		// phpcs:disable WordPress.Security.NonceVerification.Missing
-		if ( ! isset( $_POST['_wp_http_referer'] ) ) {
-			return false;
-		}
-		$query = parse_url( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ), PHP_URL_QUERY );
-		parse_str( $query, $arr );
+		$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( html_entity_decode( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ) ), PHP_URL_QUERY ) : '';
+		parse_str( (string) $query, $arr );
 		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 		if ( isset( $_POST['option_page'] ) &&
@@ -364,9 +360,9 @@ class Settings {
 		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
 		if ( $update ) {
-			$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ), PHP_URL_QUERY ) : null;
+			$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( html_entity_decode( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ) ), PHP_URL_QUERY ) : '';
 			// phpcs:enable
-			parse_str( $query, $arr );
+			parse_str( (string) $query, $arr );
 			$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';
 
 			$location = add_query_arg(
