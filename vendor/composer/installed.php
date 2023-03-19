@@ -3,7 +3,7 @@
         'name' => 'afragen/local-development',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '2805ead45f5860de2b1343f34594fa4b337d87e3',
+        'reference' => '94fb092326f5ad8a0d9c418b0ef93e8e10e0b597',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'afragen/local-development' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '2805ead45f5860de2b1343f34594fa4b337d87e3',
+            'reference' => '94fb092326f5ad8a0d9c418b0ef93e8e10e0b597',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'afragen/singleton' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '011f7eb2fd66a3c28ee82503fa2f7ae7cd9e4288',
+            'reference' => 'b37737a4b490e8b83ddb2eb38b7604ba41e6cb8f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../afragen/singleton',
             'aliases' => array(
