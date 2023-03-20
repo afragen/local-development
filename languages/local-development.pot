@@ -1,17 +1,17 @@
-# Copyright (C) 2021 Andy Fragen
-# This file is distributed under the same license as the Local Development plugin.
+# Copyright (C) 2023 Andy Fragen
+# This file is distributed under the GNU General Public License v2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Local Development 2.7.3\n"
+"Project-Id-Version: Local Development 2.8.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/local-development\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-03-05T22:49:37+00:00\n"
+"POT-Creation-Date: 2023-03-20T05:53:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: local-development\n"
 
 #. Plugin Name of the plugin
@@ -112,7 +112,7 @@ msgstr ""
 msgid "production"
 msgstr ""
 
-#: src/Local_Development/Settings.php:395
+#: src/Local_Development/Settings.php:391
 msgid "Settings"
 msgstr ""
 
