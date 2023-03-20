@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.8.2 / 2023-03-20
 * PHP 8.1 compatibilty updates
 
 #### 2.8.1 / 2022-05-10
