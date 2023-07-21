@@ -37,9 +37,22 @@
             "Fragen\\Local_Development\\": "src/Local_Development/"
         }
     },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "squizlabs/php_codesniffer": "3.6.0",
+        "wp-coding-standards/wpcs": "~2.3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
     "scripts": {
-        "post-update-cmd": [
+        "make-pot": [
             "wp i18n make-pot . languages/local-development.pot"
+        ],
+        "wpcs": [
+            "vendor/bin/phpcbf .; vendor/bin/phpcs ."
         ]
     }
 }
