@@ -275,6 +275,11 @@ class Settings {
 	 * @link http://benohead.com/wordpress-network-wide-plugin-settings/
 	 */
 	public function update_settings() {
+		// Exit if improper privileges.
+		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'local_development_settings-options' ) ) {
+			return;
+		}
+
 		$query = isset( $_POST['_wp_http_referer'] ) ? parse_url( html_entity_decode( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ) ), PHP_URL_QUERY ) : '';
 		parse_str( (string) $query, $arr );
 		$arr['tab'] = ! empty( $arr['tab'] ) ? $arr['tab'] : 'local_dev_settings_plugins';

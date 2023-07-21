@@ -1,5 +1,7 @@
 #### [unreleased]
 
+* add nonce check for `update_settings()`, bad Andy
+
 #### 2.8.2 / 2023-03-20
 * PHP 8.1 compatibilty updates
 
