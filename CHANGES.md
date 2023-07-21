@@ -1,5 +1,6 @@
 #### [unreleased]
 
+#### 2.8.3
 * add nonce check for `update_settings()`, bad Andy
 
 #### 2.8.2 / 2023-03-20
