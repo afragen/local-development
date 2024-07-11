@@ -83,7 +83,7 @@ class Base {
 		}
 		add_action(
 			'admin_init',
-			function() {
+			function () {
 				$this->disable_autoupdate_link();
 			}
 		);
@@ -249,7 +249,7 @@ class Base {
 			foreach ( array_keys( $repos ) as $repo ) {
 				add_filter(
 					"auto_update_{$type}",
-					function( $update, $slug ) use ( $repo, $type ) {
+					function ( $update, $slug ) use ( $repo, $type ) {
 						if ( $repo === $slug->{$type} ) {
 							return false;
 						}

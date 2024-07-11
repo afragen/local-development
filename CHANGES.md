@@ -1,4 +1,5 @@
 #### [unreleased]
+* linting
 
 #### 2.8.3
 * add nonce check for `update_settings()`, bad Andy

@@ -187,7 +187,7 @@ class Extras extends Settings {
 	public function allow_local_servers() {
 		add_filter(
 			'http_request_args',
-			function ( $r, $url ) {
+			function ( $r ) {
 				if ( ! $r['reject_unsafe_urls'] ) {
 					return $r;
 				}
@@ -196,7 +196,7 @@ class Extras extends Settings {
 				return $r;
 			},
 			10,
-			2
+			1
 		);
 	}
 
