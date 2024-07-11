@@ -1,4 +1,5 @@
 #### [unreleased]
+* composer update
 * linting
 
 #### 2.8.3
