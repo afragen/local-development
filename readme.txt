@@ -3,8 +3,8 @@ Contributors: afragen, raruto
 Tags: localhost, development, upgrade, plugin, theme
 Requires at least: 4.6
 Requires PHP: 5.6
-Tested up to: 6.3
-Stable tag: 2.8.3
+Tested up to: 6.6
+Stable tag: 2.8.4
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
@@ -30,6 +30,12 @@ Requires PHP 5.6 or greater.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.8.4 / 2024-07-11
+* composer update
+* update GitHub Actions
+* update tested to
+* linting
 
 #### 2.8.3
 * add nonce check for `update_settings()`, bad Andy
