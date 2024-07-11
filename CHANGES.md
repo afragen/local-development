@@ -1,5 +1,11 @@
 #### [unreleased]
 
+#### 2.8.4 / 2024-07-11
+* composer update
+* update GitHub Actions
+* update tested to
+* linting
+
 #### 2.8.3
 * add nonce check for `update_settings()`, bad Andy
 

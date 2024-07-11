@@ -158,6 +158,7 @@ class Init {
 				$filepath = untrailingslashit( "{$wp_path}/{$slug}" );
 
 				foreach ( $vcs_dirs as $vcs_dir ) {
+					// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 					$is_vcs = @is_dir( "{$filepath}/{$vcs_dir}" );
 					if ( $is_vcs ) {
 						$config[ $type ][ $file ] = '-1';
@@ -201,6 +202,7 @@ class Init {
 		$config_path = ABSPATH . 'wp-config.php';
 
 		if ( ! file_exists( $config_path ) ) {
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 			if ( @file_exists( dirname( ABSPATH ) . '/wp-config.php' ) && ! @file_exists( dirname( ABSPATH ) . '/wp-settings.php' ) ) {
 				$config_path = dirname( ABSPATH ) . '/wp-config.php';
 			}
