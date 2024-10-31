@@ -1,5 +1,6 @@
 #### [unreleased]
 * remove `load_plugin_textdomain()`
+* fix setting to show/hide git host icon
 
 #### 2.8.4 / 2024-07-11
 * composer update

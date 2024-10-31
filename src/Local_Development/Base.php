@@ -161,7 +161,9 @@ class Base {
 				// Remove update notice.
 				$prepared_themes[ $theme['id'] ]['hasUpdate'] = false;
 			}
-			$icon = $this->row_meta_icons( [], $theme['id'] );
+			if ( $this->show_git_icons() ) {
+				$icon = $this->row_meta_icons( [], $theme['id'] );
+			}
 
 			if ( isset( $icon[0] ) ) {
 				$message = ! empty( $message ) ? "{$icon[0]} | {$message}" : $icon[0];
