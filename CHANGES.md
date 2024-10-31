@@ -1,4 +1,5 @@
 #### [unreleased]
+* remove `load_plugin_textdomain()`
 
 #### 2.8.4 / 2024-07-11
 * composer update
