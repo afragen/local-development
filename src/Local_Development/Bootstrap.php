@@ -29,13 +29,6 @@ class Bootstrap {
 	 * @return void
 	 */
 	public function run( $file ) {
-		add_action(
-			'init',
-			function () {
-				load_plugin_textdomain( 'local-development' );
-			}
-		);
-
 		( new Init() )->load_hooks()->run();
 		\register_deactivation_hook( $file, [ $this, 'deactivate' ] );
 	}

@@ -1,5 +1,10 @@
 #### [unreleased]
 
+#### 2.9.0 / 2024-11-01
+* remove `load_plugin_textdomain()`
+* fix setting to show/hide git host icon
+* composer update
+
 #### 2.8.4 / 2024-07-11
 * composer update
 * update GitHub Actions
