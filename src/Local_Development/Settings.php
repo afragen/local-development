@@ -24,21 +24,21 @@ class Settings {
 	/**
 	 * Holds plugin data.
 	 *
-	 * @var $plugins
+	 * @var array
 	 */
 	protected $plugins;
 
 	/**
 	 * Holds theme data.
 	 *
-	 * @var $themes
+	 * @var array
 	 */
 	protected $themes;
 
 	/**
 	 * Holds plugin settings.
 	 *
-	 * @var $options
+	 * @var array
 	 */
 	protected static $options;
 
@@ -228,7 +228,7 @@ class Settings {
 		?>
 		<label for="<?php echo esc_attr( $args['id'] ); ?>">
 			<input type="checkbox" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="1" <?php checked( 1, intval( $checked ), true ); ?> <?php disabled( -1, $checked, true ); ?> >
-			<?php esc_html_e( $args['name'] ); ?>
+			<?php echo esc_html( $args['name'] ); ?>
 		</label>
 		<?php
 	}
@@ -260,8 +260,8 @@ class Settings {
 			?>
 			<p style="padding-left:15em;">
 			<label for="<?php echo esc_attr( $args['id'] ); ?>">
-				<input type="radio" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php esc_html_e( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
-				<?php esc_html_e( $value ); ?>
+				<input type="radio" name="local_dev[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_html( $value ); ?>" <?php echo esc_attr( $checked ); ?> >
+				<?php echo esc_html( $value ); ?>
 			</label></p>
 			<?php
 		}

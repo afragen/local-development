@@ -1,4 +1,5 @@
 #### [unreleased]
+* linting
 
 #### 2.9.0 / 2024-11-01
 * remove `load_plugin_textdomain()`
