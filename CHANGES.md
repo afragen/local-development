@@ -1,4 +1,5 @@
 #### [unreleased]
+* add GA to generate POT
 * linting
 
 #### 2.9.0 / 2024-11-01
