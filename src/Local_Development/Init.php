@@ -139,7 +139,9 @@ class Init {
 	 */
 	public function run() {
 		$this->set_environment();
-		( new Base( $this->config ) )->load_hooks();
+		add_action('init', function(){
+			( new Base( $this->config ) )->load_hooks();
+		});
 	}
 
 	/**
