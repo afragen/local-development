@@ -1,6 +1,7 @@
 #### [unreleased]
 * add GA to generate POT
 * linting
+* more fixing for `_load_textdomain_just_in_time`
 
 #### 2.9.0 / 2024-11-01
 * remove `load_plugin_textdomain()`
