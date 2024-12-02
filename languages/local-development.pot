@@ -1,46 +1,46 @@
-# Copyright (C) 2023 Andy Fragen
+# Copyright (C) 2024 Andy Fragen
 # This file is distributed under the GNU General Public License v2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Local Development 2.8.1.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/local-development\n"
+"Project-Id-Version: local-development 2.9.1\n"
+"Report-Msgid-Bugs-To: https://github.com/afragen/local-development/local-development/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-20T05:53:20+00:00\n"
+"POT-Creation-Date: 2024-12-02T19:18:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: local-development\n"
 
 #. Plugin Name of the plugin
+#: local-development.php
 msgid "Local Development"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: local-development.php
 msgid "https://wordpress.org/plugins/local-development"
 msgstr ""
 
 #. Description of the plugin
+#: local-development.php
 msgid "Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler."
 msgstr ""
 
 #. Author of the plugin
+#: local-development.php
 msgid "Andy Fragen"
 msgstr ""
 
 #. Author URI of the plugin
+#: local-development.php
 msgid "http://thefragens.com/"
 msgstr ""
 
-#. translators: 1: minimum PHP version required, 2: Upgrade PHP URL
-#: local-development.php:42
-msgid "Local Development cannot run on PHP versions older than %1$s. <a href=\"%2$s\">Learn about updating your PHP.</a>"
-msgstr ""
-
 #: src/Local_Development/Base.php:61
-#: src/Local_Development/Base.php:280
+#: src/Local_Development/Base.php:282
 msgid "In Local Development"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 msgid "production"
 msgstr ""
 
-#: src/Local_Development/Settings.php:391
+#: src/Local_Development/Settings.php:396
 msgid "Settings"
 msgstr ""
 
