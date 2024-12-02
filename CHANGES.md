@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.9.1 / 2024-12-02
 * add GA to generate POT
 * linting
 * more fixing for `_load_textdomain_just_in_time`
