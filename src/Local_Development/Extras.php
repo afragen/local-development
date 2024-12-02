@@ -224,7 +224,7 @@ class Extras extends Settings {
 
 			#wpadminbar #wp-admin-bar-site-name > .ab-item::after
 			{
-				content: " - <?php esc_html_e( $environment ); ?>";
+				content: " - <?php echo esc_html( $environment ); ?>";
 				font-weight: 800;
 				font-family: Monospace;
 				color: #fff;

@@ -29,7 +29,12 @@ class Bootstrap {
 	 * @return void
 	 */
 	public function run( $file ) {
-		( new Init() )->load_hooks()->run();
+		add_action(
+			'init',
+			function () {
+				( new Init() )->load_hooks()->run();
+			}
+		);
 		\register_deactivation_hook( $file, [ $this, 'deactivate' ] );
 	}
 

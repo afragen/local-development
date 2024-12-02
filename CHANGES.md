@@ -1,5 +1,10 @@
 #### [unreleased]
 
+#### 2.9.1 / 2024-12-02
+* add GA to generate POT
+* linting
+* more fixing for `_load_textdomain_just_in_time`
+
 #### 2.9.0 / 2024-11-01
 * remove `load_plugin_textdomain()`
 * fix setting to show/hide git host icon
