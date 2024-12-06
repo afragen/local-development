@@ -1,4 +1,5 @@
 #### [unreleased]
+* don't use `init` hook to in startup
 
 #### 2.9.1 / 2024-12-02
 * add GA to generate POT
