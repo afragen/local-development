@@ -1,4 +1,5 @@
 #### [unreleased]
+* some reorganization to fix `_load_textdomain_just_in_time`
 * set `WP_ENVIRONMENT_TYPE` variable
 
 #### 2.9.2 / 2024-12-05
