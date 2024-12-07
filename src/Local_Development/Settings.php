@@ -246,12 +246,9 @@ class Settings {
 			'production'  => __( 'production', 'local-development' ),
 		];
 
-		$environment_type = defined( 'WP_ENVIRONMENT_TYPE' ) ? \WP_ENVIRONMENT_TYPE : false;
-
-		if ( isset( self::$options['extras']['environment_type'] ) ) {
-			self::$options['extras']['environment_type'] = ( ( new Extras( self::$options ) )->is_localhost() && $environment_type !== self::$options['extras']['environment_type'] )
-			? $environment_type
-			: self::$options['extras']['environment_type'];
+		if ( function_exists( 'putenv' ) && isset( self::$options['extras']['environment_type'] ) ) {
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_putenv
+			putenv( 'WP_ENVIRONMENT_TYPE=' . self::$options['extras']['environment_type'] );
 		}
 
 		echo '<div style="float:left;margin-top:8px;">' . esc_html( $args['name'] ) . '</div>';

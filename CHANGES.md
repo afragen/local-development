@@ -1,4 +1,5 @@
 #### [unreleased]
+* set `WP_ENVIRONMENT_TYPE` variable
 
 #### 2.9.2 / 2024-12-05
 * don't use `init` hook to in startup
