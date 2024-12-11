@@ -34,10 +34,7 @@ class Init {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		$config = get_site_option( 'local_development', [] );
-		$config = $this->get_vcs_checkouts( $config );
-		$config = $this->modify_options( $config );
-
+		$config       = get_site_option( 'local_development', [] );
 		$this->config = $config;
 
 		// Skip on heartbeat or if no saved settings.
@@ -56,10 +53,15 @@ class Init {
 	 */
 	public function load_hooks() {
 		$config = $this->config;
+		Singleton::get_instance( 'Settings', $this, $config )->load_hooks();
+
 		add_action(
 			'init',
-			function () use ( $config ) {
-				Singleton::get_instance( 'Settings', $this, $config )->load_hooks();
+			function () use ( &$config ) {
+				$config       = $this->get_vcs_checkouts( $config );
+				$config       = $this->modify_options( $config );
+				$this->config = $config;
+
 				Singleton::get_instance( 'Plugins', $this, $config )->run();
 				Singleton::get_instance( 'Themes', $this, $config )->run();
 				Singleton::get_instance( 'Extras', $this, $config )->run();
