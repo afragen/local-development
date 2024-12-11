@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2.
 msgid ""
 msgstr ""
-"Project-Id-Version: local-development 2.9.2\n"
+"Project-Id-Version: local-development 2.10.0\n"
 "Report-Msgid-Bugs-To: https://github.com/afragen/local-development/local-development/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-06T04:15:42+00:00\n"
+"POT-Creation-Date: 2024-12-11T17:42:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: local-development\n"
@@ -112,7 +112,7 @@ msgstr ""
 msgid "production"
 msgstr ""
 
-#: src/Local_Development/Settings.php:396
+#: src/Local_Development/Settings.php:393
 msgid "Settings"
 msgstr ""
 
