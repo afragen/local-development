@@ -1,4 +1,5 @@
 #### [unreleased]
+* update for Git Updater Additions tab/rebrand
 
 #### 2.10.1 / 2024-12-15
 * update for Git Updater rebrand to not duplicate git icons
