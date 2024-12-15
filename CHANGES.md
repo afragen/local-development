@@ -1,4 +1,5 @@
 #### [unreleased]
+* update for Git Updater rebrand to not duplicate git icons
 
 #### 2.10.0 / 2024-12-11
 * some reorganization to fix `_load_textdomain_just_in_time`
