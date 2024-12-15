@@ -181,7 +181,7 @@ class Init {
 	 * @return array
 	 */
 	private function modify_options( $config ) {
-		if ( is_plugin_active( 'github-updater/github-updater.php' ) ) {
+		if ( is_plugin_active( 'git-updater/git-updater.php' ) ) {
 			$config['extras']['enable_git_icons'] = '-1';
 		}
 		if ( defined( 'WP_DISABLE_FATAL_ERROR_HANDLER' ) && WP_DISABLE_FATAL_ERROR_HANDLER ) {
