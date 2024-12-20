@@ -3,7 +3,7 @@
         'name' => 'afragen/local-development',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '5e29faa3e73cab1104c1a0009b31b60484552be1',
+        'reference' => 'f812618814b985ea604538cc4a4f24d1b68a0986',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'afragen/local-development' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '5e29faa3e73cab1104c1a0009b31b60484552be1',
+            'reference' => 'f812618814b985ea604538cc4a4f24d1b68a0986',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
