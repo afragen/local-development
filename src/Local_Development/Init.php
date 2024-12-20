@@ -55,18 +55,13 @@ class Init {
 		$config = $this->config;
 		Singleton::get_instance( 'Settings', $this, $config )->load_hooks();
 
-		add_action(
-			'init',
-			function () use ( &$config ) {
-				$config       = $this->get_vcs_checkouts( $config );
-				$config       = $this->modify_options( $config );
-				$this->config = $config;
+		$config       = $this->get_vcs_checkouts( $config );
+		$config       = $this->modify_options( $config );
+		$this->config = $config;
 
-				Singleton::get_instance( 'Plugins', $this, $config )->run();
-				Singleton::get_instance( 'Themes', $this, $config )->run();
-				Singleton::get_instance( 'Extras', $this, $config )->run();
-			}
-		);
+		Singleton::get_instance( 'Plugins', $this, $config )->run();
+		Singleton::get_instance( 'Themes', $this, $config )->run();
+		Singleton::get_instance( 'Extras', $this, $config )->run();
 
 		return $this;
 	}
