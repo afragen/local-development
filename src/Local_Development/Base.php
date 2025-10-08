@@ -315,12 +315,12 @@ class Base {
 		$file_data = file_exists( $filepath ) ? get_file_data( $filepath, $git_headers ) : [];
 
 		/**
-		 * Insert repositories added via GitHub Updater Additions plugin.
+		 * Insert repositories added via Git Updater Additions tab.
 		 *
-		 * @see GitHub Updater's Plugin or Theme class for definition.
-		 * @link https://github.com/afragen/github-updater-additions
+		 * @see Git Updater's Plugin or Theme class for definition.
+		 * @link https://github.com/afragen/git-updater-additions
 		 */
-		$additions = apply_filters( 'github_updater_additions', null, [], $type );
+		$additions = apply_filters( 'gu_additions', null, [], $type );
 		foreach ( (array) $additions as $slug => $headers ) {
 			if ( $slug === $file ) {
 				$file_data = array_merge( $file_data, $headers );
