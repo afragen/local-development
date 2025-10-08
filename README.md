@@ -1,8 +1,8 @@
 # Local Development
 * Contributors: afragen, raruto
 * Tags: localhost development upgrade plugin theme
-* Requires at least: 4.6
-* Requires PHP: 5.6
+* Requires at least: 5.4
+* Requires PHP: 7.4
 * Stable tag: master
 * License: GPLv2
 * Network: true
@@ -21,7 +21,7 @@ Places development notice for plugins or themes that are in local development. N
 
 Pull Requests are welcome against the `develop` branch.
 
-Requires PHP 5.6 or greater.
+Requires PHP 7.4 or greater.
 
 ## Screenshots
 

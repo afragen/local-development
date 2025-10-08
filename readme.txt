@@ -1,10 +1,10 @@
 # Local Development
 Contributors: afragen, raruto
 Tags: localhost, development, upgrade, plugin, theme
-Requires at least: 4.6
-Requires PHP: 5.6
-Tested up to: 6.8
-Stable tag: 2.10.1
+Requires at least: 5.4
+Requires PHP: 7.4
+Tested up to: 6.9
+Stable tag: 2.11.0
 License: GPLv2
 
 Places development notice for plugins or themes that are in local development. Prevents updating of selected plugins and themes. Automatically adds plugins and themes under version control. Allows for using a local file server and bypassing the WordPress 5.2 WSOD Shutdown Handler.
@@ -21,7 +21,7 @@ Places development notice for plugins or themes that are in local development. N
 
 Pull Requests are welcome against the [develop branch on GitHub](https://github.com/afragen/local-development).
 
-Requires PHP 5.6 or greater.
+Requires PHP 7.4 or greater.
 
 ## Screenshots
 1. Plugin Settings
@@ -30,6 +30,11 @@ Requires PHP 5.6 or greater.
 4. Multisite Themes Page
 
 ## Changelog
+
+#### 2.11.0 / 2025-09-08
+* update for Git Updater Additions tab/rebrand
+* use `init` hook in startup to avoid local_textdomain error
+* update requirements
 
 #### 2.10.1 / 2024-12-15
 * update for Git Updater rebrand to not duplicate git icons

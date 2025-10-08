@@ -1,5 +1,9 @@
 #### [unreleased]
+
+#### 2.11.0 / 2025-09-08
 * update for Git Updater Additions tab/rebrand
+* use `init` hook in startup to avoid local_textdomain error
+* update requirements
 
 #### 2.10.1 / 2024-12-15
 * update for Git Updater rebrand to not duplicate git icons
