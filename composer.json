@@ -45,12 +45,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-    "scripts": {
-        "make-pot": [
-            "wp i18n make-pot . languages/local-development.pot"
-        ],
-        "wpcs": [
-            "vendor/bin/phpcbf .; vendor/bin/phpcs ."
-        ]
-    }
+	"scripts": {
+		"lint": "@php ./vendor/bin/phpcs .",
+		"format": "@php ./vendor/bin/phpcbf ."
+	}
 }

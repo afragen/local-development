@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 2.11.1 / 2026-08-13
+* update tested to
+* composer update
+
 #### 2.11.0 / 2025-09-08
 * update for Git Updater Additions tab/rebrand
 * use `init` hook in startup to avoid local_textdomain error
